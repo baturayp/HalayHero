@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116ed8d58fd7f0f42ae306b11aefc26f, type: 3}
+  m_Name: DeliloColl
+  m_EditorClassIdentifier: 
+  songSets:
+  - easy: {fileID: 11400000, guid: 03ffd71e59dc3a8488b425ce34817d62, type: 2}
+    hard: {fileID: 11400000, guid: d687e9839981236418371e0a055e2b5f, type: 2}
