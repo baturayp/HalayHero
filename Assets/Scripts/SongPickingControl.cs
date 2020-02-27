@@ -2,24 +2,28 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using yutoVR.Localizer;
 
-// Era Picker & Fuel indicator -> SoundPicker (2 boards) -> Choose Character
 public class SongPickingControl : MonoBehaviour
 {
 	private SongInfo currSong;
 
-	//First Board
-	public RectTransform firstBoardTransform;
-	public RectTransform settingsBoardTransform;
-
-	public SongCollection[] songCollections;
-
-	//setting objects
+	[Header("Setting objects")]
 	public GameObject aaDroplabel;
 	public Dropdown aaDrop;
 	public GameObject volumeOn;
 	public GameObject volumeOff;
 	public GameObject volumeLow;
+	public GameObject englishButton;
+	public GameObject turkishButton;
+
+	[Header("Board transforms")]
+	//First Board
+	public RectTransform firstBoardTransform;
+	public RectTransform settingsBoardTransform;
+
+	[Header("Song board settings & collections")]
+	public SongCollection[] songCollections;
 
 	//Song Board
 	[Serializable]
@@ -40,7 +44,7 @@ public class SongPickingControl : MonoBehaviour
 	public int currSongSetIndex;
 	public bool currEasyDifficulty;
 
-	//character checkboxes
+	[Header("Character ticks")]
 	public GameObject characterCheck1;
 	public GameObject characterCheck2;
 
@@ -209,7 +213,7 @@ public class SongPickingControl : MonoBehaviour
 		{
 			QualitySettings.antiAliasing = 0;
 			PlayerPrefs.SetInt("Antialias", 0);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS OFF";
+			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 0x";
 			aaDrop.value = 0;
 		}
 		if (i == 1)
@@ -233,6 +237,13 @@ public class SongPickingControl : MonoBehaviour
 			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 8x";
 			aaDrop.value = 3;
 		}
+	}
+
+	//language selector
+	public void LangSelect(string lang)
+	{
+		Localizer.ChangeLanguage(lang);
+		Localizer.InjectAll();
 	}
 
 	//volume setting button
@@ -259,8 +270,8 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//menu transition and animations
-	//they can be simplified !
+	/*menu transition and animations
+	they can be simplified !*/
 	void FlipToFirstFromSong()
 	{
 		animating = true;
