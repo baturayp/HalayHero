@@ -2609,7 +2609,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1298626547}
-        m_MethodName: FlipToXFromSettings
+        m_MethodName: FlipToFirstFromSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4060,6 +4060,9 @@ MonoBehaviour:
   volumeLow: {fileID: 612404033}
   englishButton: {fileID: 116871814}
   turkishButton: {fileID: 1008809808}
+  settingsAndAboutButton:
+  - {fileID: 216143912}
+  - {fileID: 1362449608}
   firstBoardTransform: {fileID: 1740660826}
   settingsBoardTransform: {fileID: 1473210168}
   songCollections:
@@ -4229,7 +4232,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1298626547}
-        m_MethodName: FlipToSettingsFromX
+        m_MethodName: SettingsButtonToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
