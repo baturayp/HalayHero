@@ -2,24 +2,30 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using yutoVR.Localizer;
 
-// Era Picker & Fuel indicator -> SoundPicker (2 boards) -> Choose Character
 public class SongPickingControl : MonoBehaviour
 {
 	private SongInfo currSong;
 
-	//First Board
-	public RectTransform firstBoardTransform;
-	public RectTransform settingsBoardTransform;
-
-	public SongCollection[] songCollections;
-
-	//setting objects
+	[Header("Setting objects")]
 	public GameObject aaDroplabel;
 	public Dropdown aaDrop;
 	public GameObject volumeOn;
 	public GameObject volumeOff;
 	public GameObject volumeLow;
+	public GameObject englishButton;
+	public GameObject turkishButton;
+	public GameObject[] settingsAndAboutButton;
+	private string defLang;
+
+	[Header("Board transforms")]
+	//First Board
+	public RectTransform firstBoardTransform;
+	public RectTransform settingsBoardTransform;
+
+	[Header("Song board settings & collections")]
+	public SongCollection[] songCollections;
 
 	//Song Board
 	[Serializable]
@@ -40,7 +46,7 @@ public class SongPickingControl : MonoBehaviour
 	public int currSongSetIndex;
 	public bool currEasyDifficulty;
 
-	//character checkboxes
+	[Header("Character ticks")]
 	public GameObject characterCheck1;
 	public GameObject characterCheck2;
 
@@ -55,21 +61,15 @@ public class SongPickingControl : MonoBehaviour
 	private RotationAnimation flipOutAnimation;
 	private const float FlipAnimationDuration = 0.25f;
 	private bool animating = false;
-	//active board; 0 for firstboard, 1 for songboard
-	private int activeBoard = 0;
 	private bool settingsIsActive = false;
 
 	//rotation
 	private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
 	private Vector3 horizontalFlip = new Vector3(0f, 90f, 0f);
-	private Vector3 foldFlip = new Vector3(56f, 90f, 0f);
 
 	//pivot
 	private Vector2 topEdgePivot = new Vector2(0.5f, 1f);
 	private Vector2 bottomEdgePivot = new Vector2(0.5f, 0f);
-	private Vector2 leftEdgePivot = new Vector2(0f, 0.5f);
-	private Vector2 rightEdgePivot = new Vector2(1f, 0.5f);
-	private Vector2 centerPivot = new Vector2(0.5f, 0.5f);
 
 	void Awake()
 	{
@@ -95,6 +95,15 @@ public class SongPickingControl : MonoBehaviour
 		//set volume pref
 		float volPref = PlayerPrefs.GetFloat("Volume", 1f);
 
+		/*check system language
+		  if Turkish, then set default to Turkish
+		  if not, set it as English.
+		  also remember user choice.*/
+		string sysLang; string langPref;
+		if (Application.systemLanguage == SystemLanguage.Turkish) { sysLang = "Turkish"; } else { sysLang = "English"; }
+		if (PlayerPrefs.HasKey("LangPref")) { langPref = PlayerPrefs.GetString("LangPref"); } else { langPref = sysLang; }
+		LangSelect(langPref);
+
 		if (volPref == 0f)
 		{
 			volumeOn.SetActive(false);
@@ -115,7 +124,7 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//era board
+	//flip to second board
 	public void FirstImageClicked(int songSetIndex)
 	{
 		if (animating) return;
@@ -124,6 +133,9 @@ public class SongPickingControl : MonoBehaviour
 		currCollectionIndex = songSetIndex;
 		currSongSetIndex = 0;
 		currEasyDifficulty = true;
+
+		//disable setting and about buttons
+		foreach (GameObject button in settingsAndAboutButton) { button.SetActive(false); }
 
 		//configure song board
 		ConfigureCurrSongBoard();
@@ -136,6 +148,9 @@ public class SongPickingControl : MonoBehaviour
 	public void SongBoardBackButtonClicked()
 	{
 		if (animating) return;
+
+		//enable back setting and about buttons
+		foreach (GameObject button in settingsAndAboutButton) { button.SetActive(true); }
 
 		//perform board transition animation
 		FlipToFirstFromSong();
@@ -209,7 +224,7 @@ public class SongPickingControl : MonoBehaviour
 		{
 			QualitySettings.antiAliasing = 0;
 			PlayerPrefs.SetInt("Antialias", 0);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS OFF";
+			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 0x";
 			aaDrop.value = 0;
 		}
 		if (i == 1)
@@ -233,6 +248,14 @@ public class SongPickingControl : MonoBehaviour
 			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 8x";
 			aaDrop.value = 3;
 		}
+	}
+
+	//language selector
+	public void LangSelect(string lang)
+	{
+		Localizer.ChangeLanguage(lang);
+		Localizer.InjectAll();
+		PlayerPrefs.SetString("LangPref", lang);
 	}
 
 	//volume setting button
@@ -259,8 +282,8 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//menu transition and animations
-	//they can be simplified !
+	/*menu transition and animations
+	they can be simplified !*/
 	void FlipToFirstFromSong()
 	{
 		animating = true;
@@ -281,7 +304,6 @@ public class SongPickingControl : MonoBehaviour
 			topEdgePivot
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
-		activeBoard = 0;
 	}
 
 	void FlipToSongFromFirst()
@@ -304,105 +326,64 @@ public class SongPickingControl : MonoBehaviour
 			bottomEdgePivot
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
-		activeBoard = 1;
 	}
 
-	public void FlipToSettingsFromX()
+	public void SettingsButtonToggle()
 	{
-	//if first board active, invoke transition from first one
-		if (activeBoard == 0 && settingsIsActive == false)
+		if (settingsIsActive)
 		{
-			animating = true;
-			StartCoroutine(flipOutAnimation.AnimationCoroutine(
-				firstBoardTransform,
-				Vector3.zero,
-				horizontalFlip,
-				FlipAnimationDuration,
-				firstBoardTransform.pivot,
-				topEdgePivot
-			));
-			StartCoroutine(flipInAnimation.AnimationCoroutine(
-				settingsBoardTransform,
-				horizontalFlip,
-				Vector3.zero,
-				FlipAnimationDuration,
-				settingsBoardTransform.pivot,
-				bottomEdgePivot
-			));
-			Invoke("RestoreAnimating", FlipAnimationDuration);
-			settingsIsActive = true;
+			FlipToFirstFromSettings();
 		}
-		//if songboard active
-		if (activeBoard == 1 && settingsIsActive == false)
+		else
 		{
-			animating = true;
-			StartCoroutine(flipOutAnimation.AnimationCoroutine(
-				currSongBoard.rectTransform,
-				Vector3.zero,
-				horizontalFlip,
-				FlipAnimationDuration,
-				currSongBoard.rectTransform.pivot,
-				bottomEdgePivot
-			));
-			StartCoroutine(flipInAnimation.AnimationCoroutine(
-				settingsBoardTransform,
-				horizontalFlip,
-				Vector3.zero,
-				FlipAnimationDuration,
-				settingsBoardTransform.pivot,
-				bottomEdgePivot
-			));
-			Invoke("RestoreAnimating", FlipAnimationDuration);
-			settingsIsActive = true;
+			FlipToSettingsFromFirst();
 		}
 	}
 
-	public void FlipToXFromSettings()
+	public void FlipToSettingsFromFirst()
 	{
-		if(activeBoard == 0)
-		{
-			animating = true;
-			StartCoroutine(flipOutAnimation.AnimationCoroutine(
-				settingsBoardTransform,
-				Vector3.zero,
-				horizontalFlip,
-				FlipAnimationDuration,
-				settingsBoardTransform.pivot,
-				bottomEdgePivot
-			));
-			StartCoroutine(flipInAnimation.AnimationCoroutine(
-				firstBoardTransform,
-				horizontalFlip,
-				Vector3.zero,
-				FlipAnimationDuration,
-				firstBoardTransform.pivot,
-				topEdgePivot
-			));
-			Invoke("RestoreAnimating", FlipAnimationDuration);
-			settingsIsActive = false;
-		}
-		if (activeBoard == 1)
-		{
-			animating = true;
-			StartCoroutine(flipOutAnimation.AnimationCoroutine(
-				settingsBoardTransform,
-				Vector3.zero,
-				horizontalFlip,
-				FlipAnimationDuration,
-				settingsBoardTransform.pivot,
-				bottomEdgePivot
-			));
-			StartCoroutine(flipInAnimation.AnimationCoroutine(
-				currSongBoard.rectTransform,
-				horizontalFlip,
-				Vector3.zero,
-				FlipAnimationDuration,
-				currSongBoard.rectTransform.pivot,
-				bottomEdgePivot
-			));
-			Invoke("RestoreAnimating", FlipAnimationDuration);
-			settingsIsActive = false;
-		}
+		animating = true;
+		StartCoroutine(flipOutAnimation.AnimationCoroutine(
+			firstBoardTransform,
+			Vector3.zero,
+			horizontalFlip,
+			FlipAnimationDuration,
+			firstBoardTransform.pivot,
+			topEdgePivot
+		));
+		StartCoroutine(flipInAnimation.AnimationCoroutine(
+			settingsBoardTransform,
+			horizontalFlip,
+			Vector3.zero,
+			FlipAnimationDuration,
+			settingsBoardTransform.pivot,
+			bottomEdgePivot
+		));
+		Invoke("RestoreAnimating", FlipAnimationDuration);
+		settingsIsActive = true;
+	}
+
+	public void FlipToFirstFromSettings()
+	{
+		animating = true;
+		StartCoroutine(flipOutAnimation.AnimationCoroutine(
+			settingsBoardTransform,
+			Vector3.zero,
+			horizontalFlip,
+			FlipAnimationDuration,
+			settingsBoardTransform.pivot,
+			bottomEdgePivot
+		));
+		StartCoroutine(flipInAnimation.AnimationCoroutine(
+			firstBoardTransform,
+			horizontalFlip,
+			Vector3.zero,
+			FlipAnimationDuration,
+			firstBoardTransform.pivot,
+			topEdgePivot
+		));
+		Invoke("RestoreAnimating", FlipAnimationDuration);
+		settingsIsActive = false;
 	}
 
 	void RestoreAnimating()
