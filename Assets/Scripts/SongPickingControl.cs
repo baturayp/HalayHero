@@ -46,9 +46,8 @@ public class SongPickingControl : MonoBehaviour
 	public int currSongSetIndex;
 	public bool currEasyDifficulty;
 
-	[Header("Character ticks")]
-	public GameObject characterCheck1;
-	public GameObject characterCheck2;
+	[Header("Character chevrons")]
+	public GameObject[] characterChevron;
 
 	//selected character which is 0 default
 	private int selectedCharacter = 0;
@@ -195,16 +194,8 @@ public class SongPickingControl : MonoBehaviour
 	public void characterSelected(int selectedChar)
 	{
 		selectedCharacter = selectedChar;
-		if (selectedChar == 0)
-		{
-			characterCheck1.SetActive(true);
-			characterCheck2.SetActive(false);
-		}
-		if (selectedChar == 1)
-		{
-			characterCheck1.SetActive(false);
-			characterCheck2.SetActive(true);
-		}
+		foreach (GameObject chevron in characterChevron) { chevron.SetActive(false); }
+		characterChevron[selectedChar].SetActive(true);
 	}
 
 	public void SongBoardGoButtonClicked()
