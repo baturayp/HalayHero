@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ColorSwatch
-    second: {fileID: 2100000, guid: 14a0c568706362d4ab486d3de6155efd, type: 2}
+    second: {fileID: 2100000, guid: 5501f480304b1f9448c101829179222b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
