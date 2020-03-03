@@ -91,9 +91,6 @@ public class SongPickingControl : MonoBehaviour
 		int aaPref = PlayerPrefs.GetInt("Antialias", 0);
 		AaDropdownChanged(aaPref);
 
-		//set volume pref
-		float volPref = PlayerPrefs.GetFloat("Volume", 1f);
-
 		/*check system language
 		  if Turkish, then set default to Turkish
 		  if not, set it as English.
@@ -102,6 +99,9 @@ public class SongPickingControl : MonoBehaviour
 		if (Application.systemLanguage == SystemLanguage.Turkish) { sysLang = "Turkish"; } else { sysLang = "English"; }
 		if (PlayerPrefs.HasKey("LangPref")) { langPref = PlayerPrefs.GetString("LangPref"); } else { langPref = sysLang; }
 		LangSelect(langPref);
+		
+		//set volume pref
+		float volPref = PlayerPrefs.GetFloat("Volume", 1f);
 
 		if (volPref == 0f)
 		{
@@ -189,8 +189,6 @@ public class SongPickingControl : MonoBehaviour
 		//
 	}
 
-
-	//TODO: check against bugs
 	public void characterSelected(int selectedChar)
 	{
 		selectedCharacter = selectedChar;
