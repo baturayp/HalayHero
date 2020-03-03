@@ -9,6 +9,7 @@ public class Conductor : MonoBehaviour
 	[Tooltip("Select all objects that needs to pause and start")]
 	public GameObject[] animatedObjects;
 	public GameObject animatedScript;
+	public GameObject drummerScript;
 
 	public enum Rank { PERFECT, GOOD, BAD, MISS };
 
@@ -352,5 +353,6 @@ public class Conductor : MonoBehaviour
 		}
 		//set components of certain scripts true or false
 		animatedScript.GetComponent<Circularmovement>().enabled = state;
+		drummerScript.GetComponent<CircularmovementDrummer>().enabled = state;
 	}
 }
