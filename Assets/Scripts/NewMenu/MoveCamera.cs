@@ -16,7 +16,7 @@ public class MoveCamera : MonoBehaviour
     {
         if (SwipeInput.swipedLeft)
         {
-            camCam.transform.Translate(0,0,1, Space.World);
+            camCam.transform.Translate(0, 0, 1, Space.World);
         }
         if (SwipeInput.swipedRight)
         {
