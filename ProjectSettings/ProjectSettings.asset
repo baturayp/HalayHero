@@ -756,10 +756,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: abc50c55-cca0-484e-b32b-c36baac5a142
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: HalayH
+  organizationId: eegemen42
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
