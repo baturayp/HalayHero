@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MoveCamera : MonoBehaviour
+public class LogicScript : MonoBehaviour
 {
     public GameObject[] virtCam;
     public GameObject[] mapPin;
