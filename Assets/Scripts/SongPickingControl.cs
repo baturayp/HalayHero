@@ -7,6 +7,13 @@ using yutoVR.Localizer;
 public class SongPickingControl : MonoBehaviour
 {
 	private SongInfo currSong;
+	RaycastHit hit;
+	Ray ray;
+
+	[Header("Virtual cameras and pins")]
+	public GameObject[] virtCam;
+	public GameObject[] mapPin;
+	private int activeFocus = 0;
 
 	[Header("Setting objects")]
 	public GameObject aaDroplabel;
@@ -16,41 +23,28 @@ public class SongPickingControl : MonoBehaviour
 	public GameObject volumeLow;
 	public GameObject englishButton;
 	public GameObject turkishButton;
-	public GameObject[] settingsAndAboutButton;
-	private string defLang;
+	public GameObject settingsButton;
+	public GameObject aboutButton;
+	public GameObject settingsLayer;
+	public GameObject aboutLayer;
+	private bool settingsIsActive = false;
 
 	[Header("Board transforms")]
 	//First Board
 	public RectTransform firstBoardTransform;
+	public RectTransform songBoardTransform;
 	public RectTransform settingsBoardTransform;
 
 	[Header("Song board settings & collections")]
 	public SongCollection[] songCollections;
 
-	//Song Board
-	[Serializable]
-	public class SongBoard
-	{
-		public RectTransform rectTransform;
-		public Text titleText;
-		//public Image backgroundImage;
-		public ToggleBar difficultyToggle;
-		//public GameObject leftButton;
-		//public GameObject rightButton;
-	}
-	
-	public SongBoard currSongBoard;
-
 	//curr song properties
-	public int currCollectionIndex;
-	public int currSongSetIndex;
-	public bool currEasyDifficulty;
-
-	[Header("Character chevrons")]
-	public GameObject[] characterChevron;
+	//public int currCollectionIndex;
+	//public int currSongSetIndex;
+	//public bool currEasyDifficulty;
 
 	//selected character which is 0 default
-	private int selectedCharacter = 0;
+	//private int selectedCharacter = 0;
 
 	//the messenger to pass through other scenes
 	public GameObject songInfoMessengerPrefab;
@@ -60,7 +54,6 @@ public class SongPickingControl : MonoBehaviour
 	private RotationAnimation flipOutAnimation;
 	private const float FlipAnimationDuration = 0.25f;
 	private bool animating = false;
-	private bool settingsIsActive = false;
 
 	//rotation
 	private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
@@ -123,88 +116,157 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//flip to second board
-	public void FirstImageClicked(int songSetIndex)
+	void Update()
 	{
-		if (animating) return;
+		if (!settingsIsActive)
+		{
+			if (SwipeInput.swipedRight)
+			{
+				if (activeFocus == 0) { return; }
+				else { activeFocus -= 1; FocusTo(activeFocus); }
+			}
+			if (SwipeInput.swipedLeft)
+			{
+				if (activeFocus == 2) { return; }
+				else { activeFocus += 1; FocusTo(activeFocus); }
+			}
 
-		//set collection
-		currCollectionIndex = songSetIndex;
-		currSongSetIndex = 0;
-		currEasyDifficulty = true;
-
-		//disable setting and about buttons
-		foreach (GameObject button in settingsAndAboutButton) { button.SetActive(false); }
-
-		//configure song board
-		ConfigureCurrSongBoard();
-
-		//perform board transition animation
-		FlipToSongFromFirst();
+			if (Input.GetMouseButtonDown(0))
+			{
+				ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(ray, out hit))
+				{
+					string obj = hit.collider.gameObject.name;
+					if (obj == "PinPointText0" || obj == "PinPoint0")
+					{
+						if (activeFocus == 0)
+						{
+							SelectSong();
+						}
+						else
+						{
+							activeFocus = 0; FocusTo(0);
+						}
+					}
+					if (obj == "PinPointText1" || obj == "PinPoint1")
+					{
+						if (activeFocus == 1)
+						{
+							SelectSong();
+						}
+						else
+						{
+							activeFocus = 1; FocusTo(1);
+						}
+					}
+					if (obj == "PinPointText2" || obj == "PinPoint2")
+					{
+						if (activeFocus == 2)
+						{
+							SelectSong();
+						}
+						else
+						{
+							activeFocus = 2; FocusTo(2);
+						}
+					}
+				}
+			}
+		}
 	}
 
-	//song board
-	public void SongBoardBackButtonClicked()
+	//focus to corresponding item such balkan or halay
+	void FocusTo(int selected)
 	{
-		if (animating) return;
-
-		//enable back setting and about buttons
-		foreach (GameObject button in settingsAndAboutButton) { button.SetActive(true); }
-
-		//perform board transition animation
-		FlipToFirstFromSong();
-
-		//reset collection, song, difficulty
-		currCollectionIndex = 0;
-		currSongSetIndex = 0;
-		currEasyDifficulty = true;
+		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
+		virtCam[selected].SetActive(true);
+		foreach (GameObject pin in mapPin) { pin.GetComponent<Animator>().enabled = false; }
+		mapPin[selected].GetComponent<Animator>().enabled = true;
 	}
 
-	void ConfigureCurrSongBoard()
+	void SelectSong()
 	{
-		currSong = currEasyDifficulty ?
-			songCollections[currCollectionIndex].songSets[currSongSetIndex].easy :
-			songCollections[currCollectionIndex].songSets[currSongSetIndex].hard;
-
-		//difficulty (left is easy)
-		currSongBoard.difficultyToggle.Initialize(inLeft: currSong.easyDifficulty);
-	}
-
-	public void SongBoardDifficultyToggled()
-	{
-		if (animating) return;
-
-		//play animation
-		currSongBoard.difficultyToggle.Toggled();
-
-		//change difficulty
-		currEasyDifficulty = !currEasyDifficulty;
-
-		//update currSong
-		currSong = currEasyDifficulty ?
-			songCollections[currCollectionIndex].songSets[currSongSetIndex].easy :
-			songCollections[currCollectionIndex].songSets[currSongSetIndex].hard;
-
-		//update combo & perfection
-		//
-	}
-
-	public void characterSelected(int selectedChar)
-	{
-		selectedCharacter = selectedChar;
-		foreach (GameObject chevron in characterChevron) { chevron.SetActive(false); }
-		characterChevron[selectedChar].SetActive(true);
-	}
-
-	public void SongBoardGoButtonClicked()
-	{
-		//configure song info messenger
-		SongInfoMessenger.Instance.characterIndex = selectedCharacter;
+		currSong = songCollections[0].songSets[0].easy;
+		SongInfoMessenger.Instance.characterIndex = 0;
 		SongInfoMessenger.Instance.currentSong = currSong;
-
-		//load scene, optionally put a loading screen 
 		SceneManager.LoadSceneAsync("Gameplay");
 	}
+
+	////flip to second board
+	//public void FirstImageClicked(int songSetIndex)
+	//{
+	//	if (animating) return;
+
+	//	//set collection
+	//	currCollectionIndex = songSetIndex;
+	//	currSongSetIndex = 0;
+	//	currEasyDifficulty = true;
+
+	//	//disable setting button
+	//	settingsButton.SetActive(false);
+
+	//	//configure song board
+	//	ConfigureCurrSongBoard();
+
+	//	//perform board transition animation
+	//	FlipToSongFromFirst();
+	//}
+
+	//song board
+	//public void SongBoardBackButtonClicked()
+	//{
+	//	if (animating) return;
+
+	//	//enable back setting and about buttons
+	//	settingsButton.SetActive(true);
+
+	//	//perform board transition animation
+	//	FlipToFirstFromSong();
+
+	//	//reset collection, song, difficulty
+	//	currCollectionIndex = 0;
+	//	currSongSetIndex = 0;
+	//	currEasyDifficulty = true;
+	//}
+
+	//void ConfigureCurrSongBoard()
+	//{
+	//	currSong = currEasyDifficulty ?
+	//		songCollections[currCollectionIndex].songSets[currSongSetIndex].easy :
+	//		songCollections[currCollectionIndex].songSets[currSongSetIndex].hard;
+
+	//	//difficulty (left is easy)
+	//	currSongBoard.difficultyToggle.Initialize(inLeft: currSong.easyDifficulty);
+	//}
+
+	//public void SongBoardDifficultyToggled()
+	//{
+	//	if (animating) return;
+
+	//	//play animation
+	//	currSongBoard.difficultyToggle.Toggled();
+
+	//	//change difficulty
+	//	currEasyDifficulty = !currEasyDifficulty;
+
+	//	//update currSong
+	//	currSong = currEasyDifficulty ?
+	//		songCollections[currCollectionIndex].songSets[currSongSetIndex].easy :
+	//		songCollections[currCollectionIndex].songSets[currSongSetIndex].hard;
+
+	//	//update combo & perfection
+	//	//
+	//}
+
+	//public void SongBoardGoButtonClicked()
+	//{
+	//	//configure song info messenger
+	//	SongInfoMessenger.Instance.characterIndex = selectedCharacter;
+	//	SongInfoMessenger.Instance.currentSong = currSong;
+
+	//	//load scene, optionally put a loading screen 
+	//	SceneManager.LoadSceneAsync("Gameplay");
+	//}
 
 	//antialiasing dropdown setting
 	public void AaDropdownChanged(int i)
@@ -273,49 +335,49 @@ public class SongPickingControl : MonoBehaviour
 
 	/*menu transition and animations
 	they can be simplified !*/
-	void FlipToFirstFromSong()
-	{
-		animating = true;
-		StartCoroutine(flipOutAnimation.AnimationCoroutine(
-			currSongBoard.rectTransform,
-			Vector3.zero,
-			verticalFlip,
-			FlipAnimationDuration,
-			currSongBoard.rectTransform.pivot,
-			bottomEdgePivot
-		));
-		StartCoroutine(flipInAnimation.AnimationCoroutine(
-			firstBoardTransform,
-			verticalFlip,
-			Vector3.zero,
-			FlipAnimationDuration,
-			firstBoardTransform.pivot,
-			topEdgePivot
-		));
-		Invoke("RestoreAnimating", FlipAnimationDuration);
-	}
+	//void FlipToFirstFromSong()
+	//{
+	//	animating = true;
+	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
+	//		songBoardTransform,
+	//		Vector3.zero,
+	//		verticalFlip,
+	//		FlipAnimationDuration,
+	//		songBoardTransform.pivot,
+	//		bottomEdgePivot
+	//	));
+	//	StartCoroutine(flipInAnimation.AnimationCoroutine(
+	//		firstBoardTransform,
+	//		verticalFlip,
+	//		Vector3.zero,
+	//		FlipAnimationDuration,
+	//		firstBoardTransform.pivot,
+	//		topEdgePivot
+	//	));
+	//	Invoke("RestoreAnimating", FlipAnimationDuration);
+	//}
 
-	void FlipToSongFromFirst()
-	{
-		animating = true;
-		StartCoroutine(flipOutAnimation.AnimationCoroutine(
-			firstBoardTransform,
-			Vector3.zero,
-			verticalFlip,
-			FlipAnimationDuration,
-			firstBoardTransform.pivot,
-			topEdgePivot
-		));
-		StartCoroutine(flipInAnimation.AnimationCoroutine(
-			currSongBoard.rectTransform,
-			verticalFlip,
-			Vector3.zero,
-			FlipAnimationDuration,
-			currSongBoard.rectTransform.pivot,
-			bottomEdgePivot
-		));
-		Invoke("RestoreAnimating", FlipAnimationDuration);
-	}
+	//void FlipToSongFromFirst()
+	//{
+	//	animating = true;
+	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
+	//		firstBoardTransform,
+	//		Vector3.zero,
+	//		verticalFlip,
+	//		FlipAnimationDuration,
+	//		firstBoardTransform.pivot,
+	//		topEdgePivot
+	//	));
+	//	StartCoroutine(flipInAnimation.AnimationCoroutine(
+	//		songBoardTransform,
+	//		verticalFlip,
+	//		Vector3.zero,
+	//		FlipAnimationDuration,
+	//		songBoardTransform.pivot,
+	//		bottomEdgePivot
+	//	));
+	//	Invoke("RestoreAnimating", FlipAnimationDuration);
+	//}
 
 	public void SettingsButtonToggle()
 	{
@@ -350,6 +412,9 @@ public class SongPickingControl : MonoBehaviour
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = true;
+		aboutButton.SetActive(true);
+		aboutLayer.SetActive(false);
+		settingsLayer.SetActive(true);
 	}
 
 	public void FlipToFirstFromSettings()
@@ -373,6 +438,21 @@ public class SongPickingControl : MonoBehaviour
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = false;
+		aboutButton.SetActive(false);
+	}
+
+	public void AboutToggle()
+	{
+		if (aboutLayer.activeSelf)
+		{
+			aboutLayer.SetActive(false);
+			settingsLayer.SetActive(true);
+		}
+		else
+		{
+			aboutLayer.SetActive(true);
+			settingsLayer.SetActive(false);
+		}
 	}
 
 	void RestoreAnimating()
