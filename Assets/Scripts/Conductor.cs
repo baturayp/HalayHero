@@ -73,7 +73,7 @@ public class Conductor : MonoBehaviour
 	//count down canvas
 	private const int StartCountDown = 3;
 	public GameObject countDownCanvas;
-	public Text countDownText;
+	public GameObject countDownText;
 
 
 	//layer each music node, so that the first one would be at the front
@@ -332,7 +332,7 @@ public class Conductor : MonoBehaviour
 
 		for (int i = StartCountDown; i >= 1; i--)
 		{
-			countDownText.text = i.ToString();
+			countDownText.GetComponent<TMPro.TextMeshProUGUI>().text = i.ToString();
 			yield return new WaitForSeconds(1f);
 		}
 		countDownCanvas.SetActive(false);

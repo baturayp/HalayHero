@@ -2,18 +2,17 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
-using yutoVR.Localizer;
 
 public class SongPickingControl : MonoBehaviour
 {
-	private SongInfo currSong;
-	RaycastHit hit;
-	Ray ray;
+	//private SongInfo currSong;
+	//RaycastHit hit;
+	//Ray ray;
 
-	[Header("Virtual cameras and pins")]
-	public GameObject[] virtCam;
-	public GameObject[] mapPin;
-	private int activeFocus = 0;
+	//[Header("Virtual cameras and pins")]
+	//public GameObject[] virtCam;
+	//public GameObject[] mapPin;
+	//private int activeFocus = 0;
 
 	[Header("Setting objects")]
 	public GameObject aaDroplabel;
@@ -24,10 +23,9 @@ public class SongPickingControl : MonoBehaviour
 	public GameObject englishButton;
 	public GameObject turkishButton;
 	public GameObject settingsButton;
-	public GameObject aboutButton;
 	public GameObject settingsLayer;
 	public GameObject aboutLayer;
-	private bool settingsIsActive = false;
+	public static bool settingsIsActive = false;
 
 	[Header("Board transforms")]
 	//First Board
@@ -35,8 +33,8 @@ public class SongPickingControl : MonoBehaviour
 	public RectTransform songBoardTransform;
 	public RectTransform settingsBoardTransform;
 
-	[Header("Song board settings & collections")]
-	public SongCollection[] songCollections;
+	//[Header("Song board settings & collections")]
+	//public SongCollection[] songCollections;
 
 	//curr song properties
 	//public int currCollectionIndex;
@@ -88,10 +86,10 @@ public class SongPickingControl : MonoBehaviour
 		  if Turkish, then set default to Turkish
 		  if not, set it as English.
 		  also remember user choice.*/
-		string sysLang; string langPref;
-		if (Application.systemLanguage == SystemLanguage.Turkish) { sysLang = "Turkish"; } else { sysLang = "English"; }
-		if (PlayerPrefs.HasKey("LangPref")) { langPref = PlayerPrefs.GetString("LangPref"); } else { langPref = sysLang; }
-		LangSelect(langPref);
+		//string sysLang; string langPref;
+		//if (Application.systemLanguage == SystemLanguage.Turkish) { sysLang = "Turkish"; } else { sysLang = "English"; }
+		//if (PlayerPrefs.HasKey("LangPref")) { langPref = PlayerPrefs.GetString("LangPref"); } else { langPref = sysLang; }
+		//LangSelect(langPref);
 		
 		//set volume pref
 		float volPref = PlayerPrefs.GetFloat("Volume", 1f);
@@ -116,81 +114,81 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-		if (!settingsIsActive)
-		{
-			if (SwipeInput.swipedRight)
-			{
-				if (activeFocus == 0) { return; }
-				else { activeFocus -= 1; FocusTo(activeFocus); }
-			}
-			if (SwipeInput.swipedLeft)
-			{
-				if (activeFocus == 2) { return; }
-				else { activeFocus += 1; FocusTo(activeFocus); }
-			}
+	//void Update()
+	//{
+	//	if (!settingsIsActive)
+	//	{
+	//		if (SwipeInput.swipedRight)
+	//		{
+	//			if (activeFocus == 0) { return; }
+	//			else { activeFocus -= 1; FocusTo(activeFocus); }
+	//		}
+	//		if (SwipeInput.swipedLeft)
+	//		{
+	//			if (activeFocus == 2) { return; }
+	//			else { activeFocus += 1; FocusTo(activeFocus); }
+	//		}
 
-			if (Input.GetMouseButtonDown(0))
-			{
-				ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit))
-				{
-					string obj = hit.collider.gameObject.name;
-					if (obj == "PinPointText0" || obj == "PinPoint0")
-					{
-						if (activeFocus == 0)
-						{
-							SelectSong();
-						}
-						else
-						{
-							activeFocus = 0; FocusTo(0);
-						}
-					}
-					if (obj == "PinPointText1" || obj == "PinPoint1")
-					{
-						if (activeFocus == 1)
-						{
-							SelectSong();
-						}
-						else
-						{
-							activeFocus = 1; FocusTo(1);
-						}
-					}
-					if (obj == "PinPointText2" || obj == "PinPoint2")
-					{
-						if (activeFocus == 2)
-						{
-							SelectSong();
-						}
-						else
-						{
-							activeFocus = 2; FocusTo(2);
-						}
-					}
-				}
-			}
-		}
-	}
+	//		if (Input.GetMouseButtonDown(0))
+	//		{
+	//			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	//			if (Physics.Raycast(ray, out hit))
+	//			{
+	//				string obj = hit.collider.gameObject.name;
+	//				if (obj == "PinPointText0" || obj == "PinPoint0")
+	//				{
+	//					if (activeFocus == 0)
+	//					{
+	//						SelectSong();
+	//					}
+	//					else
+	//					{
+	//						activeFocus = 0; FocusTo(0);
+	//					}
+	//				}
+	//				if (obj == "PinPointText1" || obj == "PinPoint1")
+	//				{
+	//					if (activeFocus == 1)
+	//					{
+	//						SelectSong();
+	//					}
+	//					else
+	//					{
+	//						activeFocus = 1; FocusTo(1);
+	//					}
+	//				}
+	//				if (obj == "PinPointText2" || obj == "PinPoint2")
+	//				{
+	//					if (activeFocus == 2)
+	//					{
+	//						SelectSong();
+	//					}
+	//					else
+	//					{
+	//						activeFocus = 2; FocusTo(2);
+	//					}
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 
-	//focus to corresponding item such balkan or halay
-	void FocusTo(int selected)
-	{
-		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
-		virtCam[selected].SetActive(true);
-		foreach (GameObject pin in mapPin) { pin.GetComponent<Animator>().enabled = false; }
-		mapPin[selected].GetComponent<Animator>().enabled = true;
-	}
+	////focus to corresponding item such balkan or halay
+	//void FocusTo(int selected)
+	//{
+	//	foreach (GameObject camera in virtCam) { camera.SetActive(false); }
+	//	virtCam[selected].SetActive(true);
+	//	foreach (GameObject pin in mapPin) { pin.GetComponent<Animator>().enabled = false; }
+	//	mapPin[selected].GetComponent<Animator>().enabled = true;
+	//}
 
-	void SelectSong()
-	{
-		currSong = songCollections[0].songSets[0].easy;
-		SongInfoMessenger.Instance.characterIndex = 0;
-		SongInfoMessenger.Instance.currentSong = currSong;
-		SceneManager.LoadSceneAsync("Gameplay");
-	}
+	//void SelectSong()
+	//{
+	//	currSong = songCollections[0].songSets[0].easy;
+	//	SongInfoMessenger.Instance.characterIndex = 0;
+	//	SongInfoMessenger.Instance.currentSong = currSong;
+	//	SceneManager.LoadSceneAsync("Gameplay");
+	//}
 
 	////flip to second board
 	//public void FirstImageClicked(int songSetIndex)
@@ -301,14 +299,6 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//language selector
-	public void LangSelect(string lang)
-	{
-		Localizer.ChangeLanguage(lang);
-		Localizer.InjectAll();
-		PlayerPrefs.SetString("LangPref", lang);
-	}
-
 	//volume setting button
 	public void SetVolume(float vol)
 	{
@@ -412,7 +402,6 @@ public class SongPickingControl : MonoBehaviour
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = true;
-		aboutButton.SetActive(true);
 		aboutLayer.SetActive(false);
 		settingsLayer.SetActive(true);
 	}
@@ -438,7 +427,6 @@ public class SongPickingControl : MonoBehaviour
 		));
 		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = false;
-		aboutButton.SetActive(false);
 	}
 
 	public void AboutToggle()

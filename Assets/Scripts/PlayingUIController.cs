@@ -14,17 +14,17 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject gun;
 
 	//frame & avatar
-	public CharacterImageSet[] characterImageSets;
-	public Image frame;
-	public Image avatar;
-	public Color[] frameColors;
-	public Color frameFailedColor;
-	private CharacterImageSet currCharacterImage;
-	private Coroutine changeImageCoroutine = null;
-	private const float PopAnimationCoefficient = 0.35f;
+	//public CharacterImageSet[] characterImageSets;
+	//public Image frame;
+	//public Image avatar;
+	//public Color[] frameColors;
+	//public Color frameFailedColor;
+	//private CharacterImageSet currCharacterImage;
+	//private Coroutine changeImageCoroutine = null;
+	//private const float PopAnimationCoefficient = 0.35f;
 	private float lastbeat;
-	private const float PopAnimationScale = 1.15f;
-	private const float ImageChangeDuration = 0.2f;
+	//private const float PopAnimationScale = 1.15f;
+	//private const float ImageChangeDuration = 0.2f;
 
 	//combo
 	public Image comboCircle;
@@ -77,10 +77,10 @@ public class PlayingUIController : MonoBehaviour
 		fullNoteCounts = SongInfoMessenger.Instance.currentSong.TotalHitCounts();
 
 		//set the corredponding character image set
-		currCharacterImage = characterImageSets[SongInfoMessenger.Instance.characterIndex];
+		//currCharacterImage = characterImageSets[SongInfoMessenger.Instance.characterIndex];
 
 		// Set the initial avatar image.
-		avatar.sprite = currCharacterImage.normalImage;
+		//avatar.sprite = currCharacterImage.normalImage;
 
 		lastbeat = 0f;
 
@@ -113,10 +113,10 @@ public class PlayingUIController : MonoBehaviour
 			currCombo++;
 
 			// Change Avatar Image
-			ChangeAvatarImage(3);
+			//ChangeAvatarImage(3);
 
 			// Change Frame Color.
-			frame.color = Color.green;
+			//frame.color = Color.green;
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
@@ -127,10 +127,10 @@ public class PlayingUIController : MonoBehaviour
 			currCombo++;
 
 			// Change Avatar Image.
-			ChangeAvatarImage(2);
+			//ChangeAvatarImage(2);
 
 			// Change Frame Color.
-			frame.color = Color.white;
+			//frame.color = Color.white;
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
@@ -138,10 +138,10 @@ public class PlayingUIController : MonoBehaviour
 			currCombo = 0;
 
 			// Change Avatar Image.
-			ChangeAvatarImage(0);
+			//ChangeAvatarImage(0);
 
 			// Change Frame Color.
-			frame.color = Color.white;
+			//frame.color = Color.white;
 		}
 		else   //miss
 		{
@@ -152,10 +152,10 @@ public class PlayingUIController : MonoBehaviour
 			currCombo = 0;
 
 			// Change avatar image.
-			ChangeAvatarImage(null);
+			//ChangeAvatarImage(null);
 
 			// Change Frame Color.
-			frame.color = Color.red;
+			//frame.color = Color.red;
 		}
 
 		//dancer combo placemarks
@@ -175,7 +175,7 @@ public class PlayingUIController : MonoBehaviour
 		// Perform Pop Animation every beat.
 		if (Conductor.songposition > lastbeat + Conductor.crotchet)
 		{
-			StartCoroutine(PopAvatarCoroutine());
+			//StartCoroutine(PopAvatarCoroutine());
 			lastbeat += Conductor.crotchet;
 		}
 
@@ -190,64 +190,64 @@ public class PlayingUIController : MonoBehaviour
 	}
 
 	// If failed, imageIndex is null.
-	void ChangeAvatarImage(int? imageIndex)
-	{
-		float imageChangeDuration = ImageChangeDuration;
+	//void ChangeAvatarImage(int? imageIndex)
+	//{
+	//	float imageChangeDuration = ImageChangeDuration;
 
-		// Terminate the previous animation if it is still running.
-		if (changeImageCoroutine != null)
-		{
-			StopCoroutine(changeImageCoroutine);
-		}
+	//	// Terminate the previous animation if it is still running.
+	//	if (changeImageCoroutine != null)
+	//	{
+	//		StopCoroutine(changeImageCoroutine);
+	//	}
 
-		if (imageIndex.HasValue)
-		{
-			// Change Image according to image indices.
-			avatar.sprite = currCharacterImage.beatImages[imageIndex.Value];
-		}
-		else
-		{
-			// Change to failed image.
-			avatar.sprite = currCharacterImage.failedImage;
+	//	if (imageIndex.HasValue)
+	//	{
+	//		// Change Image according to image indices.
+	//		avatar.sprite = currCharacterImage.beatImages[imageIndex.Value];
+	//	}
+	//	else
+	//	{
+	//		// Change to failed image.
+	//		avatar.sprite = currCharacterImage.failedImage;
 
-			// Failed would have double changed duration.
-			imageChangeDuration *= 2f;
-		}
+	//		// Failed would have double changed duration.
+	//		imageChangeDuration *= 2f;
+	//	}
 
-		// Change back to the original image after certain amount of time.
-		changeImageCoroutine = StartCoroutine(ChangeAvatarImageCoroutine(imageChangeDuration));
-	}
+	//	// Change back to the original image after certain amount of time.
+	//	changeImageCoroutine = StartCoroutine(ChangeAvatarImageCoroutine(imageChangeDuration));
+	//}
 
-	IEnumerator ChangeAvatarImageCoroutine(float duration)
-	{
-		yield return new WaitForSeconds(duration);
+	//IEnumerator ChangeAvatarImageCoroutine(float duration)
+	//{
+	//	yield return new WaitForSeconds(duration);
 
-		// Change back to the original avatar image.
-		avatar.sprite = currCharacterImage.normalImage;
-		// Change Frame Color back to white.
-		frame.color = Color.white;
-	}
+	//	// Change back to the original avatar image.
+	//	avatar.sprite = currCharacterImage.normalImage;
+	//	// Change Frame Color back to white.
+	//	frame.color = Color.white;
+	//}
 
-	IEnumerator PopAvatarCoroutine()
-	{
-		float duration = Conductor.crotchet * PopAnimationCoefficient;
+	//IEnumerator PopAvatarCoroutine()
+	//{
+	//	float duration = Conductor.crotchet * PopAnimationCoefficient;
 
-		float i = 0f;
-		while (i <= 1f)
-		{
-			i += Time.deltaTime / duration;
-			avatar.transform.localScale = Vector2.Lerp(Vector2.one * PopAnimationScale, Vector2.one, i);
-			yield return null;
-		}
+	//	float i = 0f;
+	//	while (i <= 1f)
+	//	{
+	//		i += Time.deltaTime / duration;
+	//		avatar.transform.localScale = Vector2.Lerp(Vector2.one * PopAnimationScale, Vector2.one, i);
+	//		yield return null;
+	//	}
 
-	}
+	//}
 
 
 	void UpdateScoreUI()
 	{
 		//text
 		comboScoreText.text = currCombo == 0 ? "-" : currCombo.ToString();
-		perfectionScoreText.text = currPerfection == 0 ? "-" : string.Format("{0:F0}%", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
+		perfectionScoreText.text = currPerfection == 0 ? "-" : string.Format("%{0:F0}", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
 
 		//color
 		Color comboColor = currCombo == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currCombo / (float)fullNoteCounts);
@@ -305,8 +305,8 @@ public class PlayingUIController : MonoBehaviour
 		winSceneBackground.SetActive(true);
 
 		//disable game playing UIs
-		frame.gameObject.SetActive(false);
-		avatar.gameObject.SetActive(false);
+		//frame.gameObject.SetActive(false);
+		//avatar.gameObject.SetActive(false);
 		comboCircle.gameObject.SetActive(false);
 		perfectionCircle.gameObject.SetActive(false);
 		pauseButton.SetActive(false);
