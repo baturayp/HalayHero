@@ -9,8 +9,6 @@ public class SongInfoMessenger : MonoBehaviour
 {
     public static SongInfoMessenger Instance = null;
 
-    [NonSerialized] public int characterIndex;
-
     [NonSerialized] public SongInfo currentSong;
 
     void Start()

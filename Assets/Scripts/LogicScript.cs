@@ -12,6 +12,7 @@ public class LogicScript : MonoBehaviour
 	[Header("Virtual cameras and pins")]
 	public GameObject[] virtCam;
 	public GameObject[] mapPin;
+	public GameObject[] focusVirtCam;
 	private int activeFocus = 0;
 	public SongCollection[] songCollections;
 
@@ -40,7 +41,7 @@ public class LogicScript : MonoBehaviour
 					{
 						if (activeFocus == 0)
 						{
-							SelectSong();
+							SelectSong(0);
 						}
 						else
 						{
@@ -51,7 +52,7 @@ public class LogicScript : MonoBehaviour
 					{
 						if (activeFocus == 1)
 						{
-							SelectSong();
+							SelectSong(1);
 						}
 						else
 						{
@@ -62,7 +63,7 @@ public class LogicScript : MonoBehaviour
 					{
 						if (activeFocus == 2)
 						{
-							SelectSong();
+							SelectSong(2);
 						}
 						else
 						{
@@ -83,11 +84,20 @@ public class LogicScript : MonoBehaviour
 		mapPin[selected].GetComponent<Animator>().enabled = true;
 	}
 
-	void SelectSong()
+	IEnumerator waiter()
+	{
+		yield return new WaitForSeconds(0.6f);
+		SceneManager.LoadSceneAsync("Forest");
+	}
+
+	void SelectSong(int song)
 	{
 		currSong = songCollections[0].songSets[0].easy;
-		SongInfoMessenger.Instance.characterIndex = 0;
 		SongInfoMessenger.Instance.currentSong = currSong;
-		SceneManager.LoadSceneAsync("Gameplay");
+		//select camera focus
+		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
+		focusVirtCam[song].SetActive(true);
+		//wait briefly before loading gameplay scene
+		StartCoroutine(waiter());
 	}
 }

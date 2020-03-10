@@ -13,18 +13,7 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject tissue;
 	public GameObject gun;
 
-	//frame & avatar
-	//public CharacterImageSet[] characterImageSets;
-	//public Image frame;
-	//public Image avatar;
-	//public Color[] frameColors;
-	//public Color frameFailedColor;
-	//private CharacterImageSet currCharacterImage;
-	//private Coroutine changeImageCoroutine = null;
-	//private const float PopAnimationCoefficient = 0.35f;
 	private float lastbeat;
-	//private const float PopAnimationScale = 1.15f;
-	//private const float ImageChangeDuration = 0.2f;
 
 	//combo
 	public Image comboCircle;
@@ -76,12 +65,6 @@ public class PlayingUIController : MonoBehaviour
 		//get the length of all notes from messenger
 		fullNoteCounts = SongInfoMessenger.Instance.currentSong.TotalHitCounts();
 
-		//set the corredponding character image set
-		//currCharacterImage = characterImageSets[SongInfoMessenger.Instance.characterIndex];
-
-		// Set the initial avatar image.
-		//avatar.sprite = currCharacterImage.normalImage;
-
 		lastbeat = 0f;
 
 		//register to events
@@ -111,12 +94,6 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo++;
-
-			// Change Avatar Image
-			//ChangeAvatarImage(3);
-
-			// Change Frame Color.
-			//frame.color = Color.green;
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
@@ -125,23 +102,11 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo++;
-
-			// Change Avatar Image.
-			//ChangeAvatarImage(2);
-
-			// Change Frame Color.
-			//frame.color = Color.white;
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
 			//update combo
 			currCombo = 0;
-
-			// Change Avatar Image.
-			//ChangeAvatarImage(0);
-
-			// Change Frame Color.
-			//frame.color = Color.white;
 		}
 		else   //miss
 		{
@@ -150,12 +115,6 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo = 0;
-
-			// Change avatar image.
-			//ChangeAvatarImage(null);
-
-			// Change Frame Color.
-			//frame.color = Color.red;
 		}
 
 		//dancer combo placemarks
@@ -188,60 +147,6 @@ public class PlayingUIController : MonoBehaviour
 		comboGuy.GetComponent<Animator>().SetTrigger(trig.ToString());
 		tissue.GetComponent<Animator>().SetTrigger(trig.ToString());
 	}
-
-	// If failed, imageIndex is null.
-	//void ChangeAvatarImage(int? imageIndex)
-	//{
-	//	float imageChangeDuration = ImageChangeDuration;
-
-	//	// Terminate the previous animation if it is still running.
-	//	if (changeImageCoroutine != null)
-	//	{
-	//		StopCoroutine(changeImageCoroutine);
-	//	}
-
-	//	if (imageIndex.HasValue)
-	//	{
-	//		// Change Image according to image indices.
-	//		avatar.sprite = currCharacterImage.beatImages[imageIndex.Value];
-	//	}
-	//	else
-	//	{
-	//		// Change to failed image.
-	//		avatar.sprite = currCharacterImage.failedImage;
-
-	//		// Failed would have double changed duration.
-	//		imageChangeDuration *= 2f;
-	//	}
-
-	//	// Change back to the original image after certain amount of time.
-	//	changeImageCoroutine = StartCoroutine(ChangeAvatarImageCoroutine(imageChangeDuration));
-	//}
-
-	//IEnumerator ChangeAvatarImageCoroutine(float duration)
-	//{
-	//	yield return new WaitForSeconds(duration);
-
-	//	// Change back to the original avatar image.
-	//	avatar.sprite = currCharacterImage.normalImage;
-	//	// Change Frame Color back to white.
-	//	frame.color = Color.white;
-	//}
-
-	//IEnumerator PopAvatarCoroutine()
-	//{
-	//	float duration = Conductor.crotchet * PopAnimationCoefficient;
-
-	//	float i = 0f;
-	//	while (i <= 1f)
-	//	{
-	//		i += Time.deltaTime / duration;
-	//		avatar.transform.localScale = Vector2.Lerp(Vector2.one * PopAnimationScale, Vector2.one, i);
-	//		yield return null;
-	//	}
-
-	//}
-
 
 	void UpdateScoreUI()
 	{
@@ -304,9 +209,6 @@ public class PlayingUIController : MonoBehaviour
 		winBlackBackground.SetActive(true);
 		winSceneBackground.SetActive(true);
 
-		//disable game playing UIs
-		//frame.gameObject.SetActive(false);
-		//avatar.gameObject.SetActive(false);
 		comboCircle.gameObject.SetActive(false);
 		perfectionCircle.gameObject.SetActive(false);
 		pauseButton.SetActive(false);
@@ -385,6 +287,4 @@ public class PlayingUIController : MonoBehaviour
 		winNextButton.SetActive(true);
 
 	}
-
-
 }

@@ -10,6 +10,8 @@ public class Conductor : MonoBehaviour
 	public GameObject[] animatedObjects;
 	public GameObject animatedScript;
 	public GameObject drummerScript;
+	public GameObject startCam;
+	public GameObject vcCam1;
 
 	public enum Rank { PERFECT, GOOD, BAD, MISS };
 
@@ -183,6 +185,9 @@ public class Conductor : MonoBehaviour
 
 		tracks = songInfo.tracks; //keep a reference of the tracks
 
+		//toggle game objects
+		SetGameObjects(true);
+		StartCoroutine(AnimationCoroutine());
 
 		//initialize audioSource
 		audioSource.clip = songInfo.song;
@@ -190,6 +195,14 @@ public class Conductor : MonoBehaviour
 
 		//start countdown
 		StartCoroutine(CountDown());
+	}
+
+	IEnumerator AnimationCoroutine()
+	{
+		yield return new WaitForSeconds(0.001f);
+		SetGameObjects(false);
+		startCam.SetActive(false);
+		vcCam1.SetActive(true);
 	}
 
 	void StartSong()
