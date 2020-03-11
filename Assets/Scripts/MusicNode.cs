@@ -5,7 +5,6 @@ public class MusicNode : MonoBehaviour
 {
 	public TextMesh timesText;
 	public GameObject timesTextBackground;
-	public Sprite[] backgroundSprites;
 	public SpriteRenderer ringSprite;
 	[NonSerialized] public float startY;
 	[NonSerialized] public float endY;
@@ -29,9 +28,6 @@ public class MusicNode : MonoBehaviour
 
 		//set color
 		ringSprite.color = color;
-
-		//randomize background
-		GetComponent<SpriteRenderer>().sprite = backgroundSprites[UnityEngine.Random.Range(0, backgroundSprites.Length)];
 
 		//set times
 		if (times > 0)

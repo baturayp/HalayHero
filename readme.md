@@ -6,6 +6,5 @@ Required packages:
  - Cinemachine
 
 ## 3rd party libraries and licenses
-- [Localizer](https://github.com/yutokun/Localizer)
 - [Icons](https://icons8.com/icon/pack/free-icons/plasticine)
 - [HVD Comic Serif Font](https://www.dafont.com/hvd-comic-serif.font)
