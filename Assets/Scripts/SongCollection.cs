@@ -11,7 +11,6 @@ public class SongCollection : ScriptableObject
 	[Serializable]
 	public class SongSet
 	{
-		public SongInfo easy;
-		public SongInfo hard;
+		public SongInfo song;
 	}
 }

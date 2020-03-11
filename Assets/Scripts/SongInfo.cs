@@ -11,13 +11,9 @@ public class SongInfo : ScriptableObject
 	public int songID;
 	public int collection;
 	public int songNum;
-	public bool easyDifficulty;
 
 	[Header("Song Text Information")]
 	public string songTitle;
-
-	[Header("Song Image Information")]
-	public Sprite songCover;
 
 	[Header("Playing Information")]
 	public AudioClip[] defaultBeats;

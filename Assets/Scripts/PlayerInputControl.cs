@@ -60,24 +60,24 @@ public class PlayerInputControl : MonoBehaviour
 
     }
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-    void KeyChanged(KeyboardInputManager.KeyBindings keyBinding, KeyCode keyCode)
-    {
-        if (keyBinding == KeyboardInputManager.KeyBindings.Pause)
-        {
-            pauseKey = keyCode;
-        }
-        else
-        {
-            keybindings[(int)keyBinding] = keyCode;
-        }
-    }
+//#if UNITY_EDITOR || UNITY_STANDALONE
+    //void KeyChanged(KeyboardInputManager.KeyBindings keyBinding, KeyCode keyCode)
+    //{
+    //    if (keyBinding == KeyboardInputManager.KeyBindings.Pause)
+    //    {
+    //        pauseKey = keyCode;
+    //    }
+    //    else
+    //    {
+    //        keybindings[(int)keyBinding] = keyCode;
+    //    }
+    //}
 
-    void OnDestroy()
-    {
-        //KeyboardInputManager.keyChangedEvent -= KeyChanged;
-    }
-#endif
+    //void OnDestroy()
+    //{
+    //    //KeyboardInputManager.keyChangedEvent -= KeyChanged;
+    //}
+//#endif
 
 
     void Update()

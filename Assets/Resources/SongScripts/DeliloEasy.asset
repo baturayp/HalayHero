@@ -34,127 +34,117 @@ MonoBehaviour:
       times: 3
     - note: 15
       times: 0
-    - note: 16
+    - note: 18
       times: 0
-    - note: 17
+    - note: 20
       times: 0
-    - note: 21
+    - note: 24
       times: 2
-    - note: 25
-      times: 5
-    - note: 26
-      times: 0
-    - note: 26
-      times: 0
-    - note: 27
-      times: 0
     - note: 28
       times: 0
-    - note: 29
-      times: 0
-    - note: 30
-      times: 0
-    - note: 31
-      times: 0
-    - note: 32
-      times: 0
     - note: 33
-      times: 0
-    - note: 34
-      times: 0
-    - note: 35
-      times: 0
+      times: 4
     - note: 36
-      times: 0
-    - note: 37
-      times: 0
-    - note: 38
       times: 0
     - note: 39
       times: 0
     - note: 40
       times: 0
-    - note: 41
-      times: 0
     - note: 42
       times: 0
-    - note: 43
+    - note: 46
       times: 0
-    - note: 44
+    - note: 48
       times: 0
-    - note: 45
+    - note: 50
+      times: 0
+    - note: 52
+      times: 0
+    - note: 54
+      times: 0
+    - note: 56
+      times: 0
+    - note: 58
+      times: 0
+    - note: 60
+      times: 0
+    - note: 62
+      times: 0
+    - note: 64
+      times: 0
+    - note: 66
+      times: 0
+    - note: 68
+      times: 0
+    - note: 70
+      times: 0
+    - note: 72
+      times: 0
+    - note: 74
+      times: 0
+    - note: 76
       times: 0
   - notes:
-    - note: 3
-      times: 0
     - note: 5
       times: 0
+    - note: 8
+      times: 0
+    - note: 11
+      times: 0
+    - note: 15
+      times: 0
+    - note: 20
+      times: 0
+    - note: 25
+      times: 0
+  - notes:
     - note: 6
       times: 0
     - note: 8
       times: 0
-    - note: 9
-      times: 0
-    - note: 10
-      times: 0
-  - notes:
-    - note: 2
-      times: 0
+    - note: 11
+      times: 3
     - note: 5
       times: 0
-    - note: 9
+    - note: 20
+      times: 2
+    - note: 22
       times: 0
-    - note: 11
+    - note: 24
       times: 0
-    - note: 14
+    - note: 26
       times: 0
-    - note: 15
-      times: 0
-    - note: 15
-      times: 0
-    - note: 16
-      times: 0
-    - note: 19
-      times: 0
-    - note: 21
-      times: 0
-    - note: 23
-      times: 0
-    - note: 25
-      times: 0
-    - note: 28
-      times: 0
-    - note: 29
-      times: 0
-    - note: 30
-      times: 0
-    - note: 32
-      times: 0
-    - note: 34
+    - note: 31
       times: 0
     - note: 35
       times: 0
-    - note: 36
-      times: 0
-    - note: 37
-      times: 0
-    - note: 38
-      times: 0
-    - note: 39
-      times: 0
     - note: 40
-      times: 0
-    - note: 41
       times: 0
     - note: 42
       times: 0
-    - note: 43
-      times: 0
     - note: 44
       times: 0
-    - note: 45
+    - note: 48
       times: 0
-    - note: 46
+    - note: 52
       times: 0
-    - note: 47
+    - note: 54
       times: 0
+    - note: 58
+      times: 0
+    - note: 61
+      times: 0
+    - note: 65
+      times: 0
+    - note: 66
+      times: 0
+    - note: 68
+      times: 0
+    - note: 74
+      times: 0
+    - note: 76
+      times: 0
+    - note: 78
+      times: 0
+    - note: 80
+	  times: 0

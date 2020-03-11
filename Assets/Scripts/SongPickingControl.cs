@@ -11,8 +11,6 @@ public class SongPickingControl : MonoBehaviour
 	public GameObject volumeOn;
 	public GameObject volumeOff;
 	public GameObject volumeLow;
-	public GameObject englishButton;
-	public GameObject turkishButton;
 	public GameObject settingsButton;
 	public GameObject settingsLayer;
 	public GameObject aboutLayer;

@@ -34,11 +34,12 @@ public class MusicNode : MonoBehaviour
 		{
 			timesText.text = times.ToString();
 			timesTextBackground.SetActive(true);
+			ringSprite.size = new Vector2(1.28f,times);
 		}
 		else
 		{
 			timesTextBackground.SetActive(false);
-
+			ringSprite.size = new Vector2(1.28f, 1.28f);
 			//randomize rotation
 			//transform.rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 359f));
 		}

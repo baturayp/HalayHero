@@ -92,7 +92,7 @@ public class LogicScript : MonoBehaviour
 
 	void SelectSong(int song)
 	{
-		currSong = songCollections[0].songSets[0].easy;
+		currSong = songCollections[0].songSets[0].song;
 		SongInfoMessenger.Instance.currentSong = currSong;
 		//select camera focus
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
