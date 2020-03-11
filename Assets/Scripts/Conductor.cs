@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class Conductor : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class Conductor : MonoBehaviour
 	public GameObject[] animatedObjects;
 	public GameObject animatedScript;
 	public GameObject drummerScript;
+
+	[Header("Cinemachine cameras")]
 	public GameObject startCam;
 	public GameObject vcCam1;
+	public CinemachineVirtualCamera cineCam;
 
 	public enum Rank { PERFECT, GOOD, BAD, MISS };
 
@@ -367,5 +371,8 @@ public class Conductor : MonoBehaviour
 		//set components of certain scripts true or false
 		animatedScript.GetComponent<Circularmovement>().enabled = state;
 		drummerScript.GetComponent<CircularmovementDrummer>().enabled = state;
+		//set or remove camera noise
+		if (state) { cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1; }
+		if (!state) { cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0; }
 	}
 }
