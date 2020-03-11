@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: DeliloColl
   m_EditorClassIdentifier: 
   songSets:
-  - easy: {fileID: 11400000, guid: 03ffd71e59dc3a8488b425ce34817d62, type: 2}
-    hard: {fileID: 11400000, guid: d687e9839981236418371e0a055e2b5f, type: 2}
+  - song: {fileID: 11400000, guid: 03ffd71e59dc3a8488b425ce34817d62, type: 2}
