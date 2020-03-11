@@ -5713,6 +5713,7 @@ MonoBehaviour:
   drummerScript: {fileID: 331087451}
   startCam: {fileID: 1736340318}
   vcCam1: {fileID: 2042127376}
+  cineCam: {fileID: 2042127377}
   trackSpawnPosX:
   - -7
   - 5
