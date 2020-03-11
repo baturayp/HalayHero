@@ -87,7 +87,7 @@ public class LogicScript : MonoBehaviour
 	IEnumerator waiter()
 	{
 		yield return new WaitForSeconds(0.6f);
-		SceneManager.LoadSceneAsync("Gameplay");
+		SceneManager.LoadSceneAsync("Forest");
 	}
 
 	void SelectSong(int song)
