@@ -34,14 +34,18 @@ public class MusicNode : MonoBehaviour
 		{
 			timesText.text = times.ToString();
 			timesTextBackground.SetActive(true);
-			ringSprite.size = new Vector2(1.28f,times);
+			ringSprite.size = new Vector2(1.28f, 1.28f);
+		}
+		else if (times < 0)
+		{
+			timesText.text = times.ToString();
+			timesTextBackground.SetActive(true);
+			ringSprite.size = new Vector2(1.28f, Mathf.Abs(times));
 		}
 		else
 		{
 			timesTextBackground.SetActive(false);
 			ringSprite.size = new Vector2(1.28f, 1.28f);
-			//randomize rotation
-			//transform.rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 359f));
 		}
 
 	}
@@ -55,9 +59,19 @@ public class MusicNode : MonoBehaviour
 		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - (beat - Conductor.songposition / Conductor.crotchet) / Conductor.BeatsShownOnScreen), transform.position.z);
 
 		//remove itself when out of the screen (remove line)
-		if (transform.position.y < removeLineY)
+		if (times < 0)
 		{
-			gameObject.SetActive(false);
+			if (transform.position.y < (removeLineY + times))
+			{
+				gameObject.SetActive(false);
+			}
+		}
+		else
+		{
+			if (transform.position.y < (removeLineY))
+			{
+				gameObject.SetActive(false);
+			}
 		}
 	}
 

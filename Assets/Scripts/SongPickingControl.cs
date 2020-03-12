@@ -22,14 +22,6 @@ public class SongPickingControl : MonoBehaviour
 	public RectTransform songBoardTransform;
 	public RectTransform settingsBoardTransform;
 
-	//[Header("Song board settings & collections")]
-	//public SongCollection[] songCollections;
-
-	//curr song properties
-	//public int currCollectionIndex;
-	//public int currSongSetIndex;
-	//public bool currEasyDifficulty;
-
 	//the messenger to pass through other scenes
 	public GameObject songInfoMessengerPrefab;
 

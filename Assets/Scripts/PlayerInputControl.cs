@@ -10,41 +10,20 @@ public class PlayerInputControl : MonoBehaviour
 
     //in unity editor & standalone, input by keyboard
 #if UNITY_EDITOR || UNITY_STANDALONE
-
     private KeyCode[] keybindings;
     private KeyCode pauseKey;
-
 #endif
-
     private AudioSource[] audioSources;
-
     //cache the number of tracks
     private int trackLength;
-
-    //animation
-    public SpriteRenderer[] innerCircles;
-    private SpriteColorLerp[] innerAnimations;
-    private Coroutine[] previousInnerAnimations;
-    private const float StartAlphaForInner = 0.7f;
 
     void Start()
     {
         trackLength = tappingSpheres.Length;
-
-        //init audio sources (cache them), and configure the recorded clips & tap animation
         audioSources = new AudioSource[trackLength];
-        previousInnerAnimations = new Coroutine[trackLength];
-        innerAnimations = new SpriteColorLerp[trackLength];
         for (int i = 0; i < trackLength; i++)
         {
             audioSources[i] = tappingSpheres[i].GetComponent<AudioSource>();
-
-            //audioSources[i].clip = SongInfoMessenger.Instance.recordedBeats[i];
-
-            //init inner circle animation
-            Color startColor = new Color(innerCircles[i].color.r, innerCircles[i].color.g, innerCircles[i].color.b, StartAlphaForInner);
-            innerAnimations[i] = new SpriteColorLerp(innerCircles[i], startColor, innerCircles[i].color, audioSources[i].clip.length);
-            previousInnerAnimations[i] = null;
         }
 
         //just for debugging
@@ -55,17 +34,13 @@ public class PlayerInputControl : MonoBehaviour
         keybindings[2] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track3);
         pauseKey = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Pause);
 #endif
-
     }
-
 
     void Update()
     {
         if (Conductor.paused) return;
-
         //keyboard input
 #if UNITY_EDITOR || UNITY_STANDALONE
-
         for (int i = 0; i < trackLength; i++)
         {
             if (Input.GetKeyDown(keybindings[i]))
@@ -73,7 +48,6 @@ public class PlayerInputControl : MonoBehaviour
                 Inputted(i);
             }
         }
-
         if (Input.GetKeyDown(pauseKey))
         {
             FindObjectOfType<PlayingUIController>().PauseButtonOnClick();
@@ -82,11 +56,9 @@ public class PlayerInputControl : MonoBehaviour
 
         //touch input
 #if UNITY_IOS || UNITY_ANDROID || UNITY_EDITOR
-
         //check touch input
         foreach (Touch touch in Input.touches)
         {
-
             //tap down
             if (touch.phase == TouchPhase.Began)
             {
@@ -106,16 +78,9 @@ public class PlayerInputControl : MonoBehaviour
     void Inputted(int i)
     {
         //inform Conductor and other interested classes
-        if (inputtedEvent != null) inputtedEvent(i);
+        inputtedEvent?.Invoke(i);
 
         //play audio clip
         audioSources[i].Play();
-
-        //start inner circle animation
-        if (previousInnerAnimations[i] != null)
-        {
-            StopCoroutine(previousInnerAnimations[i]);
-        }
-        previousInnerAnimations[i] = StartCoroutine(innerAnimations[i].AnimationCoroutine());
     }
 }

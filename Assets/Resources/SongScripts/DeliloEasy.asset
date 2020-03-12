@@ -16,9 +16,7 @@ MonoBehaviour:
   songID: 0
   collection: 0
   songNum: 0
-  easyDifficulty: 1
   songTitle: Delilo
-  songCover: {fileID: 0}
   defaultBeats: []
   songOffset: -0.5
   bpm: 87
@@ -90,10 +88,28 @@ MonoBehaviour:
     - note: 8
       times: 0
     - note: 11
-      times: 0
+      times: -3
     - note: 15
       times: 0
     - note: 20
+      times: 0
+    - note: 25
+      times: -2
+    - note: 28
+      times: 0
+    - note: 30
+      times: -4
+    - note: 34
+      times: -2
+    - note: 40
+      times: 0
+    - note: 25
+      times: 0
+    - note: 25
+      times: 0
+    - note: 25
+      times: 0
+    - note: 25
       times: 0
     - note: 25
       times: 0
@@ -104,7 +120,7 @@ MonoBehaviour:
       times: 0
     - note: 11
       times: 3
-    - note: 5
+    - note: 15
       times: 0
     - note: 20
       times: 2
@@ -117,7 +133,7 @@ MonoBehaviour:
     - note: 31
       times: 0
     - note: 35
-      times: 0
+      times: 4
     - note: 40
       times: 0
     - note: 42
@@ -147,4 +163,4 @@ MonoBehaviour:
     - note: 78
       times: 0
     - note: 80
-	  times: 0
+      times: 0

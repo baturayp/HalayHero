@@ -26,7 +26,6 @@ public class Conductor : MonoBehaviour
 	public delegate void SongCompletedAction();
 	public static event SongCompletedAction songCompletedEvent;
 
-
 	private float songLength;
 
 	//if the whole game is paused
@@ -97,7 +96,7 @@ public class Conductor : MonoBehaviour
 		if (previousMusicNodes[trackNumber] != null)
 		{
 			//dispatch beat on hit event (multi-times node is always PERFECT)
-			if (beatOnHitEvent != null) beatOnHitEvent(trackNumber, Rank.PERFECT);
+			beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
 
 			//check if the node should be removed
 			if (previousMusicNodes[trackNumber].MultiTimesHit())
@@ -114,35 +113,52 @@ public class Conductor : MonoBehaviour
 			if (frontNode.times > 0) return; //multi-times node should be handled in the Update() func
 
 			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
+			float absTimes = Mathf.Abs(frontNode.times);
 
-			if (offsetY < perfectOffsetY) //perfect hit
+			if (frontNode.times < 0)
 			{
-				frontNode.PerfectHit();
-				//print("Perfect");
-
-				//dispatch beat on hit event
-				if (beatOnHitEvent != null) beatOnHitEvent(trackNumber, Rank.PERFECT);
-
-				queueForTracks[trackNumber].Dequeue();
+				if (offsetY < perfectOffsetY + (absTimes/2)) //perfect hit
+				{
+					//frontNode.PerfectHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+					//queueForTracks[trackNumber].Dequeue();
+					Debug.Log("Perfect");
+				}
+				else if (offsetY < goodOffsetY + (absTimes/2)) //good hit
+				{
+					//frontNode.GoodHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
+					//queueForTracks[trackNumber].Dequeue();
+					Debug.Log("Good");
+				}
+				else if (offsetY < badOffsetY + (absTimes/2)) //bad hit
+				{
+					//frontNode.BadHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+					//queueForTracks[trackNumber].Dequeue();
+					Debug.Log("BAD");
+				}
 			}
-			else if (offsetY < goodOffsetY) //good hit
+			else
 			{
-				frontNode.GoodHit();
-				//print("Good");
-
-				//dispatch beat on hit event
-				if (beatOnHitEvent != null) beatOnHitEvent(trackNumber, Rank.GOOD);
-
-				queueForTracks[trackNumber].Dequeue();
-			}
-			else if (offsetY < badOffsetY) //bad hit
-			{
-				frontNode.BadHit();
-
-				//dispatch beat on hit event
-				if (beatOnHitEvent != null) beatOnHitEvent(trackNumber, Rank.BAD);
-
-				queueForTracks[trackNumber].Dequeue();
+				if (offsetY < perfectOffsetY) //perfect hit
+				{
+					frontNode.PerfectHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+					queueForTracks[trackNumber].Dequeue();
+				}
+				else if (offsetY < goodOffsetY) //good hit
+				{
+					frontNode.GoodHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
+					queueForTracks[trackNumber].Dequeue();
+				}
+				else if (offsetY < badOffsetY) //bad hit
+				{
+					frontNode.BadHit();
+					beatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+					queueForTracks[trackNumber].Dequeue();
+				}
 			}
 		}
 	}
@@ -289,6 +305,7 @@ public class Conductor : MonoBehaviour
 			if (queueForTracks[i].Count == 0) continue;
 
 			MusicNode currNode = queueForTracks[i].Peek();
+			float absTimes = Mathf.Abs(currNode.times);
 
 			//multi-times note
 			if (currNode.times > 0 && currNode.transform.position.y <= finishLineY + goodOffsetY)
@@ -297,38 +314,40 @@ public class Conductor : MonoBehaviour
 				if (previousMusicNodes[i] != null)
 				{
 					previousMusicNodes[i].MultiTimesFailed();
-
-					//dispatch miss event
-					if (beatOnHitEvent != null) beatOnHitEvent(i, Rank.MISS);
+					beatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
-
 				//pause the note
 				currNode.paused = true;
-
 				//align to finish line
 				currNode.transform.position = new Vector3(currNode.transform.position.x, finishLineY, currNode.transform.position.z);
-
 				//deque, but keep a reference
 				previousMusicNodes[i] = currNode;
 				queueForTracks[i].Dequeue();
 			}
-			else if (currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
+			else if (currNode.times < 0 && currNode.transform.position.y <= finishLineY - absTimes)
+			{
+				if (previousMusicNodes[i] != null)
+				{
+					previousMusicNodes[i].MultiTimesFailed();
+					previousMusicNodes[i] = null;
+					beatOnHitEvent?.Invoke(i, Rank.MISS);
+				}
+				queueForTracks[i].Dequeue();
+				//dispatch miss event (if a multi-times note is missed, its next single note would also be missed)
+				beatOnHitEvent?.Invoke(i, Rank.MISS);
+			}
+			else if (currNode.times == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
 			{
 				//have previous note stuck on the finish line
 				if (previousMusicNodes[i] != null)
 				{
 					previousMusicNodes[i].MultiTimesFailed();
 					previousMusicNodes[i] = null;
-
-					//dispatch miss event
-					if (beatOnHitEvent != null) beatOnHitEvent(i, Rank.MISS);
+					beatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
-
-				//deque
 				queueForTracks[i].Dequeue();
-
 				//dispatch miss event (if a multi-times note is missed, its next single note would also be missed)
-				if (beatOnHitEvent != null) beatOnHitEvent(i, Rank.MISS);
+				beatOnHitEvent?.Invoke(i, Rank.MISS);
 			}
 		}
 
@@ -337,9 +356,7 @@ public class Conductor : MonoBehaviour
 		if (songposition > songLength)
 		{
 			songStarted = false;
-
-			if (songCompletedEvent != null)
-				songCompletedEvent();
+			songCompletedEvent?.Invoke();
 		}
 	}
 
