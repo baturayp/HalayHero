@@ -72,11 +72,6 @@ public class PlayingUIController : MonoBehaviour
 		Conductor.songCompletedEvent += SongCompleted;
 	}
 
-	void Update()
-	{
-		
-	}
-
 	void OnDestroy()
 	{
 		//unregister from events
