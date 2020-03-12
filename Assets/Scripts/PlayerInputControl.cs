@@ -54,30 +54,9 @@ public class PlayerInputControl : MonoBehaviour
         keybindings[1] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track2);
         keybindings[2] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track3);
         pauseKey = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Pause);
-
-        //KeyboardInputManager.keyChangedEvent += KeyChanged;
 #endif
 
     }
-
-//#if UNITY_EDITOR || UNITY_STANDALONE
-    //void KeyChanged(KeyboardInputManager.KeyBindings keyBinding, KeyCode keyCode)
-    //{
-    //    if (keyBinding == KeyboardInputManager.KeyBindings.Pause)
-    //    {
-    //        pauseKey = keyCode;
-    //    }
-    //    else
-    //    {
-    //        keybindings[(int)keyBinding] = keyCode;
-    //    }
-    //}
-
-    //void OnDestroy()
-    //{
-    //    //KeyboardInputManager.keyChangedEvent -= KeyChanged;
-    //}
-//#endif
 
 
     void Update()

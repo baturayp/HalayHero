@@ -317,21 +317,21 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5446927
+      - time: 0.52827233
         functionName: ShowFlash
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.55714285
-        functionName: TriggerDebris
+      - time: 0.5418719
+        functionName: HideFlash
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5698324
+      - time: 0.563711
         functionName: TriggerDebris
         data: 
         objectReferenceParameter: {instanceID: 0}
