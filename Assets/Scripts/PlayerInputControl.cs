@@ -6,6 +6,9 @@ public class PlayerInputControl : MonoBehaviour
     public delegate void InputtedAction(int trackNumber);
     public static event InputtedAction inputtedEvent;
 
+    public delegate void KeyupAction(int trackNumber);
+    public static event KeyupAction keyupEvent;
+
     public CircleCollider2D[] tappingSpheres;
 
     //in unity editor & standalone, input by keyboard
@@ -47,6 +50,10 @@ public class PlayerInputControl : MonoBehaviour
             {
                 Inputted(i);
             }
+            if (Input.GetKeyUp(keybindings[i]))
+            {
+                Keyup(i);
+            }
         }
         if (Input.GetKeyDown(pauseKey))
         {
@@ -82,5 +89,10 @@ public class PlayerInputControl : MonoBehaviour
 
         //play audio clip
         audioSources[i].Play();
+    }
+
+    void Keyup(int i)
+    {
+        keyupEvent?.Invoke(i);
     }
 }

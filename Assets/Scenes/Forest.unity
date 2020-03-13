@@ -17264,10 +17264,6 @@ MonoBehaviour:
   - {fileID: 900314125}
   - {fileID: 1592858838}
   - {fileID: 507510822}
-  innerCircles:
-  - {fileID: 1304091761}
-  - {fileID: 1905489250}
-  - {fileID: 739019529}
 --- !u!4 &674665441
 Transform:
   m_ObjectHideFlags: 0
@@ -18557,7 +18553,6 @@ GameObject:
   - component: {fileID: 857022463}
   - component: {fileID: 857022465}
   - component: {fileID: 857022464}
-  - component: {fileID: 857022466}
   m_Layer: 5
   m_Name: Combo Text
   m_TagString: Untagged
@@ -18698,18 +18693,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857022462}
   m_CullTransparentMesh: 0
---- !u!114 &857022466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857022462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a2f7fc8ffdf48ebb2734f389e4d3b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &867197755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: b9c46b3f49201964a8390fcd592c363a,
