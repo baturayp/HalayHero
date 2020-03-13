@@ -5721,7 +5721,7 @@ MonoBehaviour:
   startLineY: 5
   finishLineY: -3.5
   removeLineY: -6
-  badOffsetY: 0.5
+  badOffsetY: 1
   goodOffsetY: 0.4
   perfectOffsetY: 0.25
   trackColors:
@@ -20269,10 +20269,6 @@ MonoBehaviour:
   - {fileID: 900314125}
   - {fileID: 1592858838}
   - {fileID: 507510822}
-  innerCircles:
-  - {fileID: 1304091761}
-  - {fileID: 1905489250}
-  - {fileID: 739019529}
 --- !u!4 &674665441
 Transform:
   m_ObjectHideFlags: 0

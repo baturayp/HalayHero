@@ -68,15 +68,15 @@ public class PlayingUIController : MonoBehaviour
 		lastbeat = 0f;
 
 		//register to events
-		Conductor.beatOnHitEvent += BeatOnHit;
-		Conductor.songCompletedEvent += SongCompleted;
+		Conductor.BeatOnHitEvent += BeatOnHit;
+		Conductor.SongCompletedEvent += SongCompleted;
 	}
 
 	void OnDestroy()
 	{
 		//unregister from events
-		Conductor.beatOnHitEvent -= BeatOnHit;
-		Conductor.songCompletedEvent -= SongCompleted;
+		Conductor.BeatOnHitEvent -= BeatOnHit;
+		Conductor.SongCompletedEvent -= SongCompleted;
 	}
 
 	//called by event
@@ -103,7 +103,7 @@ public class PlayingUIController : MonoBehaviour
 			//update combo
 			currCombo = 0;
 		}
-		else   //miss
+		else if (rank == Conductor.Rank.MISS)
 		{
 			//check if it is max combo
 			maxCombo = Mathf.Max(maxCombo, currCombo);
@@ -126,10 +126,8 @@ public class PlayingUIController : MonoBehaviour
 			TriggerAnim(3);
 		}
 
-		// Perform Pop Animation every beat.
 		if (Conductor.songposition > lastbeat + Conductor.crotchet)
 		{
-			//StartCoroutine(PopAvatarCoroutine());
 			lastbeat += Conductor.crotchet;
 		}
 

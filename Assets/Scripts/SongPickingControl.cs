@@ -32,7 +32,7 @@ public class SongPickingControl : MonoBehaviour
 	private bool animating = false;
 
 	//rotation
-	private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
+	//private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
 	private Vector3 horizontalFlip = new Vector3(0f, 90f, 0f);
 
 	//pivot

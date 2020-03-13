@@ -4,10 +4,10 @@ public class PlayerInputControl : MonoBehaviour
 {
 
     public delegate void InputtedAction(int trackNumber);
-    public static event InputtedAction inputtedEvent;
+    public static event InputtedAction InputtedEvent;
 
     public delegate void KeyupAction(int trackNumber);
-    public static event KeyupAction keyupEvent;
+    public static event KeyupAction KeyupEvent;
 
     public CircleCollider2D[] tappingSpheres;
 
@@ -78,6 +78,18 @@ public class PlayerInputControl : MonoBehaviour
                     }
                 }
             }
+            //tap ended
+            if (touch.phase == TouchPhase.Ended)
+            {
+                //check if on a tapping sphere
+                for (int i = 0; i < trackLength; i++)
+                {
+                    if (tappingSpheres[i].OverlapPoint(Camera.main.ScreenToWorldPoint(touch.position)))
+                    {
+                        Keyup(i);
+                    }
+                }
+            }
         }
 #endif
     }
@@ -85,7 +97,7 @@ public class PlayerInputControl : MonoBehaviour
     void Inputted(int i)
     {
         //inform Conductor and other interested classes
-        inputtedEvent?.Invoke(i);
+        InputtedEvent?.Invoke(i);
 
         //play audio clip
         audioSources[i].Play();
@@ -93,6 +105,6 @@ public class PlayerInputControl : MonoBehaviour
 
     void Keyup(int i)
     {
-        keyupEvent?.Invoke(i);
+        KeyupEvent?.Invoke(i);
     }
 }

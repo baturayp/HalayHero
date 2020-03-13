@@ -20,11 +20,15 @@ public class Conductor : MonoBehaviour
 	public enum Rank { PERFECT, GOOD, BAD, MISS };
 
 	public delegate void BeatOnHitAction(int trackNumber, Rank rank);
-	public static event BeatOnHitAction beatOnHitEvent;
+	public static event BeatOnHitAction BeatOnHitEvent;
+
+	//keyup action
+	public delegate void KeyUpAction(int trackNumber);
+	public static event KeyUpAction KeyUpEvent;
 
 	//song completion
 	public delegate void SongCompletedAction();
-	public static event SongCompletedAction songCompletedEvent;
+	public static event SongCompletedAction SongCompletedEvent;
 
 	private float songLength;
 
@@ -88,7 +92,7 @@ public class Conductor : MonoBehaviour
 
 	//total tracks
 	private int len;
-	private AudioSource audioSource { get { return GetComponent<AudioSource>(); } }
+	private AudioSource AudioSource { get { return GetComponent<AudioSource>(); } }
 
 	void PlayerInputted(int trackNumber)
 	{
@@ -96,7 +100,7 @@ public class Conductor : MonoBehaviour
 		if (previousMusicNodes[trackNumber] != null)
 		{
 			//dispatch beat on hit event (multi-times node is always PERFECT)
-			beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+			BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
 
 			//check if the node should be removed
 			if (previousMusicNodes[trackNumber].MultiTimesHit())
@@ -117,49 +121,47 @@ public class Conductor : MonoBehaviour
 
 			if (frontNode.times < 0)
 			{
-				if (offsetY < perfectOffsetY + (absTimes/2)) //perfect hit
-				{
-					//frontNode.PerfectHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
-					//queueForTracks[trackNumber].Dequeue();
-					Debug.Log("Perfect");
-				}
-				else if (offsetY < goodOffsetY + (absTimes/2)) //good hit
-				{
-					//frontNode.GoodHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
-					//queueForTracks[trackNumber].Dequeue();
-					Debug.Log("Good");
-				}
-				else if (offsetY < badOffsetY + (absTimes/2)) //bad hit
+				if (offsetY < badOffsetY + (absTimes/2))
 				{
 					//frontNode.BadHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+					frontNode.ringSprite.color = Color.green;
 					//queueForTracks[trackNumber].Dequeue();
-					Debug.Log("BAD");
+					Debug.Log("keydown " + trackNumber.ToString());
 				}
 			}
-			else
+			if (frontNode.times == 0)
 			{
 				if (offsetY < perfectOffsetY) //perfect hit
 				{
 					frontNode.PerfectHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
 					queueForTracks[trackNumber].Dequeue();
 				}
 				else if (offsetY < goodOffsetY) //good hit
 				{
 					frontNode.GoodHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
 					queueForTracks[trackNumber].Dequeue();
 				}
 				else if (offsetY < badOffsetY) //bad hit
 				{
 					frontNode.BadHit();
-					beatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
 					queueForTracks[trackNumber].Dequeue();
 				}
 			}
+		}
+	}
+
+	void KeyUp(int trackNumber)
+	{
+		if (queueForTracks[trackNumber].Count != 0)
+		{
+			MusicNode frontNode = queueForTracks[trackNumber].Peek();
+			if (frontNode.times >= 0) return;
+			KeyUpEvent?.Invoke(trackNumber);
+			frontNode.ringSprite.color = trackColors[trackNumber];
+			Debug.Log("keyup " + trackNumber.ToString());
 		}
 	}
 
@@ -183,7 +185,8 @@ public class Conductor : MonoBehaviour
 		songInfo = SongInfoMessenger.Instance.currentSong;
 
 		//listen to player input
-		PlayerInputControl.inputtedEvent += PlayerInputted;
+		PlayerInputControl.InputtedEvent += PlayerInputted;
+		PlayerInputControl.KeyupEvent += KeyUp;
 
 		//initialize fields
 		crotchet = 60f / songInfo.bpm;
@@ -210,8 +213,8 @@ public class Conductor : MonoBehaviour
 		StartCoroutine(AnimationCoroutine());
 
 		//initialize audioSource
-		audioSource.clip = songInfo.song;
-		audioSource.volume = PlayerPrefs.GetFloat("Volume", 1f);
+		AudioSource.clip = songInfo.song;
+		AudioSource.volume = PlayerPrefs.GetFloat("Volume", 1f);
 
 		//start countdown
 		StartCoroutine(CountDown());
@@ -231,7 +234,7 @@ public class Conductor : MonoBehaviour
 		dsptimesong = (float)AudioSettings.dspTime;
 
 		//play song
-		audioSource.Play();
+		AudioSource.Play();
 
 		SetGameObjects(true);
 
@@ -251,7 +254,7 @@ public class Conductor : MonoBehaviour
 			if (pauseTimeStamp < 0f) //not managed
 			{
 				pauseTimeStamp = (float)AudioSettings.dspTime;
-				audioSource.Pause();
+				AudioSource.Pause();
 				SetGameObjects(false);
 			}
 
@@ -260,14 +263,14 @@ public class Conductor : MonoBehaviour
 		else if (pauseTimeStamp > 0f) //resume not managed
 		{
 			pausedTime += (float)AudioSettings.dspTime - pauseTimeStamp;
-			audioSource.Play();
+			AudioSource.Play();
 			SetGameObjects(true);
 
 			pauseTimeStamp = -1f;
 		}
 
 		//calculate songposition
-		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource.pitch - songInfo.songOffset;
+		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - songInfo.songOffset;
 
 		//check if need to instantiate new nodes
 		float beatToShow = songposition / crotchet + BeatsShownOnScreen;
@@ -314,7 +317,7 @@ public class Conductor : MonoBehaviour
 				if (previousMusicNodes[i] != null)
 				{
 					previousMusicNodes[i].MultiTimesFailed();
-					beatOnHitEvent?.Invoke(i, Rank.MISS);
+					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
 				//pause the note
 				currNode.paused = true;
@@ -330,11 +333,11 @@ public class Conductor : MonoBehaviour
 				{
 					previousMusicNodes[i].MultiTimesFailed();
 					previousMusicNodes[i] = null;
-					beatOnHitEvent?.Invoke(i, Rank.MISS);
+					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
 				queueForTracks[i].Dequeue();
-				//dispatch miss event (if a multi-times note is missed, its next single note would also be missed)
-				beatOnHitEvent?.Invoke(i, Rank.MISS);
+				KeyUpEvent?.Invoke(i);
+				currNode.ringSprite.color = trackColors[i];
 			}
 			else if (currNode.times == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
 			{
@@ -343,11 +346,11 @@ public class Conductor : MonoBehaviour
 				{
 					previousMusicNodes[i].MultiTimesFailed();
 					previousMusicNodes[i] = null;
-					beatOnHitEvent?.Invoke(i, Rank.MISS);
+					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
 				queueForTracks[i].Dequeue();
 				//dispatch miss event (if a multi-times note is missed, its next single note would also be missed)
-				beatOnHitEvent?.Invoke(i, Rank.MISS);
+				BeatOnHitEvent?.Invoke(i, Rank.MISS);
 			}
 		}
 
@@ -356,7 +359,7 @@ public class Conductor : MonoBehaviour
 		if (songposition > songLength)
 		{
 			songStarted = false;
-			songCompletedEvent?.Invoke();
+			SongCompletedEvent?.Invoke();
 		}
 	}
 
@@ -376,7 +379,7 @@ public class Conductor : MonoBehaviour
 
 	void OnDestroy()
 	{
-		PlayerInputControl.inputtedEvent -= PlayerInputted;
+		PlayerInputControl.InputtedEvent -= PlayerInputted;
 	}
 
 	void SetGameObjects(bool state)

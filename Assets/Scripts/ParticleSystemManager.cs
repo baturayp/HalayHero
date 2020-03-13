@@ -11,12 +11,12 @@ public class ParticleSystemManager : MonoBehaviour
 
 	void Start()
 	{
-		Conductor.beatOnHitEvent += BeatOnHit;
+		Conductor.BeatOnHitEvent += BeatOnHit;
 	}
 
 	void OnDestroy()
 	{
-		Conductor.beatOnHitEvent -= BeatOnHit;
+		Conductor.BeatOnHitEvent -= BeatOnHit;
 	}
 
 	//will be informed by the Conductor after a beat is hit
