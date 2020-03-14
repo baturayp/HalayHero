@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class MusicNode : MonoBehaviour
@@ -61,7 +62,7 @@ public class MusicNode : MonoBehaviour
 		//remove itself when out of the screen (remove line)
 		if (times < 0)
 		{
-			if (transform.position.y < (removeLineY + times))
+			if (transform.position.y < (removeLineY + times/2f))
 			{
 				gameObject.SetActive(false);
 			}

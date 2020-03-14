@@ -114,19 +114,24 @@ public class Conductor : MonoBehaviour
 			//peek the node in the queue
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 
-			if (frontNode.times > 0) return; //multi-times node should be handled in the Update() func
+			if (frontNode.times > 0) return;
 
 			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
 			float absTimes = Mathf.Abs(frontNode.times);
 
 			if (frontNode.times < 0)
 			{
-				if (offsetY < badOffsetY + (absTimes/2))
+				if (offsetY < perfectOffsetY + (absTimes / 2f))
 				{
-					//frontNode.BadHit();
 					frontNode.ringSprite.color = Color.green;
-					//queueForTracks[trackNumber].Dequeue();
-					Debug.Log("keydown " + trackNumber.ToString());
+				}
+				else if (offsetY < goodOffsetY + (absTimes / 2f))
+				{
+					frontNode.ringSprite.color = Color.yellow;
+				}
+				else if (offsetY < badOffsetY + (absTimes / 2f))
+				{
+					frontNode.ringSprite.color = Color.red;
 				}
 			}
 			if (frontNode.times == 0)
@@ -160,8 +165,9 @@ public class Conductor : MonoBehaviour
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 			if (frontNode.times >= 0) return;
 			KeyUpEvent?.Invoke(trackNumber);
-			frontNode.ringSprite.color = trackColors[trackNumber];
-			Debug.Log("keyup " + trackNumber.ToString());
+			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.ringSprite.color == Color.yellow) { frontNode.GoodHit(); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.ringSprite.color == Color.red) { frontNode.BadHit(); queueForTracks[trackNumber].Dequeue(); }
 		}
 	}
 
@@ -335,9 +341,8 @@ public class Conductor : MonoBehaviour
 					previousMusicNodes[i] = null;
 					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
-				queueForTracks[i].Dequeue();
-				KeyUpEvent?.Invoke(i);
 				currNode.ringSprite.color = trackColors[i];
+				queueForTracks[i].Dequeue();
 			}
 			else if (currNode.times == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
 			{
