@@ -84,20 +84,31 @@ public class LogicScript : MonoBehaviour
 		mapPin[selected].GetComponent<Animator>().enabled = true;
 	}
 
-	IEnumerator waiter()
+	IEnumerator waiter(int scene)
 	{
 		yield return new WaitForSeconds(0.6f);
-		SceneManager.LoadSceneAsync("Forest");
+		if (scene == 0)
+		{
+			SceneManager.LoadSceneAsync("Gameplay");
+		}
+		if (scene == 1)
+		{
+			SceneManager.LoadSceneAsync("Forest");
+		}
+		if (scene == 2)
+		{
+			SceneManager.LoadSceneAsync("Street");
+		}
 	}
 
-	void SelectSong(int song)
+	void SelectSong(int scene)
 	{
 		currSong = songCollections[0].songSets[0].song;
 		SongInfoMessenger.Instance.currentSong = currSong;
 		//select camera focus
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
-		focusVirtCam[song].SetActive(true);
+		focusVirtCam[scene].SetActive(true);
 		//wait briefly before loading gameplay scene
-		StartCoroutine(waiter());
+		StartCoroutine(waiter(scene));
 	}
 }
