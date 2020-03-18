@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: ColorSwatch2
     second: {fileID: 2100000, guid: 8cdc3733ab0f15d46b6c321b984958f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: b1a20fb3d18747e42a4828efccc86977, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
