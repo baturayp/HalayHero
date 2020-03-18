@@ -30,12 +30,12 @@ public class ParticleSystemManager : MonoBehaviour
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
-			particleSet[track].good.Play();
+			//particleSet[track].good.Play();
 			comboEffect.Play();
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
-			particleSet[track].bad.Play();
+			//particleSet[track].bad.Play();
 		}
 
 		//do nothing if missed

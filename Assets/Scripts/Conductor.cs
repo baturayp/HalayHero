@@ -165,9 +165,9 @@ public class Conductor : MonoBehaviour
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 			if (frontNode.times >= 0) return;
 			KeyUpEvent?.Invoke(trackNumber);
-			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); queueForTracks[trackNumber].Dequeue(); }
-			if (frontNode.ringSprite.color == Color.yellow) { frontNode.GoodHit(); queueForTracks[trackNumber].Dequeue(); }
-			if (frontNode.ringSprite.color == Color.red) { frontNode.BadHit(); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.ringSprite.color == Color.yellow) { frontNode.GoodHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.GOOD); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.ringSprite.color == Color.red) { frontNode.BadHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.BAD); queueForTracks[trackNumber].Dequeue(); }
 		}
 	}
 

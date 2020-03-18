@@ -14,6 +14,7 @@ public class MusicNode : MonoBehaviour
 	[NonSerialized] public int times;
 	[NonSerialized] public bool paused;
 
+
 	public void Initialize(float posX, float startY, float endY, float removeLineY, float posZ, float targetBeat, int times, Color color)
 	{
 		this.startY = startY;
@@ -29,6 +30,9 @@ public class MusicNode : MonoBehaviour
 
 		//set color
 		ringSprite.color = color;
+
+		//set scale
+		transform.localScale = new Vector3(1, 1, 1);
 
 		//set times
 		if (times > 0)
@@ -62,7 +66,7 @@ public class MusicNode : MonoBehaviour
 		//remove itself when out of the screen (remove line)
 		if (times < 0)
 		{
-			if (transform.position.y < (removeLineY + times/2f))
+			if (transform.position.y < (removeLineY + times / 2f))
 			{
 				gameObject.SetActive(false);
 			}
@@ -76,6 +80,21 @@ public class MusicNode : MonoBehaviour
 		}
 	}
 
+	IEnumerator FadeOut()
+	{
+		float elapsedTime = 0.0f;
+		Color c = ringSprite.color;
+		while (elapsedTime < 0.2f)
+		{
+			elapsedTime += Time.deltaTime;
+			c.a = 1.0f - Mathf.Clamp01(elapsedTime / 0.2f);
+			ringSprite.color = c;
+			transform.localScale = new Vector3(1 + elapsedTime, 1 + elapsedTime, 1);
+			yield return null;
+		}
+		gameObject.SetActive(false);
+	}
+
 	//remove (multi-times note failed), might apply some animations later
 	public void MultiTimesFailed()
 	{
@@ -86,6 +105,7 @@ public class MusicNode : MonoBehaviour
 	public bool MultiTimesHit()
 	{
 		//update text
+		ringSprite.color = Color.green;
 		times--;
 		if (times == 0)
 		{
@@ -100,16 +120,22 @@ public class MusicNode : MonoBehaviour
 
 	public void PerfectHit()
 	{
-		gameObject.SetActive(false);
+		paused = true;
+		ringSprite.color = Color.green;
+		StartCoroutine(FadeOut());
 	}
 
 	public void GoodHit()
 	{
-		gameObject.SetActive(false);
+		paused = true;
+		ringSprite.color = Color.yellow;
+		StartCoroutine(FadeOut());
 	}
 
 	public void BadHit()
 	{
-		gameObject.SetActive(false);
+		paused = true;
+		ringSprite.color = Color.red;
+		StartCoroutine(FadeOut());
 	}
 }
