@@ -12,11 +12,13 @@ public class ParticleSystemManager : MonoBehaviour
 	void Start()
 	{
 		Conductor.BeatOnHitEvent += BeatOnHit;
+		Conductor.KeyUpEvent += KeyUp;
 	}
 
 	void OnDestroy()
 	{
 		Conductor.BeatOnHitEvent -= BeatOnHit;
+		Conductor.KeyUpEvent -= KeyUp;
 	}
 
 	//will be informed by the Conductor after a beat is hit
@@ -28,17 +30,23 @@ public class ParticleSystemManager : MonoBehaviour
 			perfectionEffect.Play();
 			comboEffect.Play();
 		}
-		else if (rank == Conductor.Rank.GOOD)
+		if (rank == Conductor.Rank.GOOD)
 		{
 			//particleSet[track].good.Play();
 			comboEffect.Play();
 		}
-		else if (rank == Conductor.Rank.BAD)
+		if (rank == Conductor.Rank.CONT)
 		{
-			//particleSet[track].bad.Play();
+			particleSet[track].cont.Play();
 		}
 
 		//do nothing if missed
+	}
+
+	void KeyUp(int track)
+	{
+		particleSet[track].cont.Pause();
+		particleSet[track].cont.Clear();
 	}
 
 	[System.Serializable]
@@ -47,5 +55,6 @@ public class ParticleSystemManager : MonoBehaviour
 		public ParticleSystem perfect;
 		public ParticleSystem good;
 		public ParticleSystem bad;
+		public ParticleSystem cont;
 	}
 }

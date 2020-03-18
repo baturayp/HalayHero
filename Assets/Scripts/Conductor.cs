@@ -17,7 +17,7 @@ public class Conductor : MonoBehaviour
 	public GameObject vcCam1;
 	public CinemachineVirtualCamera cineCam;
 
-	public enum Rank { PERFECT, GOOD, BAD, MISS };
+	public enum Rank { PERFECT, GOOD, BAD, MISS, CONT };
 
 	public delegate void BeatOnHitAction(int trackNumber, Rank rank);
 	public static event BeatOnHitAction BeatOnHitEvent;
@@ -124,6 +124,7 @@ public class Conductor : MonoBehaviour
 				if (offsetY < perfectOffsetY + (absTimes / 2f))
 				{
 					frontNode.ringSprite.color = Color.green;
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
 				else if (offsetY < goodOffsetY + (absTimes / 2f))
 				{
@@ -342,6 +343,7 @@ public class Conductor : MonoBehaviour
 					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
 				currNode.ringSprite.color = trackColors[i];
+				KeyUpEvent?.Invoke(i);
 				queueForTracks[i].Dequeue();
 			}
 			else if (currNode.times == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note

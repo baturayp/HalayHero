@@ -43,8 +43,7 @@ public class MusicNode : MonoBehaviour
 		}
 		else if (times < 0)
 		{
-			timesText.text = times.ToString();
-			timesTextBackground.SetActive(true);
+			timesTextBackground.SetActive(false);
 			ringSprite.size = new Vector2(1.28f, Mathf.Abs(times));
 		}
 		else
