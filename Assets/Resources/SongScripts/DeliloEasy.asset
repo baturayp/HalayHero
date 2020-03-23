@@ -18,23 +18,23 @@ MonoBehaviour:
   songNum: 0
   songTitle: Delilo
   defaultBeats: []
-  songOffset: -0.5
-  bpm: 87
+  songOffset: 0
+  bpm: 60
   tracks:
   - notes:
+    - note: 1
+      times: 0
+    - note: 2
+      times: 0
+    - note: 3
+      times: 0
+    - note: 4
+      times: 0
     - note: 5
       times: 0
     - note: 6
       times: 0
-    - note: 9
-      times: 0
-    - note: 11
-      times: 3
-    - note: 15
-      times: 0
-    - note: 18
-      times: 0
-    - note: 20
+    - note: 7
       times: 0
     - note: 24
       times: 2

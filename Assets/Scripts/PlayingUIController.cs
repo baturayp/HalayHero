@@ -41,7 +41,7 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject pauseScene;
 
 	//win scene
-	public GameObject winBlackBackground;
+	public GameObject winBackground;
 	public GameObject winTitle;
 	public Image winComboCircle;
 	public Text winComboScoreText;
@@ -53,7 +53,6 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject winPerfectTextBackground;
 	public GameObject winNextButton;
 	public GameObject winRetryButton;
-	public GameObject winSceneBackground;
 	private const float DelayBetweenElements = 0.75f;
 	private const float NumberAnimationDuration = 2f;
 
@@ -199,8 +198,7 @@ public class PlayingUIController : MonoBehaviour
 	IEnumerator ShowWinScene()
 	{
 		//background gradually appears
-		winBlackBackground.SetActive(true);
-		winSceneBackground.SetActive(true);
+		winBackground.SetActive(true);
 
 		comboCircle.gameObject.SetActive(false);
 		perfectionCircle.gameObject.SetActive(false);
