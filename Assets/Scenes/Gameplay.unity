@@ -369,7 +369,7 @@ MonoBehaviour:
   fullColor: {r: 1, g: 1, b: 0, a: 1}
   pauseButton: {fileID: 846396189}
   pauseScene: {fileID: 1305068809}
-  winBlackBackground: {fileID: 0}
+  winBackground: {fileID: 0}
   winTitle: {fileID: 0}
   winComboCircle: {fileID: 0}
   winComboScoreText: {fileID: 0}
@@ -381,7 +381,6 @@ MonoBehaviour:
   winPerfectTextBackground: {fileID: 0}
   winNextButton: {fileID: 0}
   winRetryButton: {fileID: 0}
-  winSceneBackground: {fileID: 0}
   songAudioSource: {fileID: 209918820}
 --- !u!1001 &90397218
 PrefabInstance:
