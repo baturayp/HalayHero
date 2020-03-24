@@ -369,18 +369,13 @@ MonoBehaviour:
   fullColor: {r: 1, g: 1, b: 0, a: 1}
   pauseButton: {fileID: 846396189}
   pauseScene: {fileID: 1305068809}
-  winBackground: {fileID: 0}
-  winTitle: {fileID: 0}
-  winComboCircle: {fileID: 0}
-  winComboScoreText: {fileID: 0}
-  winComboTextBackground: {fileID: 0}
-  winComboText: {fileID: 0}
-  winPerfectCircle: {fileID: 0}
-  winPerfectScoreText: {fileID: 0}
-  winPerfectText: {fileID: 0}
-  winPerfectTextBackground: {fileID: 0}
-  winNextButton: {fileID: 0}
-  winRetryButton: {fileID: 0}
+  finishedScene: {fileID: 0}
+  finishedText: {fileID: 0}
+  finishVCam: {fileID: 0}
+  tapSpheres: {fileID: 0}
+  score: {fileID: 0}
+  finalCombo: {fileID: 0}
+  finalPerfection: {fileID: 0}
   songAudioSource: {fileID: 209918820}
 --- !u!1001 &90397218
 PrefabInstance:
@@ -83147,6 +83142,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 902213209}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1884638616
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884638615}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: b9c46b3f49201964a8390fcd592c363a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 60971ccff77d5d74393c0a9a0631fa19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1888120662
 PrefabInstance:
   m_ObjectHideFlags: 0

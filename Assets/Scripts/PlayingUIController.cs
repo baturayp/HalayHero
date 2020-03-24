@@ -54,17 +54,19 @@ public class PlayingUIController : MonoBehaviour
 	//public GameObject winPerfectTextBackground;
 	//public GameObject winNextButton;
 	//public GameObject winRetryButton;
-	//private const float DelayBetweenElements = 0.75f;
-	//private const float NumberAnimationDuration = 2f;
+	private const float DelayBetweenElements = 0.75f;
+	private const float NumberAnimationDuration = 2f;
 
 	//finish scene
 	public GameObject finishedScene;
-	public GameObject finishedText;
+	public GameObject finishedSuccessText;
 	public GameObject finishVCam;
-	public GameObject mainCamera;
+	public GameObject tapSpheres;
 	public GameObject score;
+	public GameObject finishedScore;
 	public GameObject finalCombo;
 	public GameObject finalPerfection;
+	public GameObject emojiSuccess;
 
 	public AudioSource songAudioSource; //bad design, but whatever!
 
@@ -206,11 +208,50 @@ public class PlayingUIController : MonoBehaviour
 
 	IEnumerator ShowWinScene()
 	{
+		//hide scene elements and start to show finish items
 		finishedScene.SetActive(true);
 		finishVCam.SetActive(true);
-		mainCamera.SetActive(false);
+		tapSpheres.SetActive(false);
 		pauseButton.SetActive(false);
 		score.SetActive(false);
+		
+		yield return new WaitForSeconds(DelayBetweenElements);
+		
+		finishedScore.SetActive(true);
+		
+		//combo animation
+		float i = 0f;
+		while (i <= 1f)
+		{
+			print(2);
+			i += Time.deltaTime / NumberAnimationDuration;
+			int newCombo = (int)Mathf.Lerp(0f, (float)maxCombo, i);
+			finalCombo.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo.ToString();
+			yield return null;
+		}
+		//ensure correct score shown
+		finalCombo.GetComponent<TMPro.TextMeshProUGUI>().text = maxCombo.ToString();
+
+		//perfection animation
+		float perfectionPercentage = (float)currPerfection / (float)(fullNoteCounts * 2) * 100f;
+		i = 0f;
+		while (i <= 1f)
+		{
+			i += Time.deltaTime / NumberAnimationDuration;
+			float newPerfection = Mathf.Lerp(0f, perfectionPercentage, i);
+			finalPerfection.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", newPerfection);
+			yield return null;
+		}
+		//ensure correct percentage shown
+		finalPerfection.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", perfectionPercentage);
+
+		yield return new WaitForSeconds(DelayBetweenElements);
+
+		finishedSuccessText.SetActive(true);
+
+		yield return new WaitForSeconds(DelayBetweenElements);
+
+		emojiSuccess.SetActive(true);
 
 		yield return null;
 	}
