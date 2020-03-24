@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayingUIController : MonoBehaviour
 {
@@ -41,21 +42,29 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject pauseScene;
 
 	//win scene
-	public GameObject winBackground;
-	public GameObject winTitle;
-	public Image winComboCircle;
-	public Text winComboScoreText;
-	public GameObject winComboTextBackground;
-	public Text winComboText;
-	public Image winPerfectCircle;
-	public Text winPerfectScoreText;
-	public Text winPerfectText;
-	public GameObject winPerfectTextBackground;
-	public GameObject winNextButton;
-	public GameObject winRetryButton;
-	private const float DelayBetweenElements = 0.75f;
-	private const float NumberAnimationDuration = 2f;
+	//public GameObject winBackground;
+	//public GameObject winTitle;
+	//public Image winComboCircle;
+	//public Text winComboScoreText;
+	//public GameObject winComboTextBackground;
+	//public Text winComboText;
+	//public Image winPerfectCircle;
+	//public Text winPerfectScoreText;
+	//public Text winPerfectText;
+	//public GameObject winPerfectTextBackground;
+	//public GameObject winNextButton;
+	//public GameObject winRetryButton;
+	//private const float DelayBetweenElements = 0.75f;
+	//private const float NumberAnimationDuration = 2f;
 
+	//finish scene
+	public GameObject finishedScene;
+	public GameObject finishedText;
+	public GameObject finishVCam;
+	public GameObject mainCamera;
+	public GameObject score;
+	public GameObject finalCombo;
+	public GameObject finalPerfection;
 
 	public AudioSource songAudioSource; //bad design, but whatever!
 
@@ -197,85 +206,96 @@ public class PlayingUIController : MonoBehaviour
 
 	IEnumerator ShowWinScene()
 	{
-		//background gradually appears
-		winBackground.SetActive(true);
-
-		comboCircle.gameObject.SetActive(false);
-		perfectionCircle.gameObject.SetActive(false);
+		finishedScene.SetActive(true);
+		finishVCam.SetActive(true);
+		mainCamera.SetActive(false);
 		pauseButton.SetActive(false);
+		score.SetActive(false);
 
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		//show title
-		winTitle.SetActive(true);
-
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		//show combo
-		winComboCircle.gameObject.SetActive(true);
-		winComboTextBackground.SetActive(true);
-
-		//increase by animation
-		float i = 0f;
-		while (i <= 1f)
-		{
-			print(2);
-			i += Time.deltaTime / NumberAnimationDuration;
-
-			int newCombo = (int)Mathf.Lerp(0f, (float)maxCombo, i);
-			Color newColor = Color.Lerp(startColor, fullColor, (float)newCombo / (float)fullNoteCounts);
-
-			//set text
-			winComboScoreText.text = newCombo.ToString();
-
-			//set color
-			winComboCircle.color = newColor;
-			winComboScoreText.color = newColor;
-			winComboText.color = newColor;
-
-			yield return null;
-		}
-
-		//ensure that the final score is shown correct
-		winComboScoreText.text = maxCombo.ToString();
-
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		//show perfection
-		winPerfectCircle.gameObject.SetActive(true);
-		winPerfectTextBackground.SetActive(true);
-
-		float perfectionPercentage = (float)currPerfection / (float)(fullNoteCounts * 2) * 100f;
-
-		i = 0f;
-		while (i <= 1f)
-		{
-			i += Time.deltaTime / NumberAnimationDuration;
-
-			float newPerfection = Mathf.Lerp(0f, perfectionPercentage, i);
-			Color newColor = Color.Lerp(startColor, fullColor, newPerfection / 100f);
-
-			//show text
-			winPerfectScoreText.text = string.Format("{0:F1}%", newPerfection);
-
-			//show color
-			winPerfectText.color = newColor;
-			winPerfectCircle.color = newColor;
-			winPerfectScoreText.color = newColor;
-
-			yield return null;
-		}
-
-		//ensure the correct perfection is shown
-		winPerfectScoreText.text = string.Format("{0:F1}%", perfectionPercentage);
-
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		//show retry & next buttons
-		winRetryButton.SetActive(true);
-		winNextButton.SetActive(true);
-
+		yield return null;
 	}
+
+	//IEnumerator ShowWinScene()
+	//{
+	//	//background gradually appears
+	//	winBackground.SetActive(true);
+
+	//	comboCircle.gameObject.SetActive(false);
+	//	perfectionCircle.gameObject.SetActive(false);
+	//	pauseButton.SetActive(false);
+
+	//	yield return new WaitForSeconds(DelayBetweenElements);
+
+	//	//show title
+	//	winTitle.SetActive(true);
+
+	//	yield return new WaitForSeconds(DelayBetweenElements);
+
+	//	//show combo
+	//	winComboCircle.gameObject.SetActive(true);
+	//	winComboTextBackground.SetActive(true);
+
+	//	//increase by animation
+	//	float i = 0f;
+	//	while (i <= 1f)
+	//	{
+	//		print(2);
+	//		i += Time.deltaTime / NumberAnimationDuration;
+
+	//		int newCombo = (int)Mathf.Lerp(0f, (float)maxCombo, i);
+	//		Color newColor = Color.Lerp(startColor, fullColor, (float)newCombo / (float)fullNoteCounts);
+
+	//		//set text
+	//		winComboScoreText.text = newCombo.ToString();
+
+	//		//set color
+	//		winComboCircle.color = newColor;
+	//		winComboScoreText.color = newColor;
+	//		winComboText.color = newColor;
+
+	//		yield return null;
+	//	}
+
+	//	//ensure that the final score is shown correct
+	//	winComboScoreText.text = maxCombo.ToString();
+
+	//	yield return new WaitForSeconds(DelayBetweenElements);
+
+	//	//show perfection
+	//	winPerfectCircle.gameObject.SetActive(true);
+	//	winPerfectTextBackground.SetActive(true);
+
+	//	float perfectionPercentage = (float)currPerfection / (float)(fullNoteCounts * 2) * 100f;
+
+	//	i = 0f;
+	//	while (i <= 1f)
+	//	{
+	//		i += Time.deltaTime / NumberAnimationDuration;
+
+	//		float newPerfection = Mathf.Lerp(0f, perfectionPercentage, i);
+	//		Color newColor = Color.Lerp(startColor, fullColor, newPerfection / 100f);
+
+	//		//show text
+	//		winPerfectScoreText.text = string.Format("{0:F1}%", newPerfection);
+
+	//		//show color
+	//		winPerfectText.color = newColor;
+	//		winPerfectCircle.color = newColor;
+	//		winPerfectScoreText.color = newColor;
+
+	//		yield return null;
+	//	}
+
+	//	//ensure the correct perfection is shown
+	//	winPerfectScoreText.text = string.Format("{0:F1}%", perfectionPercentage);
+
+	//	yield return new WaitForSeconds(DelayBetweenElements);
+
+	//	yield return new WaitForSeconds(DelayBetweenElements);
+
+	//	//show retry & next buttons
+	//	winRetryButton.SetActive(true);
+	//	winNextButton.SetActive(true);
+
+	//}
 }
