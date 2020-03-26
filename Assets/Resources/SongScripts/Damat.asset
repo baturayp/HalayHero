@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
+  m_Name: Damat
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: 01473af2a7d680a49acf5543a7f5f1c0, type: 3}
+  songID: 0
+  collection: 0
+  songNum: 0
+  songTitle: Damat
+  defaultBeats: []
+  songOffset: 0
+  bpm: 60
+  tracks:
+  - notes:
+    - note: 19.3
+      times: 0
+    - note: 19.6
+      times: 0
+    - note: 19.9
+      times: 0
+    - note: 20.49
+      times: 0
+    - note: 20.79
+      times: 0
+    - note: 21.08
+      times: 0
+  - notes:
+    - note: 1.18
+      times: 0
+    - note: 2.37
+      times: 0
+    - note: 3.56
+      times: 0
+    - note: 4.75
+      times: 0
+    - note: 5.34
+      times: 0
+    - note: 3.94
+      times: 0
+    - note: 6.53
+      times: 0
+    - note: 9.5
+      times: 0
+    - note: 10.69
+      times: 0
+    - note: 14.25
+      times: 0
+    - note: 14.55
+      times: 0
+    - note: 15.44
+      times: 0
+    - note: 15.74
+      times: 0
+    - note: 19.1
+      times: 0
+    - note: 20.19
+      times: 0
+  - notes:
+    - note: 10.09
+      times: 0
+    - note: 11.28
+      times: 0
+    - note: 14.85
+      times: 0
+    - note: 15.14
+      times: 0
+    - note: 16.04
+      times: 0
+    - note: 16.33
+      times: 0
