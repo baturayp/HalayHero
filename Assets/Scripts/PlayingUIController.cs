@@ -54,7 +54,6 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject finishedScore;
 	public GameObject finalCombo;
 	public GameObject finalPerfection;
-	public GameObject emojiSuccess;
 
 	public AudioSource songAudioSource; //bad design, but whatever!
 
@@ -87,6 +86,8 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo++;
+
+			maxCombo = Mathf.Max(maxCombo, currCombo);
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
@@ -95,9 +96,13 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo++;
+
+			maxCombo = Mathf.Max(maxCombo, currCombo);
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
+			maxCombo = Mathf.Max(maxCombo, currCombo);
+
 			//update combo
 			currCombo = 0;
 		}
@@ -237,10 +242,6 @@ public class PlayingUIController : MonoBehaviour
 		}
 		//ensure correct percentage shown
 		finalPerfection.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", perfectionPercentage);
-
-		yield return new WaitForSeconds(DelayBetweenElements);
-
-		emojiSuccess.SetActive(true);
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 

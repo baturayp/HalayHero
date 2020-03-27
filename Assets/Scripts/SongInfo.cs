@@ -30,7 +30,8 @@ public class SongInfo : ScriptableObject
 	//get the total hits of the song
 	public int TotalHitCounts()
 	{
-		if (totalHits != -1) return totalHits;
+		//uncomment line below after writing scripts for performance
+		//if (totalHits != -1) return totalHits;
 
 		totalHits = 0;
 		foreach (Track track in tracks)
@@ -41,9 +42,13 @@ public class SongInfo : ScriptableObject
 				{
 					totalHits += 1;
 				}
-				else
+				if (note.times > 0)
 				{
 					totalHits += note.times;
+				}
+				if (note.times < 0)
+				{
+					totalHits += 1;
 				}
 			}
 		}
