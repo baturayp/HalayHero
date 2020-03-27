@@ -22,145 +22,145 @@ MonoBehaviour:
   bpm: 60
   tracks:
   - notes:
-    - note: 1
+    - note: 1.8518519
       times: 0
-    - note: 2
+    - note: 3.7037039
       times: 0
-    - note: 3
+    - note: 5.5555553
       times: 0
-    - note: 4
+    - note: 7.4074078
       times: 0
-    - note: 5
+    - note: 9.259259
       times: 0
-    - note: 6
+    - note: 11.111111
       times: 0
-    - note: 7
+    - note: 12.962963
       times: 0
-    - note: 24
+    - note: 44.444443
       times: 2
-    - note: 28
+    - note: 51.851852
       times: 0
-    - note: 33
+    - note: 61.111115
       times: 4
-    - note: 36
+    - note: 66.666664
       times: 0
-    - note: 39
+    - note: 72.22222
       times: 0
-    - note: 40
+    - note: 74.07407
       times: 0
-    - note: 42
+    - note: 77.77778
       times: 0
-    - note: 46
+    - note: 85.18518
       times: 0
-    - note: 48
+    - note: 88.888885
       times: 0
-    - note: 50
+    - note: 92.59259
       times: 0
-    - note: 52
+    - note: 96.296295
       times: 0
-    - note: 54
+    - note: 100
       times: 0
-    - note: 56
+    - note: 103.703705
       times: 0
-    - note: 58
+    - note: 107.4074
       times: 0
-    - note: 60
+    - note: 111.11111
       times: 0
-    - note: 62
+    - note: 114.81481
       times: 0
-    - note: 64
+    - note: 118.518524
       times: 0
-    - note: 66
+    - note: 122.22223
       times: 0
-    - note: 68
+    - note: 125.92593
       times: 0
-    - note: 70
+    - note: 129.62964
       times: 0
-    - note: 72
+    - note: 133.33333
       times: 0
-    - note: 74
+    - note: 137.03703
       times: 0
-    - note: 76
+    - note: 140.74074
       times: 0
   - notes:
-    - note: 5
+    - note: 9.259259
       times: 0
-    - note: 8
+    - note: 14.8148155
       times: 0
-    - note: 11
+    - note: 20.37037
       times: -3
-    - note: 15
+    - note: 27.777777
       times: 0
-    - note: 20
+    - note: 37.037037
       times: 0
-    - note: 25
+    - note: 46.296295
       times: -2
-    - note: 28
+    - note: 51.851852
       times: 0
-    - note: 30
+    - note: 55.555553
       times: -4
-    - note: 34
+    - note: 62.962963
       times: -2
-    - note: 40
+    - note: 74.07407
       times: 0
-    - note: 41
+    - note: 75.92593
       times: 0
-    - note: 42
+    - note: 77.77778
       times: 0
-    - note: 43
+    - note: 79.62963
       times: 0
-    - note: 44
+    - note: 81.48148
       times: 0
-    - note: 45
+    - note: 83.333336
       times: 0
   - notes:
-    - note: 6
+    - note: 11.111111
       times: 0
-    - note: 8
+    - note: 14.8148155
       times: 0
-    - note: 11
+    - note: 20.37037
       times: 3
-    - note: 15
+    - note: 27.777777
       times: 0
-    - note: 20
+    - note: 37.037037
       times: 2
-    - note: 22
+    - note: 40.74074
       times: 0
-    - note: 24
+    - note: 44.444443
       times: 0
-    - note: 26
+    - note: 48.148148
       times: 0
-    - note: 31
+    - note: 57.407406
       times: 0
-    - note: 35
+    - note: 64.81482
       times: 4
-    - note: 40
+    - note: 74.07407
       times: 0
-    - note: 42
+    - note: 77.77778
       times: 0
-    - note: 44
+    - note: 81.48148
       times: 0
-    - note: 48
+    - note: 88.888885
       times: 0
-    - note: 52
+    - note: 96.296295
       times: 0
-    - note: 54
+    - note: 100
       times: 0
-    - note: 58
+    - note: 107.4074
       times: 0
-    - note: 61
+    - note: 112.96297
       times: 0
-    - note: 65
+    - note: 120.37037
       times: 0
-    - note: 66
+    - note: 122.22223
       times: 0
-    - note: 68
+    - note: 125.92593
       times: 0
-    - note: 74
+    - note: 137.03703
       times: 0
-    - note: 76
+    - note: 140.74074
       times: 0
-    - note: 78
+    - note: 144.44444
       times: 0
-    - note: 80
+    - note: 148.14815
       times: 0

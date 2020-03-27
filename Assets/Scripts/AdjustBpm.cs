@@ -11,15 +11,12 @@ public class TestScriptableEditor : Editor
         base.OnInspectorGUI();
         var script = (SongInfo)target;
 
-        GUILayout.Label(" ");
-        GUILayout.Label("Set desired BPM above and recalculate");
-        GUILayout.Label("Do it only once. Default is 60");
+        GUILayout.Label("\nSet desired BPM above and recalculate\nDo it only once. Default is 60");
         if (GUILayout.Button("Recalculate BPM", GUILayout.Height(40)))
         {
             script.RecalculateBPM();
         }
-        GUILayout.Label("Recalculate total number of beats");
-        GUILayout.Label("everytime you change the script.");
+        GUILayout.Label("Recalculate total number of beats\neverytime you change the script.");
         if (GUILayout.Button("Recalculate Total Hits", GUILayout.Height(40)))
         {
             script.RecalculateTotalHitCounts();
