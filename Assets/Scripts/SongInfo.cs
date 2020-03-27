@@ -30,8 +30,7 @@ public class SongInfo : ScriptableObject
 	//get the total hits of the song
 	public int TotalHitCounts()
 	{
-		//uncomment line below after writing scripts for performance
-		//if (totalHits != -1) return totalHits;
+		if (totalHits != -1) return totalHits;
 
 		totalHits = 0;
 		foreach (Track track in tracks)
@@ -54,6 +53,43 @@ public class SongInfo : ScriptableObject
 		}
 
 		return totalHits;
+	}
+
+	public int RecalculateTotalHitCounts()
+	{
+		totalHits = 0;
+		foreach (Track track in tracks)
+		{
+			foreach (Note note in track.notes)
+			{
+				if (note.times == 0)
+				{
+					totalHits += 1;
+				}
+				if (note.times > 0)
+				{
+					totalHits += note.times;
+				}
+				if (note.times < 0)
+				{
+					totalHits += 1;
+				}
+			}
+		}
+
+		return totalHits;
+	}
+
+	public void RecalculateBPM()
+	{
+		foreach (Track track in tracks)
+		{
+			foreach (Note note in track.notes)
+			{
+				float noteTime = note.note / 60 * bpm;
+				note.note = noteTime;
+			}
+		}
 	}
 
 	[System.Serializable]
