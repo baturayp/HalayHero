@@ -22,17 +22,17 @@ MonoBehaviour:
   bpm: 120
   tracks:
   - notes:
-    - note: 19.3
+    - note: 38.6
       times: 0
-    - note: 19.6
+    - note: 39.2
       times: 0
-    - note: 19.9
+    - note: 39.8
       times: 0
-    - note: 20.49
+    - note: 40.98
       times: 0
-    - note: 20.79
+    - note: 41.58
       times: 0
-    - note: 21.08
+    - note: 42.16
       times: 0
   - notes:
     - note: 2.36
@@ -45,7 +45,7 @@ MonoBehaviour:
       times: 0
     - note: 10.68
       times: 0
-    - note: 11.88
+    - note: 7.88
       times: 0
     - note: 13.06
       times: 0
@@ -66,15 +66,15 @@ MonoBehaviour:
     - note: 40.38
       times: 0
   - notes:
-    - note: 38.6
+    - note: 20.18
       times: 0
-    - note: 39.2
+    - note: 22.56
       times: 0
-    - note: 39.8
+    - note: 29.7
       times: 0
-    - note: 41.28
+    - note: 30.28
       times: 0
-    - note: 41.58
+    - note: 32.08
       times: 0
-    - note: 42.16
+    - note: 32.66
       times: 0

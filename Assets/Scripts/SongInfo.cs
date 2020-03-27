@@ -41,14 +41,55 @@ public class SongInfo : ScriptableObject
 				{
 					totalHits += 1;
 				}
-				else
+				if (note.times > 0)
 				{
 					totalHits += note.times;
+				}
+				if (note.times < 0)
+				{
+					totalHits += 1;
 				}
 			}
 		}
 
 		return totalHits;
+	}
+
+	public int RecalculateTotalHitCounts()
+	{
+		totalHits = 0;
+		foreach (Track track in tracks)
+		{
+			foreach (Note note in track.notes)
+			{
+				if (note.times == 0)
+				{
+					totalHits += 1;
+				}
+				if (note.times > 0)
+				{
+					totalHits += note.times;
+				}
+				if (note.times < 0)
+				{
+					totalHits += 1;
+				}
+			}
+		}
+
+		return totalHits;
+	}
+
+	public void RecalculateBPM()
+	{
+		foreach (Track track in tracks)
+		{
+			foreach (Note note in track.notes)
+			{
+				float noteTime = note.note / 60 * bpm;
+				note.note = noteTime;
+			}
+		}
 	}
 
 	[System.Serializable]
