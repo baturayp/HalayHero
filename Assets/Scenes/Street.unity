@@ -259,10 +259,11 @@ MonoBehaviour:
   pauseButton: {fileID: 846396189}
   pauseScene: {fileID: 1305068809}
   finishedScene: {fileID: 0}
-  finishedText: {fileID: 0}
+  finishedSuccessText: {fileID: 0}
   finishVCam: {fileID: 0}
-  mainCamera: {fileID: 0}
+  tapSpheres: {fileID: 0}
   score: {fileID: 0}
+  finishedScore: {fileID: 0}
   finalCombo: {fileID: 0}
   finalPerfection: {fileID: 0}
   songAudioSource: {fileID: 209918820}
@@ -17065,7 +17066,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ccd3ee2ada9a7ec44b51d82f6199fecd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 77b5e1e451ce3204997c1129c88f6134, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -38166,7 +38167,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ccd3ee2ada9a7ec44b51d82f6199fecd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 36eaea5f1541aa347a5bc77c0a01e295, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -66418,7 +66419,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ccd3ee2ada9a7ec44b51d82f6199fecd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e0900fb84494a0449cb2ed684b6759d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
