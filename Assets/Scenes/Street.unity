@@ -37849,7 +37849,7 @@ MonoBehaviour:
   tissue: {fileID: 1398220993}
   gun: {fileID: 1307856089}
   flash: {fileID: 1307856088}
-  debris: {fileID: 0}
+  debris: {fileID: 1194466609}
 --- !u!4 &884890399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8445983870306035281, guid: b9c46b3f49201964a8390fcd592c363a,
