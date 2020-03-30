@@ -20,8 +20,9 @@ public class SongInfo : ScriptableObject
 
 	public float songOffset;
 	public float bpm;
+    private float savedBpm = 60;
 
-	[Header("Notes. Set it here 3 for three tracks")]
+    [Header("Notes. Set it here 3 for three tracks")]
 	public Track[] tracks;
 
 	// when not calculated, it's -1
@@ -80,19 +81,22 @@ public class SongInfo : ScriptableObject
 		return totalHits;
 	}
 
-	public void RecalculateBPM()
-	{
-		foreach (Track track in tracks)
-		{
-			foreach (Note note in track.notes)
-			{
-				float noteTime = note.note / 60 * bpm;
-				note.note = noteTime;
-			}
-		}
-	}
+    void OnEnable()
+    {
+        {
+            foreach (Track track in tracks)
+            {
+                foreach (Note note in track.notes)
+                {
+                    float noteTime = note.note * (bpm / savedBpm);
+                    note.note = noteTime;
+                }
+            }
+        }
+        savedBpm = bpm;
+    }
 
-	[System.Serializable]
+    [System.Serializable]
 	public class Note
 	{
 		public float note;

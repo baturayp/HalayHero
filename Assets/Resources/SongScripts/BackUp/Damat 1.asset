@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
-  m_Name: Damat
+  m_Name: Damat 1
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: 01473af2a7d680a49acf5543a7f5f1c0, type: 3}
   songID: 0
@@ -19,62 +19,62 @@ MonoBehaviour:
   songTitle: Damat
   defaultBeats: []
   songOffset: 0
-  bpm: 180
+  bpm: 60
   tracks:
   - notes:
-    - note: 57.899998
+    - note: 19.3
       times: 0
-    - note: 58.800003
+    - note: 19.6
       times: 0
-    - note: 59.699997
+    - note: 19.9
       times: 0
-    - note: 61.47
+    - note: 20.49
       times: 0
-    - note: 62.370003
+    - note: 20.79
       times: 0
-    - note: 63.239998
+    - note: 21.08
       times: 0
   - notes:
-    - note: 3.54
+    - note: 1.18
       times: 0
-    - note: 7.1099997
+    - note: 2.37
       times: 0
-    - note: 10.68
+    - note: 3.5600002
+      times: 0
+    - note: 4.75
+      times: 0
+    - note: 5.34
+      times: 0
+    - note: 3.9399998
+      times: 0
+    - note: 6.53
+      times: 0
+    - note: 9.5
+      times: 0
+    - note: 10.69
       times: 0
     - note: 14.25
       times: 0
-    - note: 16.02
+    - note: 14.55
       times: 0
-    - note: 11.82
+    - note: 15.44
       times: 0
-    - note: 19.59
+    - note: 15.740001
       times: 0
-    - note: 28.5
+    - note: 19.1
       times: 0
-    - note: 32.07
-      times: 0
-    - note: 42.75
-      times: 0
-    - note: 43.65
-      times: 0
-    - note: 46.319996
-      times: 0
-    - note: 47.22
-      times: 0
-    - note: 57.300003
-      times: 0
-    - note: 60.57
+    - note: 20.19
       times: 0
   - notes:
-    - note: 30.27
+    - note: 10.09
       times: 0
-    - note: 33.84
+    - note: 11.28
       times: 0
-    - note: 44.550003
+    - note: 14.850001
       times: 0
-    - note: 45.420002
+    - note: 15.14
       times: 0
-    - note: 48.120003
+    - note: 16.04
       times: 0
-    - note: 48.989998
+    - note: 16.33
       times: 0
