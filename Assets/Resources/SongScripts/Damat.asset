@@ -19,62 +19,62 @@ MonoBehaviour:
   songTitle: Damat
   defaultBeats: []
   songOffset: 0
-  bpm: 60
+  bpm: 180
   tracks:
   - notes:
-    - note: 19.3
+    - note: 57.899998
       times: 0
-    - note: 19.6
+    - note: 58.800003
       times: 0
-    - note: 19.9
+    - note: 59.699997
       times: 0
-    - note: 20.49
+    - note: 61.47
       times: 0
-    - note: 20.79
+    - note: 62.370003
       times: 0
-    - note: 21.08
+    - note: 63.239998
       times: 0
   - notes:
-    - note: 1.18
+    - note: 3.54
       times: 0
-    - note: 2.37
+    - note: 7.1099997
       times: 0
-    - note: 3.5600002
-      times: 0
-    - note: 4.75
-      times: 0
-    - note: 5.34
-      times: 0
-    - note: 3.9399998
-      times: 0
-    - note: 6.53
-      times: 0
-    - note: 9.5
-      times: 0
-    - note: 10.69
+    - note: 10.68
       times: 0
     - note: 14.25
       times: 0
-    - note: 14.55
+    - note: 16.02
       times: 0
-    - note: 15.44
+    - note: 17.82
       times: 0
-    - note: 15.740001
+    - note: 19.59
       times: 0
-    - note: 19.1
+    - note: 28.5
       times: 0
-    - note: 20.19
+    - note: 32.07
+      times: 0
+    - note: 42.75
+      times: 0
+    - note: 43.65
+      times: 0
+    - note: 46.32
+      times: 0
+    - note: 47.22
+      times: 0
+    - note: 57.300003
+      times: 0
+    - note: 60.57
       times: 0
   - notes:
-    - note: 10.09
+    - note: 30.27
       times: 0
-    - note: 11.28
+    - note: 33.84
       times: 0
-    - note: 14.850001
+    - note: 44.550003
       times: 0
-    - note: 15.14
+    - note: 45.420002
       times: 0
-    - note: 16.04
+    - note: 48.120003
       times: 0
-    - note: 16.33
+    - note: 48.989998
       times: 0
