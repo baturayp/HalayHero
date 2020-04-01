@@ -14,7 +14,14 @@ public class LogicScript : MonoBehaviour
 	public GameObject[] mapPin;
 	public GameObject[] focusVirtCam;
 	private int activeFocus = 0;
+	
+	// song selector controls
 	public SongCollection[] songCollections;
+	public GameObject[] songLabel;
+	
+	private int activeSong = 0;
+	private int oldActive = 0;
+	private bool animating = false;
 
 	void Update()
 	{
@@ -39,36 +46,15 @@ public class LogicScript : MonoBehaviour
 					string obj = hit.collider.gameObject.name;
 					if (obj == "PinPointText0" || obj == "PinPoint0")
 					{
-						if (activeFocus == 0)
-						{
-							SelectSong(0);
-						}
-						else
-						{
-							activeFocus = 0; FocusTo(0);
-						}
+						activeFocus = 0; FocusTo(0);
 					}
 					if (obj == "PinPointText1" || obj == "PinPoint1")
 					{
-						if (activeFocus == 1)
-						{
-							SelectSong(1);
-						}
-						else
-						{
-							activeFocus = 1; FocusTo(1);
-						}
+						activeFocus = 1; FocusTo(1);
 					}
 					if (obj == "PinPointText2" || obj == "PinPoint2")
 					{
-						if (activeFocus == 2)
-						{
-							SelectSong(2);
-						}
-						else
-						{
-							activeFocus = 2; FocusTo(2);
-						}
+						activeFocus = 2; FocusTo(2);
 					}
 				}
 			}
@@ -101,14 +87,55 @@ public class LogicScript : MonoBehaviour
 		}
 	}
 
-	void SelectSong(int scene)
+	public void SelectSong(int collection)
 	{
 		currSong = songCollections[0].songSets[0].song;
 		SongInfoMessenger.Instance.currentSong = currSong;
 		//select camera focus
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
-		focusVirtCam[scene].SetActive(true);
-		//wait briefly before loading gameplay scene
-		StartCoroutine(waiter(scene));
+		focusVirtCam[collection].SetActive(true);
+		StartCoroutine(waiter(collection));
+	}
+
+	public void UpDownButtonPress(int i)
+	{
+		if (!animating && i == 1)
+		{
+			oldActive = activeSong;
+			activeSong += 1;
+			if(activeSong == songLabel.Length)
+			{
+				activeSong = 0;
+			}
+			StartCoroutine(LabelAnimation());
+		}
+		if (!animating && i == -1)
+		{
+			oldActive = activeSong;
+			activeSong -= 1;
+			if (activeSong == -1)
+			{
+				activeSong = songLabel.Length - 1;
+			}
+			StartCoroutine(LabelAnimation());
+		}
+	}
+
+	IEnumerator LabelAnimation()
+	{
+		animating = true;
+		float elapsedTime = 0.0f;
+		songLabel[activeSong].SetActive(true);
+		while (elapsedTime < 0.2f)
+		{
+			elapsedTime += Time.deltaTime;
+			songLabel[activeSong].transform.rotation = Quaternion.Euler(90 - elapsedTime * 450, 0, 0);
+			songLabel[oldActive].transform.rotation = Quaternion.Euler(elapsedTime * 450, 0, 0);
+			yield return null;
+		}
+		songLabel[oldActive].SetActive(false);
+		songLabel[activeSong].transform.rotation = Quaternion.Euler(0, 0, 0);
+		songLabel[oldActive].transform.rotation = Quaternion.Euler(0, 0, 0);
+		animating = false;
 	}
 }
