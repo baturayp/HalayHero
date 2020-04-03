@@ -20,7 +20,7 @@ public class SongInfo : ScriptableObject
 
 	public float songOffset;
 	public float bpm;
-    private float savedBpm = 60;
+    public float savedBpm = 0;
 
     [Header("Notes. Set it here 3 for three tracks")]
 	public Track[] tracks;
@@ -81,8 +81,9 @@ public class SongInfo : ScriptableObject
 		return totalHits;
 	}
 
-    void OnEnable()
+	void OnEnable()
     {
+		if (savedBpm == 0) return;
         {
             foreach (Track track in tracks)
             {
