@@ -20,6 +20,7 @@ MonoBehaviour:
   defaultBeats: []
   songOffset: 0
   bpm: 60
+  savedBpm: 0
   tracks:
   - notes:
     - note: 3.49
