@@ -1,0 +1,508 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
+  m_Name: "TekeZortlatmas\u0131"
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: ada3c27f0696db84c98ac518fdca9c61, type: 3}
+  songID: 0
+  collection: 0
+  songNum: 0
+  songTitle: Damat
+  defaultBeats: []
+  songOffset: 0
+  bpm: 60
+  tracks:
+  - notes:
+    - note: 3.49
+      times: 0
+    - note: 3.78
+      times: 0
+    - note: 4.07
+      times: 0
+    - note: 6.11
+      times: 0
+    - note: 6.4
+      times: 0
+    - note: 6.69
+      times: 0
+    - note: 8.73
+      times: 0
+    - note: 9.02
+      times: 0
+    - note: 9.32
+      times: 0
+    - note: 11.35
+      times: 0
+    - note: 11.65
+      times: 0
+    - note: 11.94
+      times: 0
+    - note: 13.98
+      times: 0
+    - note: 14.27
+      times: 0
+    - note: 14.56
+      times: 0
+    - note: 16.67
+      times: 0
+    - note: 16.96
+      times: 0
+    - note: 17.47
+      times: 0
+    - note: 17.62
+      times: 0
+    - note: 19.36
+      times: 0
+    - note: 19.51
+      times: 0
+    - note: 25.04
+      times: 0
+    - note: 25.34
+      times: 0
+    - note: 29.85
+      times: 0
+    - note: 30.14
+      times: 0
+    - note: 30.43
+      times: 0
+    - note: 31.38
+      times: 0
+    - note: 37.71
+      times: 0
+    - note: 43.68
+      times: 0
+    - note: 48.93
+      times: 0
+    - note: 51.84
+      times: 0
+    - note: 52.13
+      times: 0
+    - note: 70.34
+      times: 0
+    - note: 72.96
+      times: 0
+    - note: 75.58
+      times: 0
+    - note: 77.76
+      times: 0
+    - note: 78.2
+      times: 0
+    - note: 80.82
+      times: 0
+    - note: 83.44
+      times: 0
+    - note: 86.06
+      times: 0
+    - note: 91.31
+      times: 0
+    - note: 93.85
+      times: 0
+    - note: 94.58
+      times: 0
+    - note: 94.87
+      times: 0
+    - note: 95.53
+      times: 0
+    - note: 95.82
+      times: 0
+    - note: 96.11
+      times: 0
+    - note: 96.84
+      times: 0
+    - note: 97.13
+      times: 0
+    - note: 98.15
+      times: 0
+    - note: 98.44
+      times: 0
+    - note: 100.77
+      times: 0
+    - note: 101.06
+      times: 0
+    - note: 103.39
+      times: 0
+    - note: 103.68
+      times: 0
+    - note: 106.01
+      times: 0
+    - note: 106.31
+      times: 0
+    - note: 108.64
+      times: 0
+    - note: 108.93
+      times: 0
+    - note: 109.66
+      times: 0
+    - note: 111.26
+      times: 0
+    - note: 111.55
+      times: 0
+    - note: 112.13
+      times: 0
+    - note: 112.42
+      times: 0
+    - note: 113.88
+      times: 0
+    - note: 114.17
+      times: 0
+    - note: 115.77
+      times: 0
+    - note: 116.14
+      times: 0
+    - note: 117.67
+      times: 0
+    - note: 118.1
+      times: 0
+    - note: 118.83
+      times: 0
+    - note: 124.36
+      times: 0
+    - note: 124.66
+      times: 0
+    - note: 126.99
+      times: 0
+    - note: 127.28
+      times: 0
+    - note: 129.61
+      times: 0
+    - note: 129.9
+      times: 0
+    - note: 132.23
+      times: 0
+    - note: 132.52
+      times: 0
+    - note: 133.9
+      times: 0
+    - note: 134.85
+      times: 0
+    - note: 136.52
+      times: 0
+    - note: 137.47
+      times: 0
+    - note: 137.76
+      times: 0
+    - note: 140.17
+      times: 0
+    - note: 140.46
+      times: 0
+    - note: 142.79
+      times: 0
+    - note: 143.08
+      times: 0
+    - note: 145.41
+      times: 0
+    - note: 145.7
+      times: 0
+    - note: 148.03
+      times: 0
+    - note: 148.32
+      times: 0
+  - notes:
+    - note: 1.16
+      times: 0
+    - note: 2.03
+      times: 0
+    - note: 2.91
+      times: 0
+    - note: 4.8
+      times: -2
+    - note: 8.01
+      times: -2
+    - note: 10.63
+      times: -2
+    - note: 13.25
+      times: -2
+    - note: 19.8
+      times: 0
+    - note: 20.09
+      times: -2
+    - note: 22.13
+      times: 0
+    - note: 22.42
+      times: 0
+    - note: 22.71
+      times: -2
+    - note: 29.27
+      times: 0
+    - note: 31.47
+      times: -2
+    - note: 32.33
+      times: -2
+    - note: 32.66
+      times: -2
+    - note: 35.53
+      times: -2
+    - note: 42.23
+      times: 0
+    - note: 45.14
+      times: 0
+    - note: 45.43
+      times: -2
+    - note: 49.51
+      times: 0
+    - note: 50.09
+      times: 0
+    - note: 52.71
+      times: 0
+    - note: 53.3
+      times: -2
+    - note: 58.54
+      times: -2
+    - note: 59.34
+      times: -2
+    - note: 64.07
+      times: 0
+    - note: 64.36
+      times: 0
+    - note: 64.66
+      times: -2
+    - note: 69.9
+      times: 0
+    - note: 70.19
+      times: 0
+    - note: 70.63
+      times: -2
+    - note: 72.52
+      times: 0
+    - note: 72.81
+      times: 0
+    - note: 73.25
+      times: -2
+    - note: 75.14
+      times: 0
+    - note: 75.43
+      times: 0
+    - note: 75.87
+      times: -2
+    - note: 78.05
+      times: 0
+    - note: 78.35
+      times: 0
+    - note: 78.78
+      times: -2
+    - note: 80.68
+      times: 0
+    - note: 80.97
+      times: 0
+    - note: 81.4
+      times: -2
+    - note: 83.3
+      times: 0
+    - note: 83.59
+      times: 0
+    - note: 84.02
+      times: -2
+    - note: 85.63
+      times: 0
+    - note: 85.92
+      times: 0
+    - note: 86.35
+      times: -2
+    - note: 90.87
+      times: 0
+    - note: 91.16
+      times: 0
+    - note: 91.6
+      times: -2
+    - note: 94
+      times: 0
+    - note: 94.22
+      times: 0
+    - note: 96.26
+      times: 0
+    - note: 96.4
+      times: 0
+    - note: 101.35
+      times: 0
+    - note: 101.65
+      times: 0
+    - note: 103.98
+      times: 0
+    - note: 104.27
+      times: 0
+    - note: 104.41
+      times: -2
+    - note: 106.6
+      times: 0
+    - note: 106.89
+      times: 0
+    - note: 107.03
+      times: -2
+    - note: 109.22
+      times: 0
+    - note: 109.51
+      times: 0
+    - note: 109.95
+      times: -2
+    - note: 115.99
+      times: 0
+    - note: 117.16
+      times: 0
+    - note: 117.45
+      times: 0
+    - note: 118.32
+      times: -2
+    - note: 118.68
+      times: 0
+    - note: 118.98
+      times: 0
+    - note: 120.43
+      times: -2
+    - note: 120.72
+      times: -2
+    - note: 128.3
+      times: 0
+    - note: 128.88
+      times: 0
+    - note: 130.92
+      times: 0
+    - note: 131.5
+      times: 0
+    - note: 133.61
+      times: 0
+    - note: 134.19
+      times: 0
+    - note: 136.23
+      times: 0
+    - note: 136.82
+      times: 0
+    - note: 138.35
+      times: 0
+    - note: 138.93
+      times: 0
+    - note: 141.69
+      times: 0
+    - note: 142.28
+      times: 0
+  - notes:
+    - note: 20.38
+      times: -2
+    - note: 20.68
+      times: -2
+    - note: 26.43
+      times: -2
+    - note: 27.3
+      times: -2
+    - note: 28.18
+      times: -2
+    - note: 36.99
+      times: -2
+    - note: 38.15
+      times: -2
+    - note: 42.52
+      times: -2
+    - note: 61.38
+      times: 0
+    - note: 69.32
+      times: -2
+    - note: 70.92
+      times: -2
+    - note: 71.21
+      times: -2
+    - note: 73.54
+      times: -2
+    - note: 73.83
+      times: -2
+    - note: 74.56
+      times: -2
+    - note: 76.16
+      times: -2
+    - note: 76.45
+      times: -2
+    - note: 77.18
+      times: -2
+    - note: 78.49
+      times: -2
+    - note: 79.8
+      times: -2
+    - note: 80.09
+      times: -2
+    - note: 80.38
+      times: -2
+    - note: 81.11
+      times: -2
+    - note: 82.42
+      times: -2
+    - note: 82.71
+      times: -2
+    - note: 83.01
+      times: -2
+    - note: 83.73
+      times: -2
+    - note: 85.04
+      times: -2
+    - note: 85.34
+      times: -2
+    - note: 86.65
+      times: -2
+    - note: 86.94
+      times: -2
+    - note: 87.67
+      times: -2
+    - note: 87.96
+      times: -2
+    - note: 88.98
+      times: -2
+    - note: 89.27
+      times: -2
+    - note: 90.29
+      times: -2
+    - note: 90.58
+      times: -2
+    - note: 91.89
+      times: -2
+    - note: 92.18
+      times: -2
+    - note: 92.91
+      times: -2
+    - note: 93.2
+      times: -2
+    - note: 94.29
+      times: -2
+    - note: 96.55
+      times: -2
+    - note: 98.81
+      times: -2
+    - note: 99.53
+      times: -2
+    - note: 101.86
+      times: -2
+    - note: 102.16
+      times: -2
+    - note: 104.7
+      times: -2
+    - note: 107.33
+      times: -2
+    - note: 110.24
+      times: -2
+    - note: 110.53
+      times: -2
+    - note: 113.15
+      times: -2
+    - note: 114.75
+      times: -2
+    - note: 116.43
+      times: -2
+    - note: 116.72
+      times: -2
+    - note: 117.81
+      times: -2
+    - note: 119.12
+      times: -2
+    - note: 119.41
+      times: -2
+    - note: 121.89
+      times: -2
+    - note: 122.18
+      times: -2
+    - note: 141.99
+      times: -2
