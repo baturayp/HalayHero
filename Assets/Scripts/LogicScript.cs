@@ -27,6 +27,7 @@ public class LogicScript : MonoBehaviour
 	{
 		if (!SongPickingControl.settingsIsActive)
 		{
+			//swipe controls
 			if (SwipeInput.swipedRight)
 			{
 				if (activeFocus == 0) { return; }
@@ -37,7 +38,16 @@ public class LogicScript : MonoBehaviour
 				if (activeFocus == 2) { return; }
 				else { activeFocus += 1; FocusTo(activeFocus); }
 			}
+			if (SwipeInput.swipedUp)
+			{
+				UpDownButtonPress(1);
+			}
+			if (SwipeInput.swipedDown)
+			{
+				UpDownButtonPress(-1);
+			}
 
+			//set focus when click on pins or labels
 			if (Input.GetMouseButtonDown(0))
 			{
 				ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -66,11 +76,24 @@ public class LogicScript : MonoBehaviour
 	{
 		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
 		virtCam[selected].SetActive(true);
-		foreach (GameObject pin in mapPin) { pin.GetComponent<Animator>().enabled = false; }
+		StartCoroutine(PinResetter(selected));
+	}
+
+	//ensure pin animations reset to their initial states
+	IEnumerator PinResetter(int selected)
+	{
+		foreach (GameObject pin in mapPin)
+		{
+			pin.GetComponent<Animator>().Play(0, -1, 0);
+			yield return new WaitForSeconds(0.01f);
+			pin.GetComponent<Animator>().enabled = false;
+		}
+		//animate selected pin
 		mapPin[selected].GetComponent<Animator>().enabled = true;
 	}
 
-	IEnumerator waiter(int scene)
+	//wait for focus effect before loading scene
+	IEnumerator WaitBeforeLoad(int scene)
 	{
 		yield return new WaitForSeconds(0.6f);
 		if (scene == 0)
@@ -94,7 +117,7 @@ public class LogicScript : MonoBehaviour
 		//select camera focus
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
 		focusVirtCam[collection].SetActive(true);
-		StartCoroutine(waiter(collection));
+		StartCoroutine(WaitBeforeLoad(collection));
 	}
 
 	public void UpDownButtonPress(int i)
