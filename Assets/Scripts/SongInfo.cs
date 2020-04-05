@@ -9,11 +9,17 @@ public class SongInfo : ScriptableObject
 
 	[Header("Every Song Has a Unique ID")]
 	public int songID;
-	public int collection;
-	public int songNum;
 
 	[Header("Song Text Information")]
 	public string songTitle;
+	//duration in plain text
+	public string songDuration;
+
+	[Header("Some Defaults")]
+	//is this song locked by default?
+	public bool isLocked;
+	//is there any icon margin on main menu?
+	public float iconMargin;
 
 	[Header("Playing Information")]
 	public AudioClip[] defaultBeats;

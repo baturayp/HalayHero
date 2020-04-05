@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
@@ -29,7 +30,6 @@ public class SongPickingControl : MonoBehaviour
 	private RotationAnimation flipInAnimation;
 	private RotationAnimation flipOutAnimation;
 	private const float FlipAnimationDuration = 0.25f;
-	private bool animating = false;
 
 	//rotation
 	//private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
@@ -153,7 +153,6 @@ public class SongPickingControl : MonoBehaviour
 	they can be simplified !*/
 	//void FlipToFirstFromSong()
 	//{
-	//	animating = true;
 	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
 	//		songBoardTransform,
 	//		Vector3.zero,
@@ -170,12 +169,10 @@ public class SongPickingControl : MonoBehaviour
 	//		firstBoardTransform.pivot,
 	//		topEdgePivot
 	//	));
-	//	Invoke("RestoreAnimating", FlipAnimationDuration);
 	//}
 
 	//void FlipToSongFromFirst()
 	//{
-	//	animating = true;
 	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
 	//		firstBoardTransform,
 	//		Vector3.zero,
@@ -192,7 +189,6 @@ public class SongPickingControl : MonoBehaviour
 	//		songBoardTransform.pivot,
 	//		bottomEdgePivot
 	//	));
-	//	Invoke("RestoreAnimating", FlipAnimationDuration);
 	//}
 
 	public void SettingsButtonToggle()
@@ -209,7 +205,6 @@ public class SongPickingControl : MonoBehaviour
 
 	public void FlipToSettingsFromFirst()
 	{
-		animating = true;
 		StartCoroutine(flipOutAnimation.AnimationCoroutine(
 			firstBoardTransform,
 			Vector3.zero,
@@ -226,7 +221,6 @@ public class SongPickingControl : MonoBehaviour
 			settingsBoardTransform.pivot,
 			bottomEdgePivot
 		));
-		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = true;
 		aboutLayer.SetActive(false);
 		settingsLayer.SetActive(true);
@@ -234,7 +228,6 @@ public class SongPickingControl : MonoBehaviour
 
 	public void FlipToFirstFromSettings()
 	{
-		animating = true;
 		StartCoroutine(flipOutAnimation.AnimationCoroutine(
 			settingsBoardTransform,
 			Vector3.zero,
@@ -251,26 +244,25 @@ public class SongPickingControl : MonoBehaviour
 			firstBoardTransform.pivot,
 			topEdgePivot
 		));
-		Invoke("RestoreAnimating", FlipAnimationDuration);
 		settingsIsActive = false;
 	}
 
 	public void AboutToggle()
 	{
-		if (aboutLayer.activeSelf)
-		{
-			aboutLayer.SetActive(false);
-			settingsLayer.SetActive(true);
-		}
-		else
-		{
-			aboutLayer.SetActive(true);
-			settingsLayer.SetActive(false);
-		}
+		StartCoroutine(AboutAnim());
 	}
 
-	void RestoreAnimating()
+	IEnumerator AboutAnim()
 	{
-		animating = false;
+		float elapsedTime = 0.0f;
+		aboutLayer.SetActive(true);
+		settingsLayer.SetActive(false);
+		while (elapsedTime < 0.2f)
+		{
+			elapsedTime += Time.deltaTime;
+			aboutLayer.transform.localScale = new Vector3(0 + 5 * elapsedTime, 0 + 5 * elapsedTime, 1);
+			yield return null;
+		}
+		aboutLayer.transform.localScale = new Vector3(1, 1, 1);
 	}
 }

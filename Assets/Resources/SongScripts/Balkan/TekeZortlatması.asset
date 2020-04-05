@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: "TekeZortlatmas\u0131"
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: ada3c27f0696db84c98ac518fdca9c61, type: 3}
-  songID: 0
-  collection: 0
-  songNum: 0
-  songTitle: Damat
+  songID: 2
+  songTitle: TEKE ZORTLATMASI
+  songDuration: 4:21
+  isLocked: 0
+  iconMargin: 100
   defaultBeats: []
   songOffset: 0
   bpm: 180

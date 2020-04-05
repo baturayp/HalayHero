@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: 01473af2a7d680a49acf5543a7f5f1c0, type: 3}
   songID: 0
-  collection: 0
-  songNum: 0
-  songTitle: Damat
+  songTitle: DAMAT HALAYI
+  songDuration: 3:28
+  isLocked: 0
+  iconMargin: 0
   defaultBeats: []
   songOffset: 0
   bpm: 180

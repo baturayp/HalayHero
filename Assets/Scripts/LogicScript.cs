@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
@@ -17,11 +18,27 @@ public class LogicScript : MonoBehaviour
 	
 	// song selector controls
 	public SongCollection[] songCollections;
-	public GameObject[] songLabel;
-	
+	public CanvasGroup selectionPanel;
+	public GameObject songSelector;
+	public GameObject songTitle;
+	public GameObject songDuration;
+	public GameObject songIcon;
+	public GameObject songLock;
+	public GameObject[] songStars;
+
 	private int activeSong = 0;
 	private int oldActive = 0;
 	private bool animating = false;
+	private Vector3 songIconPos;
+	private Vector3 songLockPos;
+
+	void Start()
+	{
+		songIconPos = songIcon.transform.position;
+		songLockPos = songLock.transform.position;
+		SetSongValues(activeFocus, activeSong);
+		StartCoroutine(SongSelectorAnim());
+	}
 
 	void Update()
 	{
@@ -71,13 +88,84 @@ public class LogicScript : MonoBehaviour
 		}
 	}
 
+	void SetSongValues(int coll, int song)
+	{
+		int songId = songCollections[coll].songSets[song].song.songID;
+		
+		//set title and time
+		songTitle.GetComponent<TMPro.TextMeshProUGUI>().text = songCollections[coll].songSets[song].song.songTitle;
+		songDuration.GetComponent<TMPro.TextMeshProUGUI>().text = songCollections[coll].songSets[song].song.songDuration;
+		
+		//set icons
+		float iconMargin = songCollections[coll].songSets[song].song.iconMargin;
+		//ensure icons at original position
+		songIcon.transform.position = songIconPos;
+		songLock.transform.position = songLockPos;
+		if (iconMargin != 0)
+		{
+			//set margins
+			songIcon.transform.position -= new Vector3(iconMargin, 0, 0);
+			songLock.transform.position -= new Vector3(iconMargin, 0, 0);
+		}
+		
+		//determine if locked or not
+		bool defaultLocked = songCollections[coll].songSets[song].song.isLocked;
+		int prefunLocked = PlayerPrefs.GetInt("Unlocked" + songId, 0);
+		if (!defaultLocked)
+		{
+			songLock.SetActive(false);
+			songIcon.SetActive(true);
+		}
+		if (defaultLocked)
+		{
+			songLock.SetActive(true);
+			songIcon.SetActive(false);
+			if (prefunLocked == 1)
+			{
+				songLock.SetActive(false);
+				songIcon.SetActive(true);
+			}
+		}
+		
+		//set stars
+		int prefStars = PlayerPrefs.GetInt("Stars" + songId, 0);
+		if (prefStars > 0)
+		{
+			songStars[0].GetComponent<Image>().color = Color.yellow;
+			if (prefStars > 1)
+			{
+				songStars[1].GetComponent<Image>().color = Color.yellow;
+				if (prefStars > 2)
+				{
+					songStars[2].GetComponent<Image>().color = Color.yellow;
+				}
+			}
+		}
+	}
+
 	//focus to corresponding item such balkan or halay
 	void FocusTo(int selected)
 	{
 		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
 		virtCam[selected].SetActive(true);
 		StartCoroutine(PinResetter(selected));
+		StartCoroutine(SongSelectorAnim());
 	}
+
+	//song selector animation
+	IEnumerator SongSelectorAnim()
+	{
+		selectionPanel.alpha = 0;
+		yield return new WaitForSeconds(1f);
+		float elapsedTime = 0.0f;
+		while (elapsedTime < 0.2f)
+		{
+			elapsedTime += Time.deltaTime;
+			selectionPanel.alpha = elapsedTime * 5;
+			yield return null;
+		}
+	}
+
 
 	//ensure pin animations reset to their initial states
 	IEnumerator PinResetter(int selected)
@@ -126,7 +214,7 @@ public class LogicScript : MonoBehaviour
 		{
 			oldActive = activeSong;
 			activeSong += 1;
-			if(activeSong == songLabel.Length)
+			if(activeSong == songCollections[activeFocus].songSets.Length)
 			{
 				activeSong = 0;
 			}
@@ -138,7 +226,7 @@ public class LogicScript : MonoBehaviour
 			activeSong -= 1;
 			if (activeSong == -1)
 			{
-				activeSong = songLabel.Length - 1;
+				activeSong = songCollections[activeFocus].songSets.Length - 1;
 			}
 			StartCoroutine(LabelAnimation());
 		}
@@ -148,17 +236,17 @@ public class LogicScript : MonoBehaviour
 	{
 		animating = true;
 		float elapsedTime = 0.0f;
-		songLabel[activeSong].SetActive(true);
+		//songLabel[activeSong].SetActive(true);
 		while (elapsedTime < 0.2f)
 		{
 			elapsedTime += Time.deltaTime;
-			songLabel[activeSong].transform.rotation = Quaternion.Euler(90 - elapsedTime * 450, 0, 0);
-			songLabel[oldActive].transform.rotation = Quaternion.Euler(elapsedTime * 450, 0, 0);
+			//songLabel[activeSong].transform.rotation = Quaternion.Euler(90 - elapsedTime * 450, 0, 0);
+			//songLabel[oldActive].transform.rotation = Quaternion.Euler(elapsedTime * 450, 0, 0);
 			yield return null;
 		}
-		songLabel[oldActive].SetActive(false);
-		songLabel[activeSong].transform.rotation = Quaternion.Euler(0, 0, 0);
-		songLabel[oldActive].transform.rotation = Quaternion.Euler(0, 0, 0);
+		//songLabel[oldActive].SetActive(false);
+		//songLabel[activeSong].transform.rotation = Quaternion.Euler(0, 0, 0);
+		//songLabel[oldActive].transform.rotation = Quaternion.Euler(0, 0, 0);
 		animating = false;
 	}
 }

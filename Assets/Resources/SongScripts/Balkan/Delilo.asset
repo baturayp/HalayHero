@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
-  m_Name: DeliloEasy
+  m_Name: Delilo
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: b108400a64455434db249ce4a880710e, type: 3}
-  songID: 0
-  collection: 0
-  songNum: 0
-  songTitle: Delilo
+  songID: 1
+  songTitle: "DEL\u0130LO"
+  songDuration: 2:55
+  isLocked: 0
+  iconMargin: 0
   defaultBeats: []
   songOffset: 0
   bpm: 60
+  savedBpm: 0
   tracks:
   - notes:
     - note: 1.8518519
