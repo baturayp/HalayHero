@@ -28,7 +28,8 @@ public class LogicScript : MonoBehaviour
 
 	private int activeSong = 0;
 	private int oldActive = 0;
-	private bool animating = false;
+	private bool songSelectorAnimating = false;
+	private bool selectionPanelAnimating = false;
 	private Vector3 songIconPos;
 	private Vector3 songLockPos;
 
@@ -149,12 +150,13 @@ public class LogicScript : MonoBehaviour
 		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
 		virtCam[selected].SetActive(true);
 		StartCoroutine(PinResetter(selected));
-		StartCoroutine(SongSelectorAnim());
+		if (!selectionPanelAnimating) StartCoroutine(SongSelectorAnim());
 	}
 
 	//song selector animation
 	IEnumerator SongSelectorAnim()
 	{
+		selectionPanelAnimating = true;
 		selectionPanel.alpha = 0;
 		yield return new WaitForSeconds(1f);
 		float elapsedTime = 0.0f;
@@ -164,6 +166,7 @@ public class LogicScript : MonoBehaviour
 			selectionPanel.alpha = elapsedTime * 5;
 			yield return null;
 		}
+		selectionPanelAnimating = false;
 	}
 
 
@@ -210,7 +213,7 @@ public class LogicScript : MonoBehaviour
 
 	public void UpDownButtonPress(int i)
 	{
-		if (!animating && i == 1)
+		if (!songSelectorAnimating && i == 1)
 		{
 			oldActive = activeSong;
 			activeSong += 1;
@@ -220,7 +223,7 @@ public class LogicScript : MonoBehaviour
 			}
 			StartCoroutine(LabelAnimation());
 		}
-		if (!animating && i == -1)
+		if (!songSelectorAnimating && i == -1)
 		{
 			oldActive = activeSong;
 			activeSong -= 1;
@@ -234,7 +237,7 @@ public class LogicScript : MonoBehaviour
 
 	IEnumerator LabelAnimation()
 	{
-		animating = true;
+		songSelectorAnimating = true;
 		float elapsedTime = 0.0f;
 		//songLabel[activeSong].SetActive(true);
 		while (elapsedTime < 0.2f)
@@ -247,6 +250,6 @@ public class LogicScript : MonoBehaviour
 		//songLabel[oldActive].SetActive(false);
 		//songLabel[activeSong].transform.rotation = Quaternion.Euler(0, 0, 0);
 		//songLabel[oldActive].transform.rotation = Quaternion.Euler(0, 0, 0);
-		animating = false;
+		songSelectorAnimating = false;
 	}
 }

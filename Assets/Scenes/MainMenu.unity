@@ -1877,7 +1877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 367217445}
-  animation: {fileID: 7400000, guid: 541c126d74cdffb46983d4f67cee3102, type: 2}
+  waterAnimation: {fileID: 7400000, guid: 541c126d74cdffb46983d4f67cee3102, type: 2}
 --- !u!95 &367217445
 Animator:
   serializedVersion: 3
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f35e80d9e9de94b9032fbd4aa2b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 768640146}
+  waterRenderer: {fileID: 768640146}
   waterMaterial: {fileID: 2100000, guid: 92cff562ef8dfa543a3e18ae284be2e1, type: 2}
   diffuseMaterial: {fileID: 2100000, guid: 261c4caf1e4fb3841b93e6f84a3de745, type: 2}
 --- !u!136 &516613678
