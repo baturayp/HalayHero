@@ -17,7 +17,7 @@ MonoBehaviour:
   songTitle: DAMAT HALAYI
   songDuration: 3:28
   isLocked: 0
-  iconMargin: 0
+  iconMargin: 50
   defaultBeats: []
   songOffset: 0
   bpm: 180

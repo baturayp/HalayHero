@@ -26,10 +26,12 @@ public class LogicScript : MonoBehaviour
 	public GameObject songLock;
 	public GameObject[] songStars;
 
+	//some values needed for animations
 	private int activeSong = 0;
 	private int oldActive = 0;
 	private bool songSelectorAnimating = false;
 	private bool selectionPanelAnimating = false;
+	Coroutine panelAnimCoroutine;
 	private Vector3 songIconPos;
 	private Vector3 songLockPos;
 
@@ -38,7 +40,7 @@ public class LogicScript : MonoBehaviour
 		songIconPos = songIcon.transform.position;
 		songLockPos = songLock.transform.position;
 		SetSongValues(activeFocus, activeSong);
-		StartCoroutine(SongSelectorAnim());
+		panelAnimCoroutine = StartCoroutine(SongSelectorAnim());
 	}
 
 	void Update()
@@ -150,7 +152,8 @@ public class LogicScript : MonoBehaviour
 		foreach (GameObject camera in virtCam) { camera.SetActive(false); }
 		virtCam[selected].SetActive(true);
 		StartCoroutine(PinResetter(selected));
-		if (!selectionPanelAnimating) StartCoroutine(SongSelectorAnim());
+		if (!selectionPanelAnimating) panelAnimCoroutine = StartCoroutine(SongSelectorAnim());
+		if (selectionPanelAnimating) StopCoroutine(panelAnimCoroutine); panelAnimCoroutine = StartCoroutine(SongSelectorAnim());
 	}
 
 	//song selector animation
@@ -239,17 +242,20 @@ public class LogicScript : MonoBehaviour
 	{
 		songSelectorAnimating = true;
 		float elapsedTime = 0.0f;
-		//songLabel[activeSong].SetActive(true);
-		while (elapsedTime < 0.2f)
+		while (elapsedTime < 0.1f)
 		{
 			elapsedTime += Time.deltaTime;
-			//songLabel[activeSong].transform.rotation = Quaternion.Euler(90 - elapsedTime * 450, 0, 0);
-			//songLabel[oldActive].transform.rotation = Quaternion.Euler(elapsedTime * 450, 0, 0);
+			songSelector.transform.rotation = Quaternion.Euler(elapsedTime * 900, 0, 0);
 			yield return null;
 		}
-		//songLabel[oldActive].SetActive(false);
-		//songLabel[activeSong].transform.rotation = Quaternion.Euler(0, 0, 0);
-		//songLabel[oldActive].transform.rotation = Quaternion.Euler(0, 0, 0);
+		SetSongValues(activeFocus, activeSong);
+		while (elapsedTime < 0.1f)
+		{
+			elapsedTime += Time.deltaTime;
+			songSelector.transform.rotation = Quaternion.Euler(90 - elapsedTime * 900, 0, 0);
+			yield return null;
+		}
+		songSelector.transform.rotation = Quaternion.Euler(0, 0, 0);
 		songSelectorAnimating = false;
 	}
 }
