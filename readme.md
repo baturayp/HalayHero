@@ -12,15 +12,11 @@ Required packages:
 ## Note Editor
 ![](NoteEditor/help.png?raw=true)
 
-#Usage instructions
--Control+Drag => Select multiple beats on canvas
+### Usage instructions
 
--Shift+RightClick => Start drawing a long beat
-
--Left-click => Delete
-
--Right-Left => move position
-
--Ctrl-c & Ctrl-v => Copy & paste
-
--Ctrl-z & Ctrl-r => Undo & redo
+- Control+Drag => Select multiple beats on canvas
+- Shift+RightClick => Start drawing a long beat
+- Left-click => Delete
+- Right-Left => move position
+- Ctrl-c & Ctrl-v => Copy & paste
+- Ctrl-z & Ctrl-r => Undo & redo
