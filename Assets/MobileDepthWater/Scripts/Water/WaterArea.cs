@@ -1,3 +1,4 @@
+#pragma warning disable 0649
 namespace Assets.Scripts.Water
 {
     using UnityEngine;
@@ -18,3 +19,4 @@ namespace Assets.Scripts.Water
         }
     }
 }
+#pragma warning restore 0649

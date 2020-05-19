@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Song Info")]
@@ -26,7 +28,6 @@ public class SongInfo : ScriptableObject
 
 	public float songOffset;
 	public float bpm;
-    public float savedBpm = 0;
 
     [Header("Notes. Set it here 3 for three tracks")]
 	public Track[] tracks;
@@ -37,8 +38,6 @@ public class SongInfo : ScriptableObject
 	//get the total hits of the song
 	public int TotalHitCounts()
 	{
-		if (totalHits != -1) return totalHits;
-
 		totalHits = 0;
 		foreach (Track track in tracks)
 		{
@@ -61,58 +60,27 @@ public class SongInfo : ScriptableObject
 
 		return totalHits;
 	}
-
-	public int RecalculateTotalHitCounts()
-	{
-		totalHits = 0;
-		foreach (Track track in tracks)
-		{
-			foreach (Note note in track.notes)
-			{
-				if (note.times == 0)
-				{
-					totalHits += 1;
-				}
-				if (note.times > 0)
-				{
-					totalHits += note.times;
-				}
-				if (note.times < 0)
-				{
-					totalHits += 1;
-				}
-			}
-		}
-
-		return totalHits;
-	}
-
-	void OnEnable()
-    {
-		if (savedBpm == 0) return;
-        {
-            foreach (Track track in tracks)
-            {
-                foreach (Note note in track.notes)
-                {
-                    float noteTime = note.note * (bpm / savedBpm);
-                    note.note = noteTime;
-                }
-            }
-        }
-        savedBpm = bpm;
-    }
 
     [System.Serializable]
 	public class Note
 	{
 		public float note;
 		public int times;
+		public int BPM;
 	}
 
 	[System.Serializable]
 	public class Track
 	{
 		public Note[] notes;
+	}
+
+	public TextAsset json;
+
+	void OnEnable()
+	{
+		var jsonText = json.ToString();
+		var scriptJson = JsonUtility.FromJson<Note>(jsonText);
+		this.songOffset = scriptJson.BPM;
 	}
 }

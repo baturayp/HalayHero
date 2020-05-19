@@ -19,492 +19,733 @@ MonoBehaviour:
   isLocked: 0
   iconMargin: 100
   defaultBeats: []
-  songOffset: 0
+  songOffset: 120
   bpm: 180
-  savedBpm: 180
   tracks:
   - notes:
     - note: 10.47
       times: 0
+      BPM: 0
     - note: 11.34
       times: 0
+      BPM: 0
     - note: 12.210001
       times: 0
+      BPM: 0
     - note: 18.33
       times: 0
+      BPM: 0
     - note: 19.2
       times: 0
+      BPM: 0
     - note: 20.07
       times: 0
+      BPM: 0
     - note: 26.189999
       times: 0
+      BPM: 0
     - note: 27.060001
       times: 0
+      BPM: 0
     - note: 27.96
       times: 0
+      BPM: 0
     - note: 34.050003
       times: 0
+      BPM: 0
     - note: 34.949997
       times: 0
+      BPM: 0
     - note: 35.82
       times: 0
+      BPM: 0
     - note: 41.94
       times: 0
+      BPM: 0
     - note: 42.81
       times: 0
+      BPM: 0
     - note: 43.68
       times: 0
+      BPM: 0
     - note: 50.010002
       times: 0
+      BPM: 0
     - note: 50.879997
       times: 0
+      BPM: 0
     - note: 52.409996
       times: 0
+      BPM: 0
     - note: 52.86
       times: 0
+      BPM: 0
     - note: 58.08
       times: 0
+      BPM: 0
     - note: 58.53
       times: 0
+      BPM: 0
     - note: 75.12
       times: 0
+      BPM: 0
     - note: 76.020004
       times: 0
+      BPM: 0
     - note: 89.55
       times: 0
+      BPM: 0
     - note: 90.42
       times: 0
+      BPM: 0
     - note: 91.29
       times: 0
+      BPM: 0
     - note: 94.14
       times: 0
+      BPM: 0
     - note: 113.13
       times: 0
+      BPM: 0
     - note: 131.04001
       times: 0
+      BPM: 0
     - note: 146.79001
       times: 0
+      BPM: 0
     - note: 155.52
       times: 0
+      BPM: 0
     - note: 156.39
       times: 0
+      BPM: 0
     - note: 211.01999
       times: 0
+      BPM: 0
     - note: 218.88
       times: 0
+      BPM: 0
     - note: 226.74
       times: 0
+      BPM: 0
     - note: 233.28
       times: 0
+      BPM: 0
     - note: 234.59999
       times: 0
+      BPM: 0
     - note: 242.45999
       times: 0
+      BPM: 0
     - note: 250.32
       times: 0
+      BPM: 0
     - note: 258.18
       times: 0
+      BPM: 0
     - note: 273.93
       times: 0
+      BPM: 0
     - note: 281.55
       times: 0
+      BPM: 0
     - note: 283.74
       times: 0
+      BPM: 0
     - note: 284.61002
       times: 0
+      BPM: 0
     - note: 286.59
       times: 0
+      BPM: 0
     - note: 287.46
       times: 0
+      BPM: 0
     - note: 288.33002
       times: 0
+      BPM: 0
     - note: 290.52
       times: 0
+      BPM: 0
     - note: 291.38998
       times: 0
+      BPM: 0
     - note: 294.45
       times: 0
+      BPM: 0
     - note: 295.32
       times: 0
+      BPM: 0
     - note: 302.31
       times: 0
+      BPM: 0
     - note: 303.18
       times: 0
+      BPM: 0
     - note: 310.16998
       times: 0
+      BPM: 0
     - note: 311.04
       times: 0
+      BPM: 0
     - note: 318.03
       times: 0
+      BPM: 0
     - note: 318.93
       times: 0
+      BPM: 0
     - note: 325.91998
       times: 0
+      BPM: 0
     - note: 326.79
       times: 0
+      BPM: 0
     - note: 328.98
       times: 0
+      BPM: 0
     - note: 333.78
       times: 0
+      BPM: 0
     - note: 334.65002
       times: 0
+      BPM: 0
     - note: 336.38998
       times: 0
+      BPM: 0
     - note: 337.26
       times: 0
+      BPM: 0
     - note: 341.63998
       times: 0
+      BPM: 0
     - note: 342.51
       times: 0
+      BPM: 0
     - note: 347.31
       times: 0
+      BPM: 0
     - note: 348.41998
       times: 0
+      BPM: 0
     - note: 353.01
       times: 0
+      BPM: 0
     - note: 354.3
       times: 0
+      BPM: 0
     - note: 356.49
       times: 0
+      BPM: 0
     - note: 373.08002
       times: 0
+      BPM: 0
     - note: 373.98
       times: 0
+      BPM: 0
     - note: 380.97
       times: 0
+      BPM: 0
     - note: 381.84
       times: 0
+      BPM: 0
     - note: 388.83002
       times: 0
+      BPM: 0
     - note: 389.69998
       times: 0
+      BPM: 0
     - note: 396.69
       times: 0
+      BPM: 0
     - note: 397.56
       times: 0
+      BPM: 0
     - note: 401.69998
       times: 0
+      BPM: 0
     - note: 404.55002
       times: 0
+      BPM: 0
     - note: 409.56
       times: 0
+      BPM: 0
     - note: 412.41
       times: 0
+      BPM: 0
     - note: 413.27997
       times: 0
+      BPM: 0
     - note: 420.51
       times: 0
+      BPM: 0
     - note: 421.38
       times: 0
+      BPM: 0
     - note: 428.37
       times: 0
+      BPM: 0
     - note: 429.24
       times: 0
+      BPM: 0
     - note: 436.23
       times: 0
+      BPM: 0
     - note: 437.09998
       times: 0
+      BPM: 0
     - note: 444.09
       times: 0
+      BPM: 0
     - note: 444.96002
       times: 0
+      BPM: 0
   - notes:
     - note: 3.48
       times: 0
+      BPM: 0
     - note: 6.09
       times: 0
+      BPM: 0
     - note: 8.7300005
       times: 0
+      BPM: 0
     - note: 14.400001
       times: -2
+      BPM: 0
     - note: 24.03
       times: -2
+      BPM: 0
     - note: 31.89
       times: -2
+      BPM: 0
     - note: 39.75
       times: -2
+      BPM: 0
     - note: 59.399998
       times: 0
+      BPM: 0
     - note: 60.27
       times: -2
+      BPM: 0
     - note: 66.39
       times: 0
+      BPM: 0
     - note: 67.26
       times: 0
+      BPM: 0
     - note: 68.13
       times: -2
+      BPM: 0
     - note: 87.81
       times: 0
+      BPM: 0
     - note: 94.409996
       times: -2
+      BPM: 0
     - note: 96.990005
       times: -2
+      BPM: 0
     - note: 97.979996
       times: -2
+      BPM: 0
     - note: 106.59
       times: -2
+      BPM: 0
     - note: 126.69
       times: 0
+      BPM: 0
     - note: 135.42
       times: 0
+      BPM: 0
     - note: 136.29001
       times: -2
+      BPM: 0
     - note: 148.53
       times: 0
+      BPM: 0
     - note: 150.27
       times: 0
+      BPM: 0
     - note: 158.13
       times: 0
+      BPM: 0
     - note: 159.9
       times: -2
+      BPM: 0
     - note: 175.62
       times: -2
+      BPM: 0
     - note: 178.02
       times: -2
+      BPM: 0
     - note: 192.20999
       times: 0
+      BPM: 0
     - note: 193.08
       times: 0
+      BPM: 0
     - note: 193.98001
       times: -2
+      BPM: 0
     - note: 209.70001
       times: 0
+      BPM: 0
     - note: 210.57
       times: 0
+      BPM: 0
     - note: 211.88998
       times: -2
+      BPM: 0
     - note: 217.56
       times: 0
+      BPM: 0
     - note: 218.43
       times: 0
+      BPM: 0
     - note: 219.75
       times: -2
+      BPM: 0
     - note: 225.42
       times: 0
+      BPM: 0
     - note: 226.29001
       times: 0
+      BPM: 0
     - note: 227.61002
       times: -2
+      BPM: 0
     - note: 234.15001
       times: 0
+      BPM: 0
     - note: 235.04999
       times: 0
+      BPM: 0
     - note: 236.34
       times: -2
+      BPM: 0
     - note: 242.04001
       times: 0
+      BPM: 0
     - note: 242.91
       times: 0
+      BPM: 0
     - note: 244.20001
       times: -2
+      BPM: 0
     - note: 249.90001
       times: 0
+      BPM: 0
     - note: 250.76999
       times: 0
+      BPM: 0
     - note: 252.06
       times: -2
+      BPM: 0
     - note: 256.88998
       times: 0
+      BPM: 0
     - note: 257.76
       times: 0
+      BPM: 0
     - note: 259.05
       times: -2
+      BPM: 0
     - note: 272.61002
       times: 0
+      BPM: 0
     - note: 273.48
       times: 0
+      BPM: 0
     - note: 274.8
       times: -2
+      BPM: 0
     - note: 282
       times: 0
+      BPM: 0
     - note: 282.66
       times: 0
+      BPM: 0
     - note: 288.78
       times: 0
+      BPM: 0
     - note: 289.2
       times: 0
+      BPM: 0
     - note: 304.05
       times: 0
+      BPM: 0
     - note: 304.95
       times: 0
+      BPM: 0
     - note: 311.94
       times: 0
+      BPM: 0
     - note: 312.81
       times: 0
+      BPM: 0
     - note: 313.23
       times: -2
+      BPM: 0
     - note: 319.8
       times: 0
+      BPM: 0
     - note: 320.66998
       times: 0
+      BPM: 0
     - note: 321.09
       times: -2
+      BPM: 0
     - note: 327.66
       times: 0
+      BPM: 0
     - note: 328.53
       times: 0
+      BPM: 0
     - note: 329.84998
       times: -2
+      BPM: 0
     - note: 347.97
       times: 0
+      BPM: 0
     - note: 351.48
       times: 0
+      BPM: 0
     - note: 352.34998
       times: 0
+      BPM: 0
     - note: 354.96
       times: -2
+      BPM: 0
     - note: 356.04
       times: 0
+      BPM: 0
     - note: 356.94
       times: 0
+      BPM: 0
     - note: 361.29
       times: -2
+      BPM: 0
     - note: 362.16
       times: -2
+      BPM: 0
     - note: 384.90002
       times: 0
+      BPM: 0
     - note: 386.64
       times: 0
+      BPM: 0
     - note: 392.76
       times: 0
+      BPM: 0
     - note: 394.5
       times: 0
+      BPM: 0
     - note: 400.83002
       times: 0
+      BPM: 0
     - note: 402.57
       times: 0
+      BPM: 0
     - note: 408.69
       times: 0
+      BPM: 0
     - note: 410.46002
       times: 0
+      BPM: 0
     - note: 415.05002
       times: 0
+      BPM: 0
     - note: 416.78998
       times: 0
+      BPM: 0
     - note: 425.07
       times: 0
+      BPM: 0
     - note: 426.84
       times: 0
+      BPM: 0
   - notes:
     - note: 61.14
       times: -2
+      BPM: 0
     - note: 62.04
       times: -2
+      BPM: 0
     - note: 79.29
       times: -2
+      BPM: 0
     - note: 81.899994
       times: -2
+      BPM: 0
     - note: 84.54
       times: -2
+      BPM: 0
     - note: 110.97
       times: -2
+      BPM: 0
     - note: 114.450005
       times: -2
+      BPM: 0
     - note: 127.56
       times: -2
+      BPM: 0
     - note: 184.14
       times: 0
+      BPM: 0
     - note: 207.95999
       times: -2
+      BPM: 0
     - note: 212.76
       times: -2
+      BPM: 0
     - note: 213.63
       times: -2
+      BPM: 0
     - note: 220.62
       times: -2
+      BPM: 0
     - note: 221.49
       times: -2
+      BPM: 0
     - note: 223.68
       times: -2
+      BPM: 0
     - note: 228.48001
       times: -2
+      BPM: 0
     - note: 229.34999
       times: -2
+      BPM: 0
     - note: 231.54001
       times: -2
+      BPM: 0
     - note: 235.47
       times: -2
+      BPM: 0
     - note: 239.40001
       times: -2
+      BPM: 0
     - note: 240.26999
       times: -2
+      BPM: 0
     - note: 241.13998
       times: -2
+      BPM: 0
     - note: 243.33
       times: -2
+      BPM: 0
     - note: 247.26
       times: -2
+      BPM: 0
     - note: 248.13
       times: -2
+      BPM: 0
     - note: 249.03
       times: -2
+      BPM: 0
     - note: 251.19
       times: -2
+      BPM: 0
     - note: 255.12
       times: -2
+      BPM: 0
     - note: 256.02
       times: -2
+      BPM: 0
     - note: 259.95
       times: -2
+      BPM: 0
     - note: 260.82
       times: -2
+      BPM: 0
     - note: 263.01
       times: -2
+      BPM: 0
     - note: 263.88
       times: -2
+      BPM: 0
     - note: 266.94
       times: -2
+      BPM: 0
     - note: 267.81
       times: -2
+      BPM: 0
     - note: 270.87
       times: -2
+      BPM: 0
     - note: 271.74
       times: -2
+      BPM: 0
     - note: 275.66998
       times: -2
+      BPM: 0
     - note: 276.54
       times: -2
+      BPM: 0
     - note: 278.73
       times: -2
+      BPM: 0
     - note: 279.59998
       times: -2
+      BPM: 0
     - note: 282.87
       times: -2
+      BPM: 0
     - note: 289.65002
       times: -2
+      BPM: 0
     - note: 296.43
       times: -2
+      BPM: 0
     - note: 298.59
       times: -2
+      BPM: 0
     - note: 305.58002
       times: -2
+      BPM: 0
     - note: 306.48
       times: -2
+      BPM: 0
     - note: 314.09998
       times: -2
+      BPM: 0
     - note: 321.99
       times: -2
+      BPM: 0
     - note: 330.72
       times: -2
+      BPM: 0
     - note: 331.59
       times: -2
+      BPM: 0
     - note: 339.45
       times: -2
+      BPM: 0
     - note: 344.25
       times: -2
+      BPM: 0
     - note: 349.29
       times: -2
+      BPM: 0
     - note: 350.16
       times: -2
+      BPM: 0
     - note: 353.43
       times: -2
+      BPM: 0
     - note: 357.36002
       times: -2
+      BPM: 0
     - note: 358.23
       times: -2
+      BPM: 0
     - note: 365.66998
       times: -2
+      BPM: 0
     - note: 366.54
       times: -2
+      BPM: 0
     - note: 425.97003
       times: -2
+      BPM: 0
+  json: {fileID: 4900000, guid: 6b13a3ed5f6c85d4fb698f9fce604578, type: 3}
