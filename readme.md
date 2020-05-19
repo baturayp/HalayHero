@@ -24,3 +24,4 @@ Required packages:
 - Increase resolution if you want more precision, but note that existing beats can be edited on the same resolution-level. However you can select any beat with range-selection control (Ctrl+Drag) and delete them with 'Del' keyboard button.
 - You can edit a long-beat's size by clicking its head or delete it by clicking its tail (when long-beat editing is active).
 - Increase a multi-beat with left-click, decrease with shift-click, delete with right-click.
+- Mp3 editing not supported beause of unity's license restrictions. Only .wav files allowed. Anyway either wav or mp3 files are compressed as ogg when imported into the game. So better save your clips as wav files if you want to use them in the note editor.
