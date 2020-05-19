@@ -14,8 +14,13 @@ Required packages:
 
 #Usage instructions
 -Control+Drag => Select multiple beats on canvas
+
 -Shift+RightClick => Start drawing a long beat
+
 -Left-click => Delete
+
 -Right-Left => move position
+
 -Ctrl-c & Ctrl-v => Copy & paste
+
 -Ctrl-z & Ctrl-r => Undo & redo
