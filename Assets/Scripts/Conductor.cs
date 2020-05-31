@@ -74,6 +74,7 @@ public class Conductor : MonoBehaviour
 	private float dsptimesong;
 
 	public static float BeatsShownOnScreen = 4f;
+	public static float tempo = 1f;
 
 	//count down canvas
 	private const int StartCountDown = 3;
@@ -186,6 +187,8 @@ public class Conductor : MonoBehaviour
 
 		//get the song info from messenger
 		songInfo = SongInfoMessenger.Instance.currentSong;
+		tempo = songInfo.tempo;
+		BeatsShownOnScreen = songInfo.beatsShownOnScreen;
 
 		//listen to player input
 		PlayerInputControl.InputtedEvent += PlayerInputted;
@@ -299,7 +302,19 @@ public class Conductor : MonoBehaviour
 				//update the next index
 				trackNextIndices[i]++;
 			}
+		}
 
+		//set dynamic tempo when applicable
+		if(songInfo.dynamicTempo != null && songInfo.dynamicTempo.Length > 0)
+		{
+			int length = songInfo.dynamicTempo.Length;
+			for (int i = 0; i < length; i++)
+			{
+				if (songposition > songInfo.dynamicTempo[i].startTime)
+				{
+					tempo = songInfo.dynamicTempo[i].tempoVal;
+				}
+			}
 		}
 
 		//loop the queue to check if any of them reaches the finish line

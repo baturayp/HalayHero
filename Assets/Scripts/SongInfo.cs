@@ -18,12 +18,17 @@ public class SongInfo : ScriptableObject
 	[HideInInspector]
 	public float bpm;
 
-	[Header("Tempo default 1 for normal, 0.5 half, 2 double etc")]
+	[Header("Initial default tempo 1 for normal, 0.5 half, 2 double etc")]
 	public float tempo = 1f;
 
-	[Header("Notes populated automatically, edit them from NoteEditor")]
+	[Header("Dynamically change tempo at defined moments, set 0 to disable")]
+	public Tempo[] dynamicTempo;
+
+	[Header("Just for reference, notes populated automatically, edit them from NoteEditor")]
 	public Track[] tracks = new Track[3];
 
+	[Header("Adjusts how much notes appears on screen in advance. 4 is a fair default.")]
+	public float beatsShownOnScreen = 4f;
 	private int totalHits;
 
 	//get the total hits of the song
@@ -83,6 +88,14 @@ public class SongInfo : ScriptableObject
 	public class Track
 	{
 		public Note[] notes;
+	}
+	
+	// you can change tempo over time if needed
+	[System.Serializable]
+	public class Tempo
+	{
+		public float startTime;
+		public float tempoVal;
 	}
 	// {note class}
 
