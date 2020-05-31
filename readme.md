@@ -22,6 +22,7 @@ Make sure you put your .wav files inside Assets/Resources/Sounds/Musics folder. 
 - Space => Play/pause
 - Ctrl-c & Ctrl-v => Copy & paste
 - Ctrl-z & Ctrl-r => Undo & redo
+- You can adjust number of blocks (which default 3 for HalayHero) and assign them keyboard shortcuts (default A,S,D). It allows you to add new beats when playing audio with corresponding keys. Only works with single-beats.
 - Increase resolution if you want more precision, but note that existing beats can be edited on the same resolution-level. However you can select any beat with range-selection control (Ctrl+Drag) and delete them with 'Del' keyboard button.
 - You can edit a long-beat's size by clicking its head or delete it by clicking its tail (when long-beat editing is active).
 - Increase a multi-beat with left-click, decrease with shift-click, delete with right-click.
