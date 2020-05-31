@@ -2,7 +2,7 @@
 A Unity rhthym game based on [Boots-cuts](https://github.com/YuChaoGithub/boots-cuts)
 
 Required packages:
- - TextMeshPro 2.1 preview
+ - TextMeshPro 2.1
  - Cinemachine
 
 ## 3rd party libraries and licenses
@@ -13,6 +13,7 @@ Required packages:
 ![](NoteEditor/help.png?raw=true)
 
 ### Usage instructions
+Make sure you put your .wav files inside Assets/Resources/Sounds/Musics folder. Note Editor creates a .json file in Assets/Resources/Sounds/Notes folder when you edit/save a song.
 
 - Control+Drag => Range selection, select multiple beats on canvas
 - Shift+LeftClick => Start drawing a long beat

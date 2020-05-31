@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
+  m_Name: Damat
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: c2ade3dc8f1f07a46883ad38afecc085, type: 3}
+  json: {fileID: 4900000, guid: 50d0e2bad17799a44979aee3c2050a4d, type: 3}
+  songID: 0
+  songTitle: DamatDavulsuz
+  isLocked: 0
+  songOffset: 0
+  bpm: 120
+  tempo: 1
+  tracks:
+  - notes:
+    - dueTo: 2.6875
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 6.125
+      manyTimes: 3
+      duration: 0
+      track: 0
+    - dueTo: 7.5625
+      manyTimes: 0
+      duration: 0
+      track: 0
+  - notes:
+    - dueTo: 2.3125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 3.75
+      manyTimes: 0
+      duration: 1.25
+      track: 1
+    - dueTo: 8.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 9.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+  - notes:
+    - dueTo: 3.4375
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 6.625
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 9.25
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 10.5
+      manyTimes: 0
+      duration: 0
+      track: 2

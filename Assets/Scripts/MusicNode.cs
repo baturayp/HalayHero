@@ -12,15 +12,17 @@ public class MusicNode : MonoBehaviour
 	[NonSerialized] public float removeLineY;
 	[NonSerialized] public float beat;
 	[NonSerialized] public int times;
+	[NonSerialized] public float duration;
 	[NonSerialized] public bool paused;
 
 
-	public void Initialize(float posX, float startY, float endY, float removeLineY, float posZ, float targetBeat, int times, Color color)
+	public void Initialize(float posX, float startY, float endY, float removeLineY, float posZ, float targetBeat, int times, float duration, Color color)
 	{
 		this.startY = startY;
 		this.endY = endY;
 		this.beat = targetBeat;
 		this.times = times;
+		this.duration = duration;
 		this.removeLineY = removeLineY;
 
 		paused = false;
@@ -41,10 +43,10 @@ public class MusicNode : MonoBehaviour
 			timesTextBackground.SetActive(true);
 			ringSprite.size = new Vector2(1.28f, 1.28f);
 		}
-		else if (times < 0)
+		else if (duration > 0)
 		{
 			timesTextBackground.SetActive(false);
-			ringSprite.size = new Vector2(1.28f, Mathf.Abs(times));
+			ringSprite.size = new Vector2(1.28f, duration);
 		}
 		else
 		{
@@ -60,12 +62,12 @@ public class MusicNode : MonoBehaviour
 
 		if (paused) return; //multi-times notes might be paused on the finish line
 
-		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - (beat - Conductor.songposition / Conductor.crotchet) / Conductor.BeatsShownOnScreen), transform.position.z);
+		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - (beat - Conductor.songposition) / Conductor.BeatsShownOnScreen), transform.position.z);
 
 		//remove itself when out of the screen (remove line)
-		if (times < 0)
+		if (duration > 0)
 		{
-			if (transform.position.y < (removeLineY + times / 2f))
+			if (transform.position.y < (removeLineY + duration / 2f))
 			{
 				gameObject.SetActive(false);
 			}

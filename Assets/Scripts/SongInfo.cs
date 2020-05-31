@@ -1,39 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Song Info")]
 public class SongInfo : ScriptableObject
 {
+	[Header( "Set relevant song audio clip" )]
 	public AudioClip song;
 
-	[Header("Every Song Has a Unique ID")]
-	public int songID;
+	[Header( "Set relevant song json" )]
+	public TextAsset json;
 
-	[Header("Song Text Information")]
 	public string songTitle;
-	//duration in plain text
-	public string songDuration;
 
-	[Header("Some Defaults")]
-	//is this song locked by default?
-	public bool isLocked;
-	//is there any icon margin on main menu?
-	public float iconMargin;
-
-	[Header("Playing Information")]
-	public AudioClip[] defaultBeats;
-
+	[HideInInspector]
 	public float songOffset;
+	[HideInInspector]
 	public float bpm;
 
-    [Header("Notes. Set it here 3 for three tracks")]
-	public Track[] tracks;
+	[Header("Tempo default 1 for normal, 0.5 half, 2 double etc")]
+	public float tempo = 1f;
 
-	// when not calculated, it's -1
-	private int totalHits = -1;
+	[Header("Notes populated automatically, edit them from NoteEditor")]
+	public Track[] tracks = new Track[3];
+
+	private int totalHits;
 
 	//get the total hits of the song
 	public int TotalHitCounts()
@@ -43,17 +34,13 @@ public class SongInfo : ScriptableObject
 		{
 			foreach (Note note in track.notes)
 			{
-				if (note.times == 0)
+				if (note.manyTimes == 0)
 				{
 					totalHits += 1;
 				}
-				if (note.times > 0)
+				else if (note.manyTimes > 0)
 				{
-					totalHits += note.times;
-				}
-				if (note.times < 0)
-				{
-					totalHits += 1;
+					totalHits += note.manyTimes;
 				}
 			}
 		}
@@ -61,12 +48,35 @@ public class SongInfo : ScriptableObject
 		return totalHits;
 	}
 
-    [System.Serializable]
+	[System.Serializable]
+	public class JsonData
+	{
+		public string name;
+		public int maxBlock;
+		public int BPM;
+		public int offset;
+		public JsonNote[] notes;
+	}
+
+	[System.Serializable]
+	public class JsonNote
+	{
+		public int LPB;
+		public int num;
+		public int block;
+		public int type;
+		public int length;
+		public int times;
+	}
+
+	// {note class}
+	[System.Serializable]
 	public class Note
 	{
-		public float note;
-		public int times;
-		public int BPM;
+		public float dueTo;
+		public int manyTimes;
+		public float duration;
+		public int track;
 	}
 
 	[System.Serializable]
@@ -74,13 +84,46 @@ public class SongInfo : ScriptableObject
 	{
 		public Note[] notes;
 	}
+	// {note class}
 
-	public TextAsset json;
 
-	void OnEnable()
+	public static JsonData FromJson(string json)
 	{
-		var jsonText = json.ToString();
-		var scriptJson = JsonUtility.FromJson<Note>(jsonText);
-		this.songOffset = scriptJson.BPM;
+		JsonData jsonData = JsonUtility.FromJson<JsonData>(json);
+		return jsonData;
 	}
+
+	public void OnEnable()
+	{
+		JsonData jsonData = FromJson(json.ToString());
+		List<JsonNote> jsonNotes = jsonData.notes.ToList();
+		List<Note> notes = new List<Note>();
+		songOffset = jsonData.offset == 0 ? 0 : jsonData.offset / 1000f;
+		bpm = jsonData.BPM;
+		if (songTitle == null || songTitle == "") { songTitle = jsonData.name; }
+
+		foreach (JsonNote jsonNote in jsonNotes)
+		{
+			notes.Add(ToAsset(jsonNote, jsonData.BPM, jsonNote.block));
+		}
+
+		var track0 = notes.Where(note => note.track == 0).ToList();
+		tracks[0].notes = track0.ToArray();
+		var track1 = notes.Where(note => note.track == 1).ToList();
+		tracks[1].notes = track1.ToArray();
+		var track2 = notes.Where(note => note.track == 2).ToList();
+		tracks[2].notes = track2.ToArray();
+	}
+
+	static Note ToAsset(JsonNote note, int BPM, int track)
+    {
+		var noteAsset = new Note
+		{
+			dueTo = ((float)(note.num) / (note.LPB) / (BPM / 60)),
+			manyTimes = note.type == 3 ? note.times : 0,
+			duration = note.type == 2 ? (float)((float)(((BPM / 60) / (float)note.LPB) * (note.length)) - (float)((note.num) / (float)(note.LPB) / (BPM / 60))) : 0,
+			track = track,
+		};
+		return noteAsset;
+    }
 }

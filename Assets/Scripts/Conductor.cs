@@ -59,9 +59,6 @@ public class Conductor : MonoBehaviour
 	//current song position
 	public static float songposition;
 
-	//how many seconds for each beat
-	public static float crotchet;
-
 	//index for each tracks
 	private int[] trackNextIndices;
 
@@ -194,8 +191,6 @@ public class Conductor : MonoBehaviour
 		PlayerInputControl.InputtedEvent += PlayerInputted;
 		PlayerInputControl.KeyupEvent += KeyUp;
 
-		//initialize fields
-		crotchet = 60f / songInfo.bpm;
 		songLength = songInfo.song.length;
 
 		//initialize arrays
@@ -244,8 +239,8 @@ public class Conductor : MonoBehaviour
 
 		SetGameObjects(true);
 
-		//unpause
-		Conductor.paused = false;
+        //unpause
+        paused = false;
 		songStarted = true;
 	}
 
@@ -276,10 +271,10 @@ public class Conductor : MonoBehaviour
 		}
 
 		//calculate songposition
-		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - songInfo.songOffset;
+		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
 
 		//check if need to instantiate new nodes
-		float beatToShow = songposition / crotchet + BeatsShownOnScreen;
+		float beatToShow = songposition + BeatsShownOnScreen;
 
 		//loop the tracks for new MusicNodes
 		for (int i = 0; i < len; i++)
@@ -287,7 +282,7 @@ public class Conductor : MonoBehaviour
 			int nextIndex = trackNextIndices[i];
 			SongInfo.Track currTrack = tracks[i];
 
-			if (nextIndex < currTrack.notes.Length && currTrack.notes[nextIndex].note < beatToShow)
+			if (nextIndex < currTrack.notes.Length && currTrack.notes[nextIndex].dueTo < beatToShow)
 			{
 				SongInfo.Note currNote = currTrack.notes[nextIndex];
 
@@ -296,7 +291,7 @@ public class Conductor : MonoBehaviour
 				nextLayerZ[i] += LayerOffsetZ;
 
 				//get a new node
-				MusicNode musicNode = MusicNodePool.instance.GetNode(trackSpawnPosX[i], startLineY, finishLineY, removeLineY, layerZ, currNote.note, currNote.times, trackColors[i]);
+				MusicNode musicNode = MusicNodePool.instance.GetNode(trackSpawnPosX[i], startLineY, finishLineY, removeLineY, layerZ, currNote.dueTo, currNote.manyTimes, currNote.duration, trackColors[i]);
 
 				//enqueue
 				queueForTracks[i].Enqueue(musicNode);
@@ -314,7 +309,6 @@ public class Conductor : MonoBehaviour
 			if (queueForTracks[i].Count == 0) continue;
 
 			MusicNode currNode = queueForTracks[i].Peek();
-			float absTimes = Mathf.Abs(currNode.times);
 
 			//multi-times note
 			if (currNode.times > 0 && currNode.transform.position.y <= finishLineY + goodOffsetY)
@@ -333,7 +327,9 @@ public class Conductor : MonoBehaviour
 				previousMusicNodes[i] = currNode;
 				queueForTracks[i].Dequeue();
 			}
-			else if (currNode.times < 0 && currNode.transform.position.y <= finishLineY - absTimes)
+
+			//long note
+			else if (currNode.duration > 0 && currNode.transform.position.y <= finishLineY - currNode.duration)
 			{
 				if (previousMusicNodes[i] != null)
 				{
@@ -345,7 +341,7 @@ public class Conductor : MonoBehaviour
 				KeyUpEvent?.Invoke(i);
 				queueForTracks[i].Dequeue();
 			}
-			else if (currNode.times == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
+			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
 			{
 				//have previous note stuck on the finish line
 				if (previousMusicNodes[i] != null)

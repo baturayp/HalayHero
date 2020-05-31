@@ -14,8 +14,6 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject tissue;
 	public GameObject gun;
 
-	private float lastbeat;
-
 	//combo
 	public Image comboCircle;
 	public Text comboScoreText;
@@ -61,8 +59,6 @@ public class PlayingUIController : MonoBehaviour
 	{
 		//get the length of all notes from messenger
 		fullNoteCounts = SongInfoMessenger.Instance.currentSong.TotalHitCounts();
-
-		lastbeat = 0f;
 
 		//register to events
 		Conductor.BeatOnHitEvent += BeatOnHit;
@@ -127,11 +123,6 @@ public class PlayingUIController : MonoBehaviour
 		if(currCombo == 25)
 		{
 			TriggerAnim(3);
-		}
-
-		if (Conductor.songposition > lastbeat + Conductor.crotchet)
-		{
-			lastbeat += Conductor.crotchet;
 		}
 
 		UpdateScoreUI();
