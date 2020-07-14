@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 168192283}
   - component: {fileID: 168192282}
   - component: {fileID: 168192286}
+  - component: {fileID: 168192285}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -891,6 +892,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 28.765001, y: 106.73401, z: 4.201}
+--- !u!114 &168192285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168192281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301eca71255100647bb9bad1d5641921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 3d417cf48fde7da46b5a79811115e87f, type: 3}
 --- !u!114 &168192286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3572,7 +3586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8117647, g: 0.73333335, b: 0.44313726, a: 1}
+  m_Color: {r: 1, g: 0.7019608, b: 0, a: 0.79607844}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

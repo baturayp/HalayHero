@@ -32,12 +32,12 @@ public class LogicScript : MonoBehaviour
 			if (SwipeInput.swipedRight)
 			{
 				if (activeFocus == 0) { return; }
-				else { FocusTo(--activeFocus); }
+				else { FocusTo(activeFocus-1); }
 			}
 			if (SwipeInput.swipedLeft)
 			{
 				if (activeFocus == 2) { return; }
-				else { FocusTo(++activeFocus); }
+				else { FocusTo(activeFocus+1); }
 			}
 			if (SwipeInput.swipedUp)
 			{

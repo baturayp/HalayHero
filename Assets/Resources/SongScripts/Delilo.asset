@@ -12,59 +12,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
   m_Name: Delilo
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: 16d42250e1555e64ea46f9aa97c2fce8, type: 3}
-  json: {fileID: 4900000, guid: 50d0e2bad17799a44979aee3c2050a4d, type: 3}
-  songID: 1
+  song: {fileID: 8300000, guid: 77b5e1e451ce3204997c1129c88f6134, type: 3}
+  json: {fileID: 4900000, guid: 0bc641bce5657074795e9925c0ea3bea, type: 3}
   songTitle: DamatDavulsuz
-  isLocked: 0
   songOffset: 0
   bpm: 120
   tempo: 1
+  dynamicTempo: []
   tracks:
   - notes:
-    - dueTo: 2.6875
+    - dueTo: 2.5
       manyTimes: 0
       duration: 0
       track: 0
-    - dueTo: 6.125
-      manyTimes: 3
+    - dueTo: 4
+      manyTimes: 0
       duration: 0
       track: 0
-    - dueTo: 7.5625
+    - dueTo: 4.9375
       manyTimes: 0
       duration: 0
       track: 0
   - notes:
-    - dueTo: 2.3125
+    - dueTo: 0.375
       manyTimes: 0
       duration: 0
       track: 1
-    - dueTo: 3.75
-      manyTimes: 0
-      duration: 1.25
-      track: 1
-    - dueTo: 8.4375
+    - dueTo: 0.875
       manyTimes: 0
       duration: 0
       track: 1
-    - dueTo: 9.625
+    - dueTo: 1.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 2.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 3.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 4.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 4.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 5.1875
       manyTimes: 0
       duration: 0
       track: 1
   - notes:
-    - dueTo: 3.4375
+    - dueTo: 0.9375
       manyTimes: 0
       duration: 0
       track: 2
-    - dueTo: 6.625
+    - dueTo: 1.4375
       manyTimes: 0
       duration: 0
       track: 2
-    - dueTo: 9.25
+    - dueTo: 3.1875
       manyTimes: 0
       duration: 0
       track: 2
-    - dueTo: 10.5
+    - dueTo: 4.6875
       manyTimes: 0
       duration: 0
       track: 2
+  beatsShownOnScreen: 4
