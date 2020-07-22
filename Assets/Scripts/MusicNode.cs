@@ -46,7 +46,7 @@ public class MusicNode : MonoBehaviour
 		else if (duration > 0)
 		{
 			timesTextBackground.SetActive(false);
-			ringSprite.size = new Vector2(1.28f, duration);
+			ringSprite.size = new Vector2(1.28f, duration*1.28f);
 		}
 		else
 		{

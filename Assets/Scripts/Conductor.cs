@@ -111,28 +111,27 @@ public class Conductor : MonoBehaviour
 			//peek the node in the queue
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 
+			//take care multi-notes inside update
 			if (frontNode.times > 0) return;
 
 			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
-			float absTimes = Mathf.Abs(frontNode.times);
-
-			if (frontNode.times < 0)
+			if (frontNode.duration > 0)
 			{
-				if (offsetY < perfectOffsetY + (absTimes / 2f))
+				if (offsetY < perfectOffsetY + (frontNode.duration / 2f))
 				{
 					frontNode.ringSprite.color = Color.green;
 					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
-				else if (offsetY < goodOffsetY + (absTimes / 2f))
+				else if (offsetY < goodOffsetY + (frontNode.duration / 2f))
 				{
 					frontNode.ringSprite.color = Color.yellow;
 				}
-				else if (offsetY < badOffsetY + (absTimes / 2f))
+				else if (offsetY < badOffsetY + (frontNode.duration / 2f))
 				{
 					frontNode.ringSprite.color = Color.red;
 				}
 			}
-			if (frontNode.times == 0)
+			if (frontNode.times == 0 && frontNode.duration == 0)
 			{
 				if (offsetY < perfectOffsetY) //perfect hit
 				{
@@ -161,7 +160,7 @@ public class Conductor : MonoBehaviour
 		if (queueForTracks[trackNumber].Count != 0)
 		{
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
-			if (frontNode.times >= 0) return;
+			if (frontNode.duration == 0) return;
 			KeyUpEvent?.Invoke(trackNumber);
 			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT); queueForTracks[trackNumber].Dequeue(); }
 			if (frontNode.ringSprite.color == Color.yellow) { frontNode.GoodHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.GOOD); queueForTracks[trackNumber].Dequeue(); }
