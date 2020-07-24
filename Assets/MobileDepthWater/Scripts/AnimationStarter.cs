@@ -1,4 +1,3 @@
-#pragma warning disable 0649
 namespace Assets.MobileOptimizedWater.Scripts
 {
     using UnityEngine;
@@ -14,4 +13,3 @@ namespace Assets.MobileOptimizedWater.Scripts
         }
     }
 }
-#pragma warning restore 0649

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "TekeZortlatmas\u0131"
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: a6fde7a0c1daaec49a85cdba24b6be27, type: 3}
-  json: {fileID: 4900000, guid: e1c76cf8465a0884aadcd8c367159a23, type: 3}
+  json: {fileID: 4900000, guid: 31ff0ebe63196a94a8cecd12501346ad, type: 3}
   songTitle: DamatDavulsuza
   songOffset: 0
   bpm: 120
@@ -21,49 +21,21 @@ MonoBehaviour:
   dynamicTempo: []
   tracks:
   - notes:
-    - dueTo: 1.6875
+    - dueTo: 5
       manyTimes: 0
       duration: 0
       track: 0
-    - dueTo: 5.375
-      manyTimes: 0
-      duration: 0
-      track: 0
-    - dueTo: 8.75
+    - dueTo: 6
       manyTimes: 0
       duration: 0
       track: 0
   - notes:
-    - dueTo: 0.5
+    - dueTo: 4
       manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 2.5
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 4.5
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 6.1875
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 8.0625
-      manyTimes: 0
-      duration: 0
+      duration: 2.0625
       track: 1
   - notes:
-    - dueTo: 3.4375
-      manyTimes: 0
-      duration: 0
-      track: 2
     - dueTo: 7
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 9.5625
       manyTimes: 0
       duration: 0
       track: 2

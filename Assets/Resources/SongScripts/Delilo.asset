@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Delilo
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: 77b5e1e451ce3204997c1129c88f6134, type: 3}
-  json: {fileID: 4900000, guid: 0bc641bce5657074795e9925c0ea3bea, type: 3}
+  json: {fileID: 4900000, guid: 272a897f2fbeb194992502e279f935a0, type: 3}
   songTitle: DamatDavulsuz
   songOffset: 0
   bpm: 120
@@ -21,65 +21,21 @@ MonoBehaviour:
   dynamicTempo: []
   tracks:
   - notes:
-    - dueTo: 2.5
+    - dueTo: 4
       manyTimes: 0
-      duration: 0
+      duration: 2.0625
       track: 0
+  - notes:
     - dueTo: 4
       manyTimes: 0
       duration: 0
-      track: 0
-    - dueTo: 4.9375
-      manyTimes: 0
-      duration: 0
-      track: 0
-  - notes:
-    - dueTo: 0.375
-      manyTimes: 0
-      duration: 0
       track: 1
-    - dueTo: 0.875
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 1.9375
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 2.8125
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 3.625
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 4.375
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 4.9375
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 5.1875
+    - dueTo: 6
       manyTimes: 0
       duration: 0
       track: 1
   - notes:
-    - dueTo: 0.9375
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 1.4375
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 3.1875
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 4.6875
+    - dueTo: 5
       manyTimes: 0
       duration: 0
       track: 2

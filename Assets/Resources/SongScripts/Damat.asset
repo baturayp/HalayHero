@@ -13,58 +13,30 @@ MonoBehaviour:
   m_Name: Damat
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: c2ade3dc8f1f07a46883ad38afecc085, type: 3}
-  json: {fileID: 4900000, guid: 50d0e2bad17799a44979aee3c2050a4d, type: 3}
-  songID: 0
+  json: {fileID: 4900000, guid: b8c2a3588fe4ca14186c270f6b3cce04, type: 3}
   songTitle: DamatDavulsuz
-  isLocked: 0
   songOffset: 0
   bpm: 120
   tempo: 1
+  dynamicTempo: []
   tracks:
   - notes:
-    - dueTo: 2.6875
+    - dueTo: 4
       manyTimes: 0
       duration: 0
       track: 0
-    - dueTo: 6.125
+    - dueTo: 6
+      manyTimes: 0
+      duration: 0
+      track: 0
+  - notes:
+    - dueTo: 4
+      manyTimes: 0
+      duration: 2.0625
+      track: 1
+  - notes:
+    - dueTo: 3
       manyTimes: 3
       duration: 0
-      track: 0
-    - dueTo: 7.5625
-      manyTimes: 0
-      duration: 0
-      track: 0
-  - notes:
-    - dueTo: 2.3125
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 3.75
-      manyTimes: 0
-      duration: 1.25
-      track: 1
-    - dueTo: 8.4375
-      manyTimes: 0
-      duration: 0
-      track: 1
-    - dueTo: 9.625
-      manyTimes: 0
-      duration: 0
-      track: 1
-  - notes:
-    - dueTo: 3.4375
-      manyTimes: 0
-      duration: 0
       track: 2
-    - dueTo: 6.625
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 9.25
-      manyTimes: 0
-      duration: 0
-      track: 2
-    - dueTo: 10.5
-      manyTimes: 0
-      duration: 0
-      track: 2
+  beatsShownOnScreen: 4
