@@ -7,8 +7,8 @@ using System;
 public class SongPickingControl : MonoBehaviour
 {
 	[Header("Setting objects")]
-	public GameObject aaDroplabel;
-	public Dropdown aaDrop;
+	public GameObject aaHd;
+	public GameObject aaSd;
 	public GameObject volumeOn;
 	public GameObject volumeOff;
 	public GameObject volumeLow;
@@ -58,7 +58,7 @@ public class SongPickingControl : MonoBehaviour
 
 		//set antialias pref
 		int aaPref = PlayerPrefs.GetInt("Antialias", 0);
-		AaDropdownChanged(aaPref);
+		AaChanged(aaPref);
 
 		/*check system language
 		  if Turkish, then set default to Turkish
@@ -93,35 +93,21 @@ public class SongPickingControl : MonoBehaviour
 	}
 
 	//antialiasing dropdown setting
-	public void AaDropdownChanged(int i)
+	public void AaChanged(int i)
 	{
 		if (i == 0)
 		{
 			QualitySettings.antiAliasing = 0;
 			PlayerPrefs.SetInt("Antialias", 0);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 0x";
-			aaDrop.value = 0;
+			aaSd.SetActive(true);
+			aaHd.SetActive(false);
 		}
 		if (i == 1)
 		{
-			QualitySettings.antiAliasing = 2;
-			PlayerPrefs.SetInt("Antialias", 1);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 2x";
-			aaDrop.value = 1;
-		}
-		if (i == 2)
-		{
-			QualitySettings.antiAliasing = 4;
-			PlayerPrefs.SetInt("Antialias", 2);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 4x";
-			aaDrop.value = 2;
-		}
-		if (i == 3)
-		{
 			QualitySettings.antiAliasing = 8;
-			PlayerPrefs.SetInt("Antialias", 3);
-			aaDroplabel.GetComponent<TMPro.TextMeshProUGUI>().text = "ANTIALIAS 8x";
-			aaDrop.value = 3;
+			PlayerPrefs.SetInt("Antialias", 1);
+			aaHd.SetActive(true);
+			aaSd.SetActive(false);
 		}
 	}
 

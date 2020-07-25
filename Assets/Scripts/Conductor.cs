@@ -9,6 +9,7 @@ public class Conductor : MonoBehaviour
 	[Header("Animated objects in the scene")]
 	[Tooltip("Select all objects that needs to pause and start")]
 	public GameObject[] animatedObjects;
+	public ParticleSystem[] particles;
 	public GameObject animatedScript;
 
 	[Header("Cinemachine cameras")]
@@ -401,13 +402,14 @@ public class Conductor : MonoBehaviour
 	void SetGameObjects(bool state)
 	{
 		//set animation components of defined objects true or false
-		foreach(var ani in animatedObjects){
-			ani.GetComponent<Animator>().enabled = state;
-		}
+		foreach(var ani in animatedObjects){ani.GetComponent<Animator>().enabled = state;}
 		//set components of certain scripts true or false
 		animatedScript.GetComponent<Circularmovement>().enabled = state;
 		//set or remove camera noise
 		if (state) { cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1; }
 		if (!state) { cineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0; }
+		//set particles
+		if (state) { foreach (var particle in particles) { particle.Play(); } }
+		if (!state) { foreach (var particle in particles) { particle.Pause(); } }
 	}
 }
