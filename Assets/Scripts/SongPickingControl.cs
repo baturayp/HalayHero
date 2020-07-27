@@ -104,7 +104,7 @@ public class SongPickingControl : MonoBehaviour
 		}
 		if (i == 1)
 		{
-			QualitySettings.antiAliasing = 8;
+			QualitySettings.antiAliasing = 4;
 			PlayerPrefs.SetInt("Antialias", 1);
 			aaHd.SetActive(true);
 			aaSd.SetActive(false);
