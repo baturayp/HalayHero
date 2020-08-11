@@ -46,7 +46,7 @@ public class MusicNode : MonoBehaviour
 		else if (duration > 0)
 		{
 			timesTextBackground.SetActive(false);
-			ringSprite.size = new Vector2(1.28f, duration*1.28f);
+			ringSprite.size = new Vector2(1.28f, duration * 2f);
 		}
 		else
 		{
@@ -62,22 +62,12 @@ public class MusicNode : MonoBehaviour
 
 		if (paused) return; //multi-times notes might be paused on the finish line
 
-		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - (beat - Conductor.songposition) / (Conductor.BeatsShownOnScreen / Conductor.tempo)), transform.position.z);
+		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - ((beat + (duration / 2)) - Conductor.songposition) / (Conductor.BeatsShownOnScreen / Conductor.tempo)), transform.position.z);
 
 		//remove itself when out of the screen (remove line)
-		if (duration > 0)
+		if (transform.position.y < (removeLineY - duration))
 		{
-			if (transform.position.y < (removeLineY + duration / 2f))
-			{
-				gameObject.SetActive(false);
-			}
-		}
-		else
-		{
-			if (transform.position.y < (removeLineY))
-			{
-				gameObject.SetActive(false);
-			}
+			gameObject.SetActive(false);
 		}
 	}
 
