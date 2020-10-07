@@ -358,7 +358,6 @@ public class Conductor : MonoBehaviour
                 {
 					currNode.restartedLong = true;
 					KeyUpBeatEvent?.Invoke(i);
-					queueForTracks[i].Dequeue();
 				}
 			}
 			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note

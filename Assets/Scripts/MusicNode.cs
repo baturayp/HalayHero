@@ -131,7 +131,6 @@ public class MusicNode : MonoBehaviour
 			yield return null;
 		}
 		gameObject.SetActive(false);
-		transform.position = new Vector3(100, 100, 100);
 	}
 
 	//remove (multi-times note failed), might apply some animations later
