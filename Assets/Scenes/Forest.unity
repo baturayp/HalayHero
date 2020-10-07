@@ -258,7 +258,7 @@ MonoBehaviour:
   - -7
   - 5
   - 7
-  startLineY: 5
+  startLineY: 8
   finishLineY: -3.5
   removeLineY: -6
   badOffsetY: 1

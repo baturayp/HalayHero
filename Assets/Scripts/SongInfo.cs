@@ -132,9 +132,9 @@ public class SongInfo : ScriptableObject
     {
 		var noteAsset = new Note
 		{
-			dueTo = ((float)(note.num) / (note.LPB) / (BPM / 60)),
+			dueTo = ((float)(note.num) / (note.LPB) / (BPM / 60f)),
 			manyTimes = note.type == 3 ? note.times : 0,
-			duration = note.type == 2 ? ((float)(note.num + note.length) / (note.LPB) / (BPM / 60)) - ((float)(note.num) / (note.LPB) / (BPM / 60)) : 0,
+			duration = note.type == 2 ? ((float)(note.num + note.length) / (note.LPB) / (BPM / 60f)) - ((float)(note.num) / (note.LPB) / (BPM / 60f)) : 0,
 			track = track,
 		};
 		return noteAsset;

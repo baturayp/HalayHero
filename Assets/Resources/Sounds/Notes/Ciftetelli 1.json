@@ -1,0 +1,80 @@
+﻿{
+    "name": "Ciftetelli 1",
+    "maxBlock": 3,
+    "BPM": 120,
+    "offset": 0,
+    "notes": [
+        {
+            "LPB": 8,
+            "num": 64,
+            "block": 0,
+            "type": 2,
+            "length": 17,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 64,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 80,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 128,
+            "block": 0,
+            "type": 2,
+            "length": 33,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 128,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 160,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 192,
+            "block": 0,
+            "type": 2,
+            "length": 49,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 192,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 8,
+            "num": 240,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        }
+    ]
+}

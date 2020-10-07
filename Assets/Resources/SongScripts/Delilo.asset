@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
   m_Name: Delilo
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: 77b5e1e451ce3204997c1129c88f6134, type: 3}
-  json: {fileID: 4900000, guid: 272a897f2fbeb194992502e279f935a0, type: 3}
+  song: {fileID: 8300000, guid: 096e6ae3cc3750440be77d8e470946d1, type: 3}
+  json: {fileID: 4900000, guid: 519084ecb914fc7438c960664c4ad799, type: 3}
   songTitle: DamatDavulsuz
   songOffset: 0
   bpm: 120
@@ -21,21 +21,349 @@ MonoBehaviour:
   dynamicTempo: []
   tracks:
   - notes:
-    - dueTo: 4
-      manyTimes: 0
-      duration: 2.0625
+    - dueTo: 50.625
+      manyTimes: 3
+      duration: 0
       track: 0
   - notes:
-    - dueTo: 4
+    - dueTo: 1.875
       manyTimes: 0
       duration: 0
       track: 1
-    - dueTo: 6
+    - dueTo: 5.1875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 5.9375
+      manyTimes: 3
+      duration: 0
+      track: 1
+    - dueTo: 8
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 9.25
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 13.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 15.125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 16.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 18.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 20.125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 21.75
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 23.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 25.0625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 26.75
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 28.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 30.0625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 32.1875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 33.375
+      manyTimes: 3
+      duration: 0
+      track: 1
+    - dueTo: 35
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 36.6875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 38.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 40
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 43.3125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 44.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 46.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 48.25
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 49.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 51.5625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 53.25
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 54.875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 56.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 58.1875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 59.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 61.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 63.875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 64.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 66.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 68.125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 69.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 71.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 74.75
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 76.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 78.0625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 79.6875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 81.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 83.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 84.6875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 86.3125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 88
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 89.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 91.3125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 94.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 96.25
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 97.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 102.875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 104.5625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 106.1875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 107.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 109.5
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 111.1875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 112.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 114.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 116.125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 117.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 119.4375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 121.0625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 122.75
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 126.0625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 127.6875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 129.375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 131
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 132.6875
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 134.8125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 136
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 137.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 139.3125
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 140.9375
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 142.625
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 145.9375
       manyTimes: 0
       duration: 0
       track: 1
   - notes:
-    - dueTo: 5
+    - dueTo: 3.5625
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 6.875
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 8.5
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 10.1875
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 11.8125
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 12.5625
       manyTimes: 0
       duration: 0
       track: 2

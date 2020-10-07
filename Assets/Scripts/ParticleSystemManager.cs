@@ -12,13 +12,13 @@ public class ParticleSystemManager : MonoBehaviour
 	void Start()
 	{
 		Conductor.BeatOnHitEvent += BeatOnHit;
-		Conductor.KeyUpEvent += KeyUp;
+		Conductor.KeyUpBeatEvent += KeyUpBeat;
 	}
 
 	void OnDestroy()
 	{
 		Conductor.BeatOnHitEvent -= BeatOnHit;
-		Conductor.KeyUpEvent -= KeyUp;
+		Conductor.KeyUpBeatEvent -= KeyUpBeat;
 	}
 
 	//will be informed by the Conductor after a beat is hit
@@ -43,7 +43,7 @@ public class ParticleSystemManager : MonoBehaviour
 		//do nothing if missed
 	}
 
-	void KeyUp(int track)
+	void KeyUpBeat(int track)
 	{
 		particleSet[track].cont.Pause();
 		particleSet[track].cont.Clear();

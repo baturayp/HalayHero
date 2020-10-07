@@ -100,7 +100,7 @@ public class PlayerInputControl : MonoBehaviour
         InputtedEvent?.Invoke(i);
 
         //play audio clip
-        audioSources[i].Play();
+        //audioSources[i].Play();
     }
 
     void Keyup(int i)

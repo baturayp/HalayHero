@@ -23,8 +23,8 @@ public class Conductor : MonoBehaviour
 	public static event BeatOnHitAction BeatOnHitEvent;
 
 	//keyup action
-	public delegate void KeyUpAction(int trackNumber);
-	public static event KeyUpAction KeyUpEvent;
+	public delegate void KeyUpBeatAction(int trackNumber);
+	public static event KeyUpBeatAction KeyUpBeatEvent;
 
 	//song completion
 	public delegate void SongCompletedAction();
@@ -115,23 +115,18 @@ public class Conductor : MonoBehaviour
 			//take care multi-notes inside update
 			if (frontNode.times > 0) return;
 
-			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
+			//long notes
 			if (frontNode.duration > 0)
-			{
-				if (offsetY < perfectOffsetY + (frontNode.duration / 2f))
-				{
+            {
+				if (frontNode.paused && frontNode.beat + 0.2f > songposition)
+                {
 					frontNode.ringSprite.color = Color.green;
 					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
-				else if (offsetY < goodOffsetY + (frontNode.duration / 2f))
-				{
-					frontNode.ringSprite.color = Color.yellow;
-				}
-				else if (offsetY < badOffsetY + (frontNode.duration / 2f))
-				{
-					frontNode.ringSprite.color = Color.red;
-				}
-			}
+            }
+
+			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
+
 			if (frontNode.times == 0 && frontNode.duration == 0)
 			{
 				if (offsetY < perfectOffsetY) //perfect hit
@@ -162,10 +157,8 @@ public class Conductor : MonoBehaviour
 		{
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 			if (frontNode.duration == 0) return;
-			KeyUpEvent?.Invoke(trackNumber);
+			KeyUpBeatEvent?.Invoke(trackNumber);
 			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT); queueForTracks[trackNumber].Dequeue(); }
-			if (frontNode.ringSprite.color == Color.yellow) { frontNode.GoodHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.GOOD); queueForTracks[trackNumber].Dequeue(); }
-			if (frontNode.ringSprite.color == Color.red) { frontNode.BadHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.BAD); queueForTracks[trackNumber].Dequeue(); }
 		}
 	}
 
@@ -249,8 +242,9 @@ public class Conductor : MonoBehaviour
 
 	void Update()
 	{
-		//for count down
-		if (!songStarted) return;
+
+			//for count down
+			if (!songStarted) return;
 
 		//for pausing
 		if (paused)
@@ -277,7 +271,7 @@ public class Conductor : MonoBehaviour
 		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
 
 		//check if need to instantiate new nodes
-		float beatToShow = songposition + BeatsShownOnScreen;
+		float beatToShow = songposition + (BeatsShownOnScreen / tempo);
 
 		//loop the tracks for new MusicNodes
 		for (int i = 0; i < len; i++)
@@ -344,7 +338,7 @@ public class Conductor : MonoBehaviour
 			}
 
 			//long note
-			else if (currNode.duration > 0 && currNode.transform.position.y <= finishLineY - currNode.duration)
+			else if (currNode.duration > 0 && currNode.transform.position.y <= finishLineY)
 			{
 				if (previousMusicNodes[i] != null)
 				{
@@ -352,9 +346,20 @@ public class Conductor : MonoBehaviour
 					previousMusicNodes[i] = null;
 					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 				}
-				currNode.ringSprite.color = trackColors[i];
-				KeyUpEvent?.Invoke(i);
-				queueForTracks[i].Dequeue();
+				//pause the note
+				currNode.paused = true;
+				if (!currNode.restartedLong)
+                {
+					//align to finish line
+					currNode.transform.position = new Vector3(currNode.transform.position.x, finishLineY, currNode.transform.position.z);
+				}
+				//keep long note at the position til duration ends
+				if (songposition > currNode.beat + currNode.duration)
+                {
+					currNode.restartedLong = true;
+					KeyUpBeatEvent?.Invoke(i);
+					queueForTracks[i].Dequeue();
+				}
 			}
 			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
 			{

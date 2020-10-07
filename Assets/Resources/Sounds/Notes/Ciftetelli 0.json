@@ -1,0 +1,920 @@
+﻿{
+    "name": "Ciftetelli 0",
+    "maxBlock": 3,
+    "BPM": 80,
+    "offset": 0,
+    "notes": [
+        {
+            "LPB": 12,
+            "num": 36,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 48,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 66,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 75,
+            "block": 0,
+            "type": 2,
+            "length": 10,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 96,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 114,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 126,
+            "block": 2,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 144,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 162,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 171,
+            "block": 0,
+            "type": 2,
+            "length": 10,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 192,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 210,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 221,
+            "block": 2,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 240,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 249,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 267,
+            "block": 0,
+            "type": 2,
+            "length": 10,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 288,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 300,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 324,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 336,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 348,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 360,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 372,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 384,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 396,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 408,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 414,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 420,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 426,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 432,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 441,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 444,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 450,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 462,
+            "block": 0,
+            "type": 2,
+            "length": 8,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 480,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 510,
+            "block": 2,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 522,
+            "block": 0,
+            "type": 2,
+            "length": 15,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 552,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 570,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 576,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 585,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 594,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 612,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 624,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 633,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 642,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 651,
+            "block": 0,
+            "type": 2,
+            "length": 11,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 672,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 681,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 691,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 703,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 713,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 729,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 738,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 768,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 786,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 796,
+            "block": 2,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 816,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 825,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 834,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 834,
+            "block": 0,
+            "type": 2,
+            "length": 19,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 861,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 868,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 873,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 882,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 892,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 900,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 906,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 912,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 912,
+            "block": 2,
+            "type": 2,
+            "length": 19,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 935,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 942,
+            "block": 0,
+            "type": 3,
+            "length": 0,
+            "times": 2
+        },
+        {
+            "LPB": 12,
+            "num": 960,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 972,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 984,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 990,
+            "block": 0,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 1008,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1056,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1065,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1074,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1083,
+            "block": 0,
+            "type": 3,
+            "length": 0,
+            "times": 3
+        },
+        {
+            "LPB": 12,
+            "num": 1104,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1113,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1122,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1130,
+            "block": 0,
+            "type": 2,
+            "length": 11,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1152,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1161,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1170,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1188,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1200,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1209,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1218,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1220,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1224,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1230,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1236,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1242,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1248,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1257,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1266,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1278,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1296,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1308,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1314,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1332,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1344,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1356,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1362,
+            "block": 2,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1365,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1386,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1392,
+            "block": 2,
+            "type": 2,
+            "length": 9,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1407,
+            "block": 0,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1419,
+            "block": 2,
+            "type": 2,
+            "length": 13,
+            "times": 0
+        },
+        {
+            "LPB": 12,
+            "num": 1440,
+            "block": 1,
+            "type": 1,
+            "length": 0,
+            "times": 0
+        }
+    ]
+}
