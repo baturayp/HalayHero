@@ -11,6 +11,7 @@ public class MusicNode : MonoBehaviour
 	public LineRenderer longLineRenderer;
 	public Sprite singleSprite;
 	public Sprite longSprite;
+	public Color color;
 	[NonSerialized] public float startY;
 	[NonSerialized] public float endY;
 	[NonSerialized] public float removeLineY;
@@ -30,6 +31,7 @@ public class MusicNode : MonoBehaviour
 		this.times = times;
 		this.duration = duration;
 		this.removeLineY = removeLineY;
+		this.color = color;
 
 		paused = false;
 		restartedLong = false;
@@ -45,6 +47,7 @@ public class MusicNode : MonoBehaviour
 
 		//set color
 		ringSprite.color = color;
+		SetGradientColors(color, color, 1);
 
 		//set scale
 		transform.localScale = new Vector3(1, 1, 1);
@@ -62,7 +65,7 @@ public class MusicNode : MonoBehaviour
 		}
 		else if (duration > 0)
 		{
-			ringSprite.color = Color.red;
+			ringSprite.color = Color.blue;
 			timesTextBackground.SetActive(false);
 			ringSprite.sprite = longSprite;
 			longLineRenderer.enabled = true;
@@ -170,5 +173,17 @@ public class MusicNode : MonoBehaviour
 		paused = true;
 		ringSprite.color = Color.red;
 		DeactivationRedirector();
+	}
+
+	public void SetGradientColors(Color color1, Color color2, float alpha)
+    {
+		Gradient gradient = new Gradient();
+		GradientColorKey startcolor = new GradientColorKey(color1, 0);
+		GradientColorKey endcolor = new GradientColorKey(color2, 1);
+		GradientAlphaKey startalpha = new GradientAlphaKey(alpha, 0);
+		GradientAlphaKey endalpha = new GradientAlphaKey(alpha, 1);
+		gradient.colorKeys = new GradientColorKey[] { startcolor, endcolor };
+		gradient.alphaKeys = new GradientAlphaKey[] { startalpha, endalpha };
+		longLineRenderer.colorGradient = gradient;
 	}
 }

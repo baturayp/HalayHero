@@ -119,16 +119,21 @@ public class Conductor : MonoBehaviour
 			//long notes
 			if (frontNode.duration > 0)
             {
-				if (frontNode.paused && frontNode.beat + 0.25f > songposition - 0.25f && !frontNode.pressed)
+				if (frontNode.paused && frontNode.beat > songposition - 0.25f && !frontNode.pressed)
                 {
 					frontNode.pressed = true;
-					frontNode.ringSprite.color = Color.green;
+					frontNode.SetGradientColors(Color.green, Color.green, 1.0f);
 					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
-            }
+				else if (frontNode.paused && frontNode.beat < songposition)
+				{
+					frontNode.SetGradientColors(Color.red, Color.red, 1.0f);
+				}
+			}
 
 			float offsetY = Mathf.Abs(frontNode.gameObject.transform.position.y - finishLineY);
 
+			//single notes
 			if (frontNode.times == 0 && frontNode.duration == 0)
 			{
 				if (offsetY < perfectOffsetY) //perfect hit
@@ -162,10 +167,7 @@ public class Conductor : MonoBehaviour
 			
 			if (frontNode.paused && !frontNode.pressed)
             {
-				frontNode.DeactivationRedirector();
-				KeyUpBeatEvent?.Invoke(trackNumber);
-				BeatOnHitEvent?.Invoke(trackNumber, Rank.MISS);
-				queueForTracks[trackNumber].Dequeue();
+				frontNode.SetGradientColors(frontNode.color, frontNode.color, 1.0f);
 			}
 
 			if (frontNode.paused && frontNode.pressed)

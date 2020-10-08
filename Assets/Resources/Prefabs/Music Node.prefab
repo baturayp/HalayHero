@@ -103,7 +103,6 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4b2adfba14dbb5847b68b6a1dc0578e4, type: 2}
-  - {fileID: 2100000, guid: 4c0c58ff395864241a2125c0e200bf77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,8 +126,8 @@ LineRenderer:
   m_Positions:
   - {x: 10, y: 0, z: 0}
   - {x: 10, y: 1, z: 0}
-  - {x: 10, y: 2, z: 0}
-  - {x: 10, y: 3, z: 0}
+  - {x: 10, y: 6, z: 0}
+  - {x: 10, y: 7, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 2
