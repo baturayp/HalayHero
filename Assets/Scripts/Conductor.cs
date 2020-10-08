@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using Cinemachine;
+using System.Runtime.InteropServices;
 
 public class Conductor : MonoBehaviour
 {
@@ -118,8 +119,9 @@ public class Conductor : MonoBehaviour
 			//long notes
 			if (frontNode.duration > 0)
             {
-				if (frontNode.paused && frontNode.beat + 0.2f > songposition)
+				if (frontNode.paused && frontNode.beat + 0.25f > songposition - 0.25f && !frontNode.pressed)
                 {
+					frontNode.pressed = true;
 					frontNode.ringSprite.color = Color.green;
 					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
@@ -151,14 +153,28 @@ public class Conductor : MonoBehaviour
 		}
 	}
 
-	void KeyUp(int trackNumber)
+	void KeyUpped(int trackNumber)
 	{
 		if (queueForTracks[trackNumber].Count != 0)
 		{
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
-			if (frontNode.duration == 0) return;
-			KeyUpBeatEvent?.Invoke(trackNumber);
-			if (frontNode.ringSprite.color == Color.green) { frontNode.PerfectHit(); BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT); queueForTracks[trackNumber].Dequeue(); }
+			if (frontNode.duration <= 0) return;
+			
+			if (frontNode.paused && !frontNode.pressed)
+            {
+				frontNode.DeactivationRedirector();
+				KeyUpBeatEvent?.Invoke(trackNumber);
+				BeatOnHitEvent?.Invoke(trackNumber, Rank.MISS);
+				queueForTracks[trackNumber].Dequeue();
+			}
+
+			if (frontNode.paused && frontNode.pressed)
+            {
+				frontNode.PerfectHit();
+				KeyUpBeatEvent?.Invoke(trackNumber);
+				BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+				queueForTracks[trackNumber].Dequeue();
+            }
 		}
 	}
 
@@ -185,7 +201,7 @@ public class Conductor : MonoBehaviour
 
 		//listen to player input
 		PlayerInputControl.InputtedEvent += PlayerInputted;
-		PlayerInputControl.KeyupEvent += KeyUp;
+		PlayerInputControl.KeyupEvent += KeyUpped;
 
 		songLength = songInfo.song.length;
 
@@ -268,7 +284,7 @@ public class Conductor : MonoBehaviour
 		}
 
 		//calculate songposition
-		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
+		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset / 10000f);
 
 		//check if need to instantiate new nodes
 		float beatToShow = songposition + (BeatsShownOnScreen / tempo);
@@ -356,8 +372,10 @@ public class Conductor : MonoBehaviour
 				//keep long note at the position til duration ends
 				if (songposition > currNode.beat + currNode.duration)
                 {
+					if (!currNode.pressed) BeatOnHitEvent?.Invoke(i, Rank.MISS);
+					if (currNode.pressed) KeyUpBeatEvent?.Invoke(i);
 					currNode.restartedLong = true;
-					KeyUpBeatEvent?.Invoke(i);
+					queueForTracks[i].Dequeue();
 				}
 			}
 			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
@@ -401,6 +419,7 @@ public class Conductor : MonoBehaviour
 	void OnDestroy()
 	{
 		PlayerInputControl.InputtedEvent -= PlayerInputted;
+		PlayerInputControl.KeyupEvent -= KeyUpped;
 	}
 
 	void SetGameObjects(bool state)
