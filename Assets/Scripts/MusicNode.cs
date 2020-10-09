@@ -9,8 +9,6 @@ public class MusicNode : MonoBehaviour
 	public GameObject timesTextBackground;
 	public SpriteRenderer ringSprite;
 	public LineRenderer longLineRenderer;
-	public Sprite singleSprite;
-	public Sprite longSprite;
 	public Color color;
 	[NonSerialized] public float startY;
 	[NonSerialized] public float endY;
@@ -39,10 +37,7 @@ public class MusicNode : MonoBehaviour
 
 		//set position
 		longLineRenderer.enabled = false;
-		longLineRenderer.SetPosition(0, new Vector3(0, 0, 0));
-		longLineRenderer.SetPosition(1, new Vector3(0, 0, 0));
-		longLineRenderer.SetPosition(2, new Vector3(0, 0, 0));
-		longLineRenderer.SetPosition(3, new Vector3(0, 0, 0));
+		ResetLongLinePosition();
 		transform.position = new Vector3(posX, startY, posZ);
 
 		//set color
@@ -60,20 +55,17 @@ public class MusicNode : MonoBehaviour
 		{
 			timesText.text = times.ToString();
 			timesTextBackground.SetActive(true);
-			ringSprite.sprite = singleSprite;
 			longLineRenderer.enabled = false;
 		}
 		else if (duration > 0)
 		{
-			ringSprite.color = Color.blue;
 			timesTextBackground.SetActive(false);
-			ringSprite.sprite = longSprite;
+			ringSprite.color = new Color(1, 1, 1, 0);
 			longLineRenderer.enabled = true;
 		}
 		else
 		{
 			timesTextBackground.SetActive(false);
-			ringSprite.sprite = singleSprite;
 			longLineRenderer.enabled = false;
 		}
 
@@ -108,13 +100,13 @@ public class MusicNode : MonoBehaviour
 		transform.position = new Vector3(transform.position.x, startY + (endY - startY) * (1f - ((beat) - Conductor.songposition) / (Conductor.BeatsShownOnScreen / Conductor.tempo)), transform.position.z);
 	}
 
-	public void DeactivationRedirector()
+	public void DeactivationRedirector(Color color)
     {
-		if (duration > 0) gameObject.SetActive(false);
-		else StartCoroutine(FadeOut());
+		if (duration > 0) StartCoroutine(FadeOutLong(color));
+		else StartCoroutine(FadeOutSingle());
     }
 
-	IEnumerator FadeOut()
+	IEnumerator FadeOutSingle()
 	{
 		float elapsedTime = 0.0f;
 		Color c = ringSprite.color;
@@ -129,6 +121,19 @@ public class MusicNode : MonoBehaviour
 		gameObject.SetActive(false);
 	}
 
+	IEnumerator FadeOutLong(Color color)
+	{
+		float elapsedTime = 0.0f;
+		float alpha = 1.0f;
+		while (elapsedTime < 0.2f)
+		{
+			elapsedTime += Time.deltaTime;
+			alpha = 1.0f - Mathf.Clamp01(elapsedTime / 0.2f);
+			SetGradientColors(color, color, alpha);
+			yield return null;
+		}
+		gameObject.SetActive(false);
+	}
 
 	//remove (multi-times note failed), might apply some animations later
 	public void MultiTimesFailed()
@@ -144,8 +149,7 @@ public class MusicNode : MonoBehaviour
 		times--;
 		if (times == 0)
 		{
-			DeactivationRedirector();
-			//gameObject.SetActive(false);
+			DeactivationRedirector(Color.green);
 			return true;
 		}
 
@@ -157,22 +161,30 @@ public class MusicNode : MonoBehaviour
 	public void PerfectHit()
 	{
 		paused = true;
-		ringSprite.color = Color.green;
-		DeactivationRedirector();
+		if (duration == 0) ringSprite.color = Color.green;
+		DeactivationRedirector(Color.green);
 	}
 
 	public void GoodHit()
 	{
 		paused = true;
-		ringSprite.color = Color.yellow;
-		DeactivationRedirector();
+		if (duration == 0) ringSprite.color = Color.yellow;
+		DeactivationRedirector(Color.yellow);
 	}
 
 	public void BadHit()
 	{
 		paused = true;
-		ringSprite.color = Color.red;
-		DeactivationRedirector();
+		if (duration == 0) ringSprite.color = Color.red;
+		DeactivationRedirector(Color.red);
+	}
+
+	void ResetLongLinePosition()
+    {
+		longLineRenderer.SetPosition(0, new Vector3(0, 0, 0));
+		longLineRenderer.SetPosition(1, new Vector3(0, 0, 0));
+		longLineRenderer.SetPosition(2, new Vector3(0, 0, 0));
+		longLineRenderer.SetPosition(3, new Vector3(0, 0, 0));
 	}
 
 	public void SetGradientColors(Color color1, Color color2, float alpha)

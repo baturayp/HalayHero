@@ -119,12 +119,18 @@ public class Conductor : MonoBehaviour
 			//long notes
 			if (frontNode.duration > 0)
             {
-				if (frontNode.paused && frontNode.beat > songposition - 0.25f && !frontNode.pressed)
+				//not paused, ignore
+				if (!frontNode.paused) return;
+
+				//right time to start pressing
+				if (frontNode.paused && frontNode.beat > songposition - 0.30f && !frontNode.pressed)
                 {
 					frontNode.pressed = true;
 					frontNode.SetGradientColors(Color.green, Color.green, 1.0f);
 					BeatOnHitEvent?.Invoke(trackNumber, Rank.CONT);
 				}
+
+				//if too late to press
 				else if (frontNode.paused && frontNode.beat < songposition)
 				{
 					frontNode.SetGradientColors(Color.red, Color.red, 1.0f);
@@ -164,18 +170,47 @@ public class Conductor : MonoBehaviour
 		{
 			MusicNode frontNode = queueForTracks[trackNumber].Peek();
 			if (frontNode.duration <= 0) return;
-			
-			if (frontNode.paused && !frontNode.pressed)
+			if (!frontNode.paused) return;
+			if (frontNode.restartedLong) return;
+
+			float endTarget = frontNode.beat + frontNode.duration;
+
+			//keyup action when not pressed on right-time
+			if (frontNode.paused && !frontNode.pressed && !frontNode.restartedLong)
             {
-				frontNode.SetGradientColors(frontNode.color, frontNode.color, 1.0f);
+				frontNode.BadHit();
+				KeyUpBeatEvent?.Invoke(trackNumber);
+				BeatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+				queueForTracks[trackNumber].Dequeue();
 			}
 
-			if (frontNode.paused && frontNode.pressed)
+			//if pressed on right-time and released
+			if (frontNode.paused && frontNode.pressed && !frontNode.restartedLong)
             {
-				frontNode.PerfectHit();
-				KeyUpBeatEvent?.Invoke(trackNumber);
-				BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
-				queueForTracks[trackNumber].Dequeue();
+				if (songposition > endTarget - 0.25f)
+                {
+					frontNode.SetGradientColors(Color.green, Color.green, 1.0f);
+					frontNode.PerfectHit();
+					KeyUpBeatEvent?.Invoke(trackNumber);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.PERFECT);
+					queueForTracks[trackNumber].Dequeue();
+				}
+				else if (songposition > endTarget - 0.40f)
+                {
+					frontNode.SetGradientColors(Color.yellow, Color.yellow, 1.0f);
+					frontNode.GoodHit();
+					KeyUpBeatEvent?.Invoke(trackNumber);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.GOOD);
+					queueForTracks[trackNumber].Dequeue();
+				}
+				else
+                {
+					frontNode.SetGradientColors(Color.red, Color.red, 1.0f);
+					frontNode.BadHit();
+					KeyUpBeatEvent?.Invoke(trackNumber);
+					BeatOnHitEvent?.Invoke(trackNumber, Rank.BAD);
+					queueForTracks[trackNumber].Dequeue();
+				}
             }
 		}
 	}
@@ -286,7 +321,7 @@ public class Conductor : MonoBehaviour
 		}
 
 		//calculate songposition
-		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset / 10000f);
+		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
 
 		//check if need to instantiate new nodes
 		float beatToShow = songposition + (BeatsShownOnScreen / tempo);
@@ -374,13 +409,16 @@ public class Conductor : MonoBehaviour
 				//keep long note at the position til duration ends
 				if (songposition > currNode.beat + currNode.duration)
                 {
-					if (!currNode.pressed) BeatOnHitEvent?.Invoke(i, Rank.MISS);
-					if (currNode.pressed) KeyUpBeatEvent?.Invoke(i);
 					currNode.restartedLong = true;
+					BeatOnHitEvent?.Invoke(i, Rank.MISS);
+					KeyUpBeatEvent?.Invoke(i);
+					currNode.DeactivationRedirector(Color.red);
 					queueForTracks[i].Dequeue();
 				}
 			}
-			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)   //single time note
+
+			//single note
+			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)
 			{
 				//have previous note stuck on the finish line
 				if (previousMusicNodes[i] != null)
@@ -397,7 +435,7 @@ public class Conductor : MonoBehaviour
 
 
 		//check to see if the song reaches its end
-		if (songposition > songLength)
+		if (songposition > songLength || Input.GetKeyDown("space"))
 		{
 			songStarted = false;
 			SongCompletedEvent?.Invoke();

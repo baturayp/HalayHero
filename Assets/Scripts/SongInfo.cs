@@ -111,7 +111,7 @@ public class SongInfo : ScriptableObject
 		JsonData jsonData = FromJson(json.ToString());
 		List<JsonNote> jsonNotes = jsonData.notes.ToList();
 		List<Note> notes = new List<Note>();
-		songOffset = jsonData.offset == 0 ? 0 : jsonData.offset / 1000f;
+		songOffset = jsonData.offset == 0 ? 0 : (1f - ((44100f - jsonData.offset) / 44100f));
 		bpm = jsonData.BPM;
 		if (songTitle == null || songTitle == "") { songTitle = jsonData.name; }
 
@@ -132,7 +132,7 @@ public class SongInfo : ScriptableObject
     {
 		var noteAsset = new Note
 		{
-			dueTo = ((float)(note.num) / (note.LPB) / (BPM / 60f)),
+			dueTo = (float)(note.num) / (note.LPB) / (BPM / 60f),
 			manyTimes = note.type == 3 ? note.times : 0,
 			duration = note.type == 2 ? ((float)(note.num + note.length) / (note.LPB) / (BPM / 60f)) - ((float)(note.num) / (note.LPB) / (BPM / 60f)) : 0,
 			track = track,

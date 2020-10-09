@@ -84,6 +84,7 @@ public class PlayingUIController : MonoBehaviour
 			currCombo++;
 
 			maxCombo = Mathf.Max(maxCombo, currCombo);
+
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
@@ -94,6 +95,7 @@ public class PlayingUIController : MonoBehaviour
 			currCombo++;
 
 			maxCombo = Mathf.Max(maxCombo, currCombo);
+			
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
@@ -101,6 +103,7 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo = 0;
+
 		}
 		else if (rank == Conductor.Rank.MISS)
 		{
@@ -109,6 +112,7 @@ public class PlayingUIController : MonoBehaviour
 
 			//update combo
 			currCombo = 0;
+
 		}
 
 		//dancer combo placemarks

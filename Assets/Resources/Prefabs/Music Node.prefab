@@ -233,7 +233,8 @@ MonoBehaviour:
   ringSprite: {fileID: 8789520776732454305}
   longLineRenderer: {fileID: 4838248177174125875}
   singleSprite: {fileID: 21300000, guid: 87dacdf37daf5ce4183c2f4ff20ad558, type: 3}
-  longSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  longSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1961076083788709701
 GameObject:
   m_ObjectHideFlags: 0
