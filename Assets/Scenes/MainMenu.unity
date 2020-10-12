@@ -3106,8 +3106,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xA9 2020\nAll rights reserved.\n\n\nHur\u015Fit Tola\nBaturay Palas\n\n\n<i>3rd
-    party licenses:</i>\n\nHVD Comic Serif Pro\n<size=25>https://www.hvdfonts.com/licenses/app</size>\nIcons8\n<size=25>https://icons8.com</size>\nBoots-cuts\n<size=25>https://github.com/YuChaoGithub/boots-cuts</size>"
+  m_text: "\xA9 2020\nAll rights reserved.\n\n\n\n\n\n\n<i>3rd party licenses:</i>\n\nHVD
+    Comic Serif Pro\n<size=25>https://www.hvdfonts.com/licenses/app</size>\nIcons8\n<size=25>https://icons8.com</size>\nBoots-cuts\n<size=25>https://github.com/YuChaoGithub/boots-cuts</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,

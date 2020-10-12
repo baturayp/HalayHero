@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.Accessibility;
 
 public class PlayingUIController : MonoBehaviour
 {
@@ -14,15 +15,13 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject tissue;
 	public GameObject gun;
 
-	//combo
-	public Image comboCircle;
-	public Text comboScoreText;
-	public GameObject comboText;
+	//in-game score panel
+	public GameObject score;
 
-	//perfection
-	public Image perfectionCircle;
-	public Text perfectionScoreText;
-	public GameObject perfectionText;
+	//score texts
+	public GameObject comboScoreText;
+	public GameObject perfectionScoreText;
+	public GameObject timeRemainingText;
 
 	//colors for scores
 	public Color zeroColor;
@@ -35,6 +34,9 @@ public class PlayingUIController : MonoBehaviour
 	private int fullNoteCounts;
 	private int currPerfection = 0; //good: +1, perfect: +2 (full: fullCount * 2)
 
+	//fade in-out layer
+	public Image fadeInOut;
+
 	//pause scene
 	public GameObject pauseButton;
 	public GameObject pauseScene;
@@ -45,13 +47,15 @@ public class PlayingUIController : MonoBehaviour
 
 	//finish scene
 	public GameObject finishedScene;
-	public GameObject finishedSuccessText;
 	public GameObject finishVCam;
-	public GameObject tapSpheres;
-	public GameObject score;
-	public GameObject finishedScore;
-	public GameObject finalCombo;
-	public GameObject finalPerfection;
+	public GameObject mainCamera;
+	public GameObject finishedSuccessState;
+	public GameObject finishedFailState;
+	public GameObject finalStarImage;
+	public GameObject finalStarText;
+	public GameObject finalMedalText;
+	public GameObject finalMedalImage;
+	public GameObject finishedControls;
 
 	public AudioSource songAudioSource; //bad design, but whatever!
 
@@ -65,7 +69,8 @@ public class PlayingUIController : MonoBehaviour
 		Conductor.SongCompletedEvent += SongCompleted;
 	}
 
-	void OnDestroy()
+
+    void OnDestroy()
 	{
 		//unregister from events
 		Conductor.BeatOnHitEvent -= BeatOnHit;
@@ -142,20 +147,15 @@ public class PlayingUIController : MonoBehaviour
 	void UpdateScoreUI()
 	{
 		//text
-		comboScoreText.text = currCombo == 0 ? "-" : currCombo.ToString();
-		perfectionScoreText.text = currPerfection == 0 ? "-" : string.Format("%{0:F0}", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
+		string newCombo = currCombo == 0 ? "-" : currCombo.ToString();
+		comboScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo;
+		perfectionScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = currPerfection == 0 ? "-" : string.Format("%{0:F0}", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
 
 		//color
-		Color comboColor = currCombo == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currCombo / (float)fullNoteCounts);
-		Color perfectionColor = currPerfection == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currPerfection / (float)(fullNoteCounts * 2));
-
-		comboScoreText.color = comboColor;
-		comboText.GetComponent<TMPro.TextMeshProUGUI>().color = comboColor;
-		comboCircle.color = comboColor;
-
-		perfectionCircle.color = perfectionColor;
-		perfectionScoreText.color = perfectionColor;
-		perfectionText.GetComponent<TMPro.TextMeshProUGUI>().color = perfectionColor;
+		//Color comboColor = currCombo == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currCombo / (float)fullNoteCounts);
+		//Color perfectionColor = currPerfection == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currPerfection / (float)(fullNoteCounts * 2));
+		//comboScoreText.color = comboColor;
+		//perfectionScoreText.color = perfectionColor;
 
 	}
 
@@ -163,7 +163,7 @@ public class PlayingUIController : MonoBehaviour
 	{
 		//display pause scene
 		pauseScene.SetActive(true);
-
+		pauseButton.SetActive(false);
 		Conductor.paused = true;
 	}
 
@@ -172,7 +172,7 @@ public class PlayingUIController : MonoBehaviour
 	{
 		//disable pause scene
 		pauseScene.SetActive(false);
-
+		pauseButton.SetActive(true);
 		Conductor.paused = false;
 	}
 
@@ -191,7 +191,53 @@ public class PlayingUIController : MonoBehaviour
 
 	void SongCompleted()
 	{
-		StartCoroutine(ShowWinScene());
+		StartCoroutine(ScreenFadeIn(true));
+	}
+
+	public void ScreenFadeRedirector(bool fadein)
+    {
+		if (fadein)
+        {
+			fadeInOut.color = new Color(0, 0, 0, 0f);
+			StartCoroutine(ScreenFadeIn(false));
+        }
+		//just fade out
+		if (!fadein)
+        {
+			fadeInOut.color = new Color(0, 0, 0, 1f);
+			StartCoroutine(ScreenFadeOut());
+        }
+    }
+
+	IEnumerator ScreenFadeIn(bool finish)
+	{
+		float elapsedTime = 0.0f;
+		Color c = fadeInOut.color;
+		while (elapsedTime < 0.6f)
+		{
+			elapsedTime += Time.deltaTime;
+			c.a = 0.0f + Mathf.Clamp01(elapsedTime / 0.6f);
+			fadeInOut.color = c;
+			yield return null;
+		}
+		if (finish) 
+		{
+			StartCoroutine(ShowWinScene());
+			StartCoroutine(ScreenFadeOut()); 
+		}
+	}
+
+	IEnumerator ScreenFadeOut()
+    {
+		float elapsedTime = 0.0f;
+		Color c = fadeInOut.color;
+		while (elapsedTime < 0.6f)
+		{
+			elapsedTime += Time.deltaTime;
+			c.a = 1.0f - Mathf.Clamp01(elapsedTime / 0.6f);
+			fadeInOut.color = c;
+			yield return null;
+		}
 	}
 
 	IEnumerator ShowWinScene()
@@ -199,32 +245,34 @@ public class PlayingUIController : MonoBehaviour
 		//hide scene elements and start to show finish items
 		finishedScene.SetActive(true);
 		finishVCam.SetActive(true);
-		tapSpheres.SetActive(false);
+		mainCamera.SetActive(false);
 		pauseButton.SetActive(false);
 		score.SetActive(false);
 		
 		yield return new WaitForSeconds(DelayBetweenElements);
 		
-		finishedScore.SetActive(true);
+		finishedControls.SetActive(true);
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
 		//combo animation
-		finalCombo.SetActive(true);
+		finalStarImage.SetActive(true);
+		finalStarText.SetActive(true);
 		float i = 0f;
 		while (i <= 1f)
 		{
 			i += Time.deltaTime / NumberAnimationDuration;
 			int newCombo = (int)Mathf.Lerp(0f, (float)maxCombo, i);
-			finalCombo.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo.ToString();
+			finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo.ToString();
 			yield return null;
 		}
 		//ensure correct score shown
-		finalCombo.GetComponent<TMPro.TextMeshProUGUI>().text = maxCombo.ToString();
+		finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = maxCombo.ToString();
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
-		finalPerfection.SetActive(true);
+		finalMedalImage.SetActive(true);
+		finalMedalText.SetActive(true);
 		//perfection animation
 		float perfectionPercentage = (float)currPerfection / (float)(fullNoteCounts * 2) * 100f;
 		i = 0f;
@@ -232,15 +280,15 @@ public class PlayingUIController : MonoBehaviour
 		{
 			i += Time.deltaTime / NumberAnimationDuration;
 			float newPerfection = Mathf.Lerp(0f, perfectionPercentage, i);
-			finalPerfection.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", newPerfection);
+			finalMedalText.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", newPerfection);
 			yield return null;
 		}
 		//ensure correct percentage shown
-		finalPerfection.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", perfectionPercentage);
+		finalMedalText.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", perfectionPercentage);
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
-		finishedSuccessText.SetActive(true);
+		finishedSuccessState.SetActive(true);
 
 		yield return null;
 	}
