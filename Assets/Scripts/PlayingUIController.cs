@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.Accessibility;
+using System;
 
 public class PlayingUIController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject comboScoreText;
 	public GameObject perfectionScoreText;
 	public GameObject timeRemainingText;
+	public Animator comboIcon;
+	public Animator perfectIcon;
 
 	//colors for scores
 	public Color zeroColor;
@@ -36,6 +39,11 @@ public class PlayingUIController : MonoBehaviour
 
 	//fade in-out layer
 	public Image fadeInOut;
+
+	//chronometer parts
+	public GameObject chronoMain;
+	public GameObject chronoMinute;
+	public GameObject chronoSeconds;
 
 	//pause scene
 	public GameObject pauseButton;
@@ -69,6 +77,17 @@ public class PlayingUIController : MonoBehaviour
 		Conductor.SongCompletedEvent += SongCompleted;
 	}
 
+	private void Update()
+	{
+		float remainingTime = Conductor.remainingTime;
+		float songLength = SongInfoMessenger.Instance.currentSong.song.length;
+		TimeSpan remTime = TimeSpan.FromSeconds(remainingTime);
+		float correctedSecAngle = -45 - ((60 - remTime.Seconds) * 6);
+		float correctedMinAngle = 1 / (songLength / Conductor.songposition);
+		chronoSeconds.transform.eulerAngles = new Vector3(0f, 0f, correctedSecAngle);
+		chronoMinute.GetComponent<Image>().fillAmount = correctedMinAngle;
+	}
+
 
     void OnDestroy()
 	{
@@ -82,42 +101,29 @@ public class PlayingUIController : MonoBehaviour
 	{
 		if (rank == Conductor.Rank.PERFECT)
 		{
-			//update perfection
+			comboIcon.Play("ComboIconHit");
+			perfectIcon.Play("PerfectAnimHit");
 			currPerfection += 2;
-
-			//update combo
 			currCombo++;
-
 			maxCombo = Mathf.Max(maxCombo, currCombo);
-
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
-			//update perfection
 			currPerfection++;
-
-			//update combo
 			currCombo++;
-
 			maxCombo = Mathf.Max(maxCombo, currCombo);
-			
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
 			maxCombo = Mathf.Max(maxCombo, currCombo);
-
-			//update combo
 			currCombo = 0;
-
 		}
 		else if (rank == Conductor.Rank.MISS)
 		{
 			//check if it is max combo
 			maxCombo = Mathf.Max(maxCombo, currCombo);
-
 			//update combo
 			currCombo = 0;
-
 		}
 
 		//dancer combo placemarks
@@ -193,21 +199,6 @@ public class PlayingUIController : MonoBehaviour
 	{
 		StartCoroutine(ScreenFadeIn(true));
 	}
-
-	public void ScreenFadeRedirector(bool fadein)
-    {
-		if (fadein)
-        {
-			fadeInOut.color = new Color(0, 0, 0, 0f);
-			StartCoroutine(ScreenFadeIn(false));
-        }
-		//just fade out
-		if (!fadein)
-        {
-			fadeInOut.color = new Color(0, 0, 0, 1f);
-			StartCoroutine(ScreenFadeOut());
-        }
-    }
 
 	IEnumerator ScreenFadeIn(bool finish)
 	{

@@ -255,7 +255,6 @@ MonoBehaviour:
   vcCam1: {fileID: 2042127376}
   cineCam: {fileID: 2042127377}
   scoreBoard: {fileID: 890182044}
-  chronoMeter: {fileID: 890182045}
   trackSpawnPosX:
   - -7
   - 5
@@ -3312,12 +3311,6 @@ PrefabInstance:
 --- !u!1 &890182044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7486977591612649081, guid: e12e70d4a29d6594092965241800a512,
-    type: 3}
-  m_PrefabInstance: {fileID: 890182043}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &890182045 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2780172337632527644, guid: e12e70d4a29d6594092965241800a512,
     type: 3}
   m_PrefabInstance: {fileID: 890182043}
   m_PrefabAsset: {fileID: 0}
@@ -15408,6 +15401,11 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: 7c52454140be2f34087b5b6331c794d5,
         type: 3}
       propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 7c52454140be2f34087b5b6331c794d5,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6011746770486952526, guid: 7c52454140be2f34087b5b6331c794d5,

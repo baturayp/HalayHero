@@ -40,7 +40,6 @@ public class Conductor : MonoBehaviour
 
 	//in-game scoreboard and chrono
 	public GameObject scoreBoard;
-	public GameObject chronoMeter;
 
 	public static float pauseTimeStamp = -1f; //negative means not managed
 	private float pausedTime = 0f;
@@ -65,6 +64,7 @@ public class Conductor : MonoBehaviour
 
 	//current song position
 	public static float songposition;
+	public static float remainingTime;
 
 	//index for each tracks
 	private int[] trackNextIndices;
@@ -330,7 +330,7 @@ public class Conductor : MonoBehaviour
 		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
 
 		//remaining time
-		float remainingTime = songLength - songposition;
+		remainingTime = songLength - songposition;
 
 		//check if need to instantiate new nodes
 		float beatToShow = songposition + (BeatsShownOnScreen / tempo);
@@ -441,10 +441,6 @@ public class Conductor : MonoBehaviour
 				BeatOnHitEvent?.Invoke(i, Rank.MISS);
 			}
 		}
-
-		//update in-game chronometer
-		TimeSpan remTime = TimeSpan.FromSeconds(remainingTime);
-		chronoMeter.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:00}:{1:00}", remTime.Minutes, remTime.Seconds);
 
 		//check to see if the song reaches its end
 		if (songposition > songLength || Input.GetKeyDown("space"))
