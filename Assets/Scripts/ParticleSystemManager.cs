@@ -7,7 +7,7 @@ public class ParticleSystemManager : MonoBehaviour
 	public ParticleSet[] particleSet;
 
 	public ParticleSystem perfectionEffect;
-	public ParticleSystem comboEffect;
+	public ParticleSystem heartScoreEffect;
 
 	void Start()
 	{
@@ -28,19 +28,21 @@ public class ParticleSystemManager : MonoBehaviour
 		{
 			particleSet[track].perfect.Play();
 			perfectionEffect.Play();
-			comboEffect.Play();
+			heartScoreEffect.Play();
 		}
 		if (rank == Conductor.Rank.GOOD)
 		{
-			//particleSet[track].good.Play();
-			comboEffect.Play();
+			perfectionEffect.Play();
+			particleSet[track].good.Play();
+		}
+		if (rank == Conductor.Rank.BAD)
+		{
+			particleSet[track].bad.Play();
 		}
 		if (rank == Conductor.Rank.CONT)
 		{
 			particleSet[track].cont.Play();
 		}
-
-		//do nothing if missed
 	}
 
 	void KeyUpBeat(int track)

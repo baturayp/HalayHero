@@ -24400,7 +24400,7 @@ GameObject:
   - component: {fileID: 4515234413186256210}
   - component: {fileID: 4515234413186256209}
   m_Layer: 0
-  m_Name: Perfection
+  m_Name: PerfectionScoreParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24414,7 +24414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4515234413186256208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 4.15, z: 1}
+  m_LocalPosition: {x: 1.3, y: 4.15, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 4515234413219593769}
@@ -29321,7 +29321,7 @@ MonoBehaviour:
     bad: {fileID: 4515234412891249126}
     cont: {fileID: 4515234412677041671}
   perfectionEffect: {fileID: 4515234413186256209}
-  comboEffect: {fileID: 4515234413822821989}
+  heartScoreEffect: {fileID: 4515234413822821989}
 --- !u!1 &4515234413259556819
 GameObject:
   m_ObjectHideFlags: 0
@@ -39110,7 +39110,7 @@ GameObject:
   - component: {fileID: 4515234413822821990}
   - component: {fileID: 4515234413822821989}
   m_Layer: 0
-  m_Name: Combo
+  m_Name: HeartScoreParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39124,7 +39124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4515234413822821988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: 4.15, z: 1}
+  m_LocalPosition: {x: -1.51, y: 4.15, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 4515234413219593769}

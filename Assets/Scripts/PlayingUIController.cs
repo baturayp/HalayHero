@@ -18,22 +18,20 @@ public class PlayingUIController : MonoBehaviour
 
 	//in-game score panel
 	public GameObject score;
+	public GameObject heartLeft;
+	public GameObject heartCenter;
+	public GameObject warningIcon;
 
 	//score texts
-	public GameObject comboScoreText;
+	public GameObject heartScoreText;
 	public GameObject perfectionScoreText;
-	public GameObject timeRemainingText;
-	public Animator comboIcon;
+	public Animator heartIcon;
 	public Animator perfectIcon;
-
-	//colors for scores
-	public Color zeroColor;
-	public Color startColor;
-	public Color fullColor;
+	public Animator heartScoreAnim;
 
 	//save score
-	private int maxCombo = 0;
-	private int currCombo = 0;
+	private int heartsLeft = 2;
+	private int currHeartCount = 5;
 	private int fullNoteCounts;
 	private int currPerfection = 0; //good: +1, perfect: +2 (full: fullCount * 2)
 
@@ -79,6 +77,7 @@ public class PlayingUIController : MonoBehaviour
 
 	private void Update()
 	{
+		//in-game chronometer logic
 		float remainingTime = Conductor.remainingTime;
 		float songLength = SongInfoMessenger.Instance.currentSong.song.length;
 		TimeSpan remTime = TimeSpan.FromSeconds(remainingTime);
@@ -101,43 +100,70 @@ public class PlayingUIController : MonoBehaviour
 	{
 		if (rank == Conductor.Rank.PERFECT)
 		{
-			comboIcon.Play("ComboIconHit");
+			//icon animations
+			heartIcon.SetTrigger("HeartHit");
 			perfectIcon.Play("PerfectAnimHit");
+			heartScoreAnim.SetTrigger("scoreup");
+			//heart count can be maximum 10
+			if (currHeartCount < 10) currHeartCount++;
+			//update perfection
 			currPerfection += 2;
-			currCombo++;
-			maxCombo = Mathf.Max(maxCombo, currCombo);
 		}
 		else if (rank == Conductor.Rank.GOOD)
 		{
 			currPerfection++;
-			currCombo++;
-			maxCombo = Mathf.Max(maxCombo, currCombo);
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
-			maxCombo = Mathf.Max(maxCombo, currCombo);
-			currCombo = 0;
+			if (currHeartCount > 0)
+            {
+				currHeartCount--;
+            }
 		}
 		else if (rank == Conductor.Rank.MISS)
 		{
-			//check if it is max combo
-			maxCombo = Mathf.Max(maxCombo, currCombo);
-			//update combo
-			currCombo = 0;
+			//first heart loss
+			if (currHeartCount == 0 && heartsLeft == 2)
+			{
+				heartsLeft = 1;
+				currHeartCount = 5;
+				HeartsLeft1();
+			}
+			//second heart loss
+			else if (currHeartCount == 0 && heartsLeft == 1)
+			{
+				heartsLeft = 0;
+				currHeartCount = 5;
+				HeartsLeft0();
+			}
+			else if (currHeartCount == 0 && heartsLeft == 0)
+			{
+				//when no more hearst left
+			}
+			else
+			{
+				currHeartCount--;
+			}
 		}
 
 		//dancer combo placemarks
-		if(currCombo == 10)
+		//if(currCombo == 10)
+		//{
+		//	TriggerAnim(1);
+		//}
+		//if(currCombo == 15)
+		//{
+		//	TriggerAnim(2);
+		//}
+		//if(currCombo == 25)
+		//{
+		//	TriggerAnim(3);
+		//}
+
+		//enable warning sign on low rank
+		if (currHeartCount == 3 && heartsLeft == 0)
 		{
-			TriggerAnim(1);
-		}
-		if(currCombo == 15)
-		{
-			TriggerAnim(2);
-		}
-		if(currCombo == 25)
-		{
-			TriggerAnim(3);
+			warningIcon.GetComponent<Animator>().enabled = true;
 		}
 
 		UpdateScoreUI();
@@ -152,17 +178,26 @@ public class PlayingUIController : MonoBehaviour
 
 	void UpdateScoreUI()
 	{
-		//text
-		string newCombo = currCombo == 0 ? "-" : currCombo.ToString();
-		comboScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo;
+		string newCombo = currHeartCount.ToString();
+		heartScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo;
 		perfectionScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = currPerfection == 0 ? "-" : string.Format("%{0:F0}", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
+	}
 
-		//color
-		//Color comboColor = currCombo == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currCombo / (float)fullNoteCounts);
-		//Color perfectionColor = currPerfection == 0 ? zeroColor : Color.Lerp(startColor, fullColor, (float)currPerfection / (float)(fullNoteCounts * 2));
-		//comboScoreText.color = comboColor;
-		//perfectionScoreText.color = perfectionColor;
+	void HeartsLeft1()
+    {
+		heartIcon.SetTrigger("HeartLost");
+		heartScoreAnim.SetTrigger("zero");
+		heartCenter.GetComponent<Animator>().enabled = true;
+		heartLeft.GetComponent<Animator>().enabled = true;
+	}
 
+	void HeartsLeft0()
+    {
+		heartIcon.SetTrigger("HeartLost");
+		heartScoreAnim.SetTrigger("zero");
+		heartCenter.SetActive(false);
+		heartLeft.SetActive(false);
+		heartCenter.SetActive(true);
 	}
 
 	public void PauseButtonOnClick()
@@ -170,6 +205,7 @@ public class PlayingUIController : MonoBehaviour
 		//display pause scene
 		pauseScene.SetActive(true);
 		pauseButton.SetActive(false);
+		heartIcon.enabled = false;
 		Conductor.paused = true;
 	}
 
@@ -179,6 +215,7 @@ public class PlayingUIController : MonoBehaviour
 		//disable pause scene
 		pauseScene.SetActive(false);
 		pauseButton.SetActive(true);
+		heartIcon.enabled = true;
 		Conductor.paused = false;
 	}
 
@@ -190,17 +227,16 @@ public class PlayingUIController : MonoBehaviour
 
 	public void HomeButtonOnClick()
 	{
-		//go to home scene
-		SceneManager.LoadSceneAsync("MainMenu");
+		StartCoroutine(ScreenFadeIn(false, true));
 	}
 
 
 	void SongCompleted()
 	{
-		StartCoroutine(ScreenFadeIn(true));
+		StartCoroutine(ScreenFadeIn(true, false));
 	}
 
-	IEnumerator ScreenFadeIn(bool finish)
+	IEnumerator ScreenFadeIn(bool finish, bool returnMain)
 	{
 		float elapsedTime = 0.0f;
 		Color c = fadeInOut.color;
@@ -211,10 +247,18 @@ public class PlayingUIController : MonoBehaviour
 			fadeInOut.color = c;
 			yield return null;
 		}
+		
+		//song completed, slight fade while camera focusing to finish scene
 		if (finish) 
 		{
 			StartCoroutine(ShowWinScene());
 			StartCoroutine(ScreenFadeOut()); 
+		}
+
+		//exit to home button pressed, just fade in
+		if (returnMain)
+        {
+			SceneManager.LoadSceneAsync("MainMenu");
 		}
 	}
 
@@ -253,12 +297,12 @@ public class PlayingUIController : MonoBehaviour
 		while (i <= 1f)
 		{
 			i += Time.deltaTime / NumberAnimationDuration;
-			int newCombo = (int)Mathf.Lerp(0f, (float)maxCombo, i);
+			int newCombo = (int)Mathf.Lerp(0f, (float)currHeartCount, i);
 			finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo.ToString();
 			yield return null;
 		}
 		//ensure correct score shown
-		finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = maxCombo.ToString();
+		finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = currHeartCount.ToString();
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
