@@ -16,6 +16,7 @@ public class SongPickingControl : MonoBehaviour
 	public GameObject settingsLayer;
 	public GameObject aboutLayer;
 	public static bool settingsIsActive = false;
+	public static bool songBoardIsActive = false;
 
 	[Header("Board transforms")]
 	//First Board
@@ -32,7 +33,7 @@ public class SongPickingControl : MonoBehaviour
 	private const float FlipAnimationDuration = 0.25f;
 
 	//rotation
-	//private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
+	private Vector3 verticalFlip = new Vector3(90f, 0f, 0f);
 	private Vector3 horizontalFlip = new Vector3(0f, 90f, 0f);
 
 	//pivot
@@ -92,8 +93,20 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	//antialiasing dropdown setting
-	public void AaChanged(int i)
+	void Start()
+	{
+		LogicScript.OpenSongBoardEvent += FlipToSongFromFirst;
+		LogicScript.CloseSongBoardEvent += FlipToFirstFromSong;
+	}
+
+    void OnDestroy()
+    {
+		LogicScript.OpenSongBoardEvent -= FlipToSongFromFirst;
+		LogicScript.CloseSongBoardEvent -= FlipToFirstFromSong;
+	}
+
+    //antialiasing dropdown setting
+    public void AaChanged(int i)
 	{
 		if (i == 0)
 		{
@@ -135,54 +148,60 @@ public class SongPickingControl : MonoBehaviour
 		}
 	}
 
-	/*menu transition and animations
+    /*menu transition and animations
 	they can be simplified !*/
-	//void FlipToFirstFromSong()
-	//{
-	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
-	//		songBoardTransform,
-	//		Vector3.zero,
-	//		verticalFlip,
-	//		FlipAnimationDuration,
-	//		songBoardTransform.pivot,
-	//		bottomEdgePivot
-	//	));
-	//	StartCoroutine(flipInAnimation.AnimationCoroutine(
-	//		firstBoardTransform,
-	//		verticalFlip,
-	//		Vector3.zero,
-	//		FlipAnimationDuration,
-	//		firstBoardTransform.pivot,
-	//		topEdgePivot
-	//	));
-	//}
+    public void FlipToFirstFromSong()
+    {
+        StartCoroutine(flipOutAnimation.AnimationCoroutine(
+            songBoardTransform,
+            Vector3.zero,
+            verticalFlip,
+            FlipAnimationDuration,
+            songBoardTransform.pivot,
+            bottomEdgePivot
+        ));
+        StartCoroutine(flipInAnimation.AnimationCoroutine(
+            firstBoardTransform,
+            verticalFlip,
+            Vector3.zero,
+            FlipAnimationDuration,
+            firstBoardTransform.pivot,
+            topEdgePivot
+        ));
+		songBoardIsActive = false;
+    }
 
-	//void FlipToSongFromFirst()
-	//{
-	//	StartCoroutine(flipOutAnimation.AnimationCoroutine(
-	//		firstBoardTransform,
-	//		Vector3.zero,
-	//		verticalFlip,
-	//		FlipAnimationDuration,
-	//		firstBoardTransform.pivot,
-	//		topEdgePivot
-	//	));
-	//	StartCoroutine(flipInAnimation.AnimationCoroutine(
-	//		songBoardTransform,
-	//		verticalFlip,
-	//		Vector3.zero,
-	//		FlipAnimationDuration,
-	//		songBoardTransform.pivot,
-	//		bottomEdgePivot
-	//	));
-	//}
+     public void FlipToSongFromFirst()
+    {
+        StartCoroutine(flipOutAnimation.AnimationCoroutine(
+            firstBoardTransform,
+            Vector3.zero,
+            verticalFlip,
+            FlipAnimationDuration,
+            firstBoardTransform.pivot,
+            topEdgePivot
+        ));
+        StartCoroutine(flipInAnimation.AnimationCoroutine(
+            songBoardTransform,
+            verticalFlip,
+            Vector3.zero,
+            FlipAnimationDuration,
+            songBoardTransform.pivot,
+            bottomEdgePivot
+        ));
+		songBoardIsActive = true;
+    }
 
-	public void SettingsButtonToggle()
+    public void SettingsButtonToggle()
 	{
 		if (settingsIsActive)
 		{
 			FlipToFirstFromSettings();
 		}
+		if (songBoardIsActive)
+        {
+			FlipToFirstFromSong();
+        }
 		else
 		{
 			FlipToSettingsFromFirst();

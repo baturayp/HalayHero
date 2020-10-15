@@ -10,23 +10,27 @@ public class LogicScript : MonoBehaviour
 	RaycastHit hit;
 	Ray ray;
 
+	//activate songboard action
+	public delegate void OpenSongBoardAction();
+	public static event OpenSongBoardAction OpenSongBoardEvent;
+	public delegate void CloseSongBoardAction();
+	public static event CloseSongBoardAction CloseSongBoardEvent;
+
 	[Header("Virtual cameras and pins")]
 	public GameObject[] virtCam;
 	public GameObject[] mapPin;
 	public GameObject[] focusVirtCam;
 	private int activeFocus = 0;
-	
+
+	//Collection Frames
+	public GameObject[] frames;
+
 	// song selector controls
 	public SongCollection[] songCollections;
 
-	void Start()
-	{
-
-	}
-
 	void Update()
 	{
-		if (!SongPickingControl.settingsIsActive)
+		if (!SongPickingControl.settingsIsActive && !SongPickingControl.songBoardIsActive)
 		{
 			//swipe controls
 			if (SwipeInput.swipedRight)
@@ -78,7 +82,9 @@ public class LogicScript : MonoBehaviour
 	{
 		if (activeFocus == selected) 
 		{ 
-			SelectSong(selected); 
+			foreach (GameObject frame in frames) { frame.SetActive(false); }
+			frames[selected].SetActive(true);
+			OpenSongBoardEvent?.Invoke();
 		}
 		else
 		{
@@ -122,8 +128,11 @@ public class LogicScript : MonoBehaviour
 
 	public void SelectSong(int selected)
 	{
-		currSong = songCollections[0].songSets[selected].song;
+		currSong = songCollections[selected].songSets[0].song;
 		SongInfoMessenger.Instance.currentSong = currSong;
+		SongInfoMessenger.Instance.currentCollection = songCollections[selected];
+		SongInfoMessenger.Instance.currSongNumber = 0;
+		CloseSongBoardEvent?.Invoke();
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
 		focusVirtCam[selected].SetActive(true);
 		StartCoroutine(WaitBeforeLoad(selected));

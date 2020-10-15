@@ -16,19 +16,12 @@ public class PlayerInputControl : MonoBehaviour
     private KeyCode[] keybindings;
     private KeyCode pauseKey;
 #endif
-    private AudioSource[] audioSources;
     //cache the number of tracks
     private int trackLength;
 
     void Start()
     {
         trackLength = tappingSpheres.Length;
-        audioSources = new AudioSource[trackLength];
-        for (int i = 0; i < trackLength; i++)
-        {
-            audioSources[i] = tappingSpheres[i].GetComponent<AudioSource>();
-        }
-
         //just for debugging
 #if UNITY_EDITOR || UNITY_STANDALONE
         keybindings = new KeyCode[4];
@@ -98,9 +91,6 @@ public class PlayerInputControl : MonoBehaviour
     {
         //inform Conductor and other interested classes
         InputtedEvent?.Invoke(i);
-
-        //play audio clip
-        //audioSources[i].Play();
     }
 
     void Keyup(int i)

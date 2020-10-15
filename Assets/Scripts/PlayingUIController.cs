@@ -30,7 +30,7 @@ public class PlayingUIController : MonoBehaviour
 	public Animator heartScoreAnim;
 
 	//save score
-	private int heartsLeft = 2;
+	private int heartsLeft = 3;
 	private int currHeartCount = 5;
 	private int fullNoteCounts;
 	private int currPerfection = 0; //good: +1, perfect: +2 (full: fullCount * 2)
@@ -48,20 +48,27 @@ public class PlayingUIController : MonoBehaviour
 	public GameObject pauseScene;
 
 	//win scene
-	private const float DelayBetweenElements = 0.5f;
-	private const float NumberAnimationDuration = 2f;
+	private const float DelayBetweenElements = 0.2f;
+
+	//inform conductor when lost before song completed
+	public delegate void LostAction();
+	public static event LostAction LostEvent;
 
 	//finish scene
 	public GameObject finishedScene;
+	public Animator FinishPimp;
 	public GameObject finishVCam;
 	public GameObject mainCamera;
 	public GameObject finishedSuccessState;
 	public GameObject finishedFailState;
 	public GameObject finalStarImage;
-	public GameObject finalStarText;
+	public Image starImagetop;
+	public Image starImagecenter;
+	public Image starImagebottom;
 	public GameObject finalMedalText;
 	public GameObject finalMedalImage;
 	public GameObject finishedControls;
+	public GameObject nextButton;
 
 	public AudioSource songAudioSource; //bad design, but whatever!
 
@@ -103,9 +110,10 @@ public class PlayingUIController : MonoBehaviour
 			//icon animations
 			heartIcon.SetTrigger("HeartHit");
 			perfectIcon.Play("PerfectAnimHit");
-			heartScoreAnim.SetTrigger("scoreup");
-			//heart count can be maximum 10
-			if (currHeartCount < 10) currHeartCount++;
+			
+			//gaining heart points makes game too easy, disable it for now
+			//if (currHeartCount < 5) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+			
 			//update perfection
 			currPerfection += 2;
 		}
@@ -123,22 +131,24 @@ public class PlayingUIController : MonoBehaviour
 		else if (rank == Conductor.Rank.MISS)
 		{
 			//first heart loss
-			if (currHeartCount == 0 && heartsLeft == 2)
+			if (currHeartCount == 0 && heartsLeft == 3)
+			{
+				heartsLeft = 2;
+				currHeartCount = 5;
+				HeartsLeft2();
+			}
+			//second heart loss
+			else if (currHeartCount == 0 && heartsLeft == 2)
 			{
 				heartsLeft = 1;
 				currHeartCount = 5;
 				HeartsLeft1();
 			}
-			//second heart loss
+			//no more hearts left, trigger game loss
 			else if (currHeartCount == 0 && heartsLeft == 1)
 			{
 				heartsLeft = 0;
-				currHeartCount = 5;
-				HeartsLeft0();
-			}
-			else if (currHeartCount == 0 && heartsLeft == 0)
-			{
-				//when no more hearst left
+				LostEvent?.Invoke();
 			}
 			else
 			{
@@ -161,9 +171,9 @@ public class PlayingUIController : MonoBehaviour
 		//}
 
 		//enable warning sign on low rank
-		if (currHeartCount == 3 && heartsLeft == 0)
+		if (currHeartCount == 3 && heartsLeft == 1)
 		{
-			warningIcon.GetComponent<Animator>().enabled = true;
+			warningIcon.SetActive(true);
 		}
 
 		UpdateScoreUI();
@@ -178,12 +188,12 @@ public class PlayingUIController : MonoBehaviour
 
 	void UpdateScoreUI()
 	{
-		string newCombo = currHeartCount.ToString();
+		string newCombo = currHeartCount == 0 ? "" : new String('.', currHeartCount);
 		heartScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo;
 		perfectionScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = currPerfection == 0 ? "-" : string.Format("%{0:F0}", ((float)currPerfection / (float)(fullNoteCounts * 2) * 100f));
 	}
 
-	void HeartsLeft1()
+	void HeartsLeft2()
     {
 		heartIcon.SetTrigger("HeartLost");
 		heartScoreAnim.SetTrigger("zero");
@@ -191,7 +201,7 @@ public class PlayingUIController : MonoBehaviour
 		heartLeft.GetComponent<Animator>().enabled = true;
 	}
 
-	void HeartsLeft0()
+	void HeartsLeft1()
     {
 		heartIcon.SetTrigger("HeartLost");
 		heartScoreAnim.SetTrigger("zero");
@@ -234,6 +244,27 @@ public class PlayingUIController : MonoBehaviour
 	void SongCompleted()
 	{
 		StartCoroutine(ScreenFadeIn(true, false));
+	}
+
+	public void NextButtonOnClick()
+    {
+		int currSongNumber = SongInfoMessenger.Instance.currSongNumber;
+		SongCollection collection = SongInfoMessenger.Instance.currentCollection;
+		int collLength = collection.songSets.Length;
+		if (currSongNumber < collLength - 1)
+		{
+			int curr = currSongNumber + 1;
+			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
+			SongInfoMessenger.Instance.currSongNumber = curr;
+			SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+		}
+		else 
+		{
+			int curr = 0;
+			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
+			SongInfoMessenger.Instance.currSongNumber = curr;
+			SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+		}
 	}
 
 	IEnumerator ScreenFadeIn(bool finish, bool returnMain)
@@ -283,37 +314,35 @@ public class PlayingUIController : MonoBehaviour
 		mainCamera.SetActive(false);
 		pauseButton.SetActive(false);
 		score.SetActive(false);
-		
+
+		//pimp animation
+		if (heartsLeft == 3) FinishPimp.Play("Good");
+		if (heartsLeft == 2 || heartsLeft == 1) FinishPimp.Play("Normal");
+		if (heartsLeft == 0) FinishPimp.Play("Bad");
+
 		yield return new WaitForSeconds(DelayBetweenElements);
 		
 		finishedControls.SetActive(true);
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
-		//combo animation
+		//stars animation
 		finalStarImage.SetActive(true);
-		finalStarText.SetActive(true);
-		float i = 0f;
-		while (i <= 1f)
-		{
-			i += Time.deltaTime / NumberAnimationDuration;
-			int newCombo = (int)Mathf.Lerp(0f, (float)currHeartCount, i);
-			finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = newCombo.ToString();
-			yield return null;
-		}
-		//ensure correct score shown
-		finalStarText.GetComponent<TMPro.TextMeshProUGUI>().text = currHeartCount.ToString();
+		if (heartsLeft < 3) starImagebottom.color = Color.gray;
+		if (heartsLeft < 2) starImagecenter.color = Color.gray;
+		if (heartsLeft < 1) starImagetop.color = Color.gray;
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
 		finalMedalImage.SetActive(true);
 		finalMedalText.SetActive(true);
+
 		//perfection animation
 		float perfectionPercentage = (float)currPerfection / (float)(fullNoteCounts * 2) * 100f;
-		i = 0f;
+		float i = 0f;
 		while (i <= 1f)
 		{
-			i += Time.deltaTime / NumberAnimationDuration;
+			i += Time.deltaTime;
 			float newPerfection = Mathf.Lerp(0f, perfectionPercentage, i);
 			finalMedalText.GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:F0}%", newPerfection);
 			yield return null;
@@ -323,7 +352,16 @@ public class PlayingUIController : MonoBehaviour
 
 		yield return new WaitForSeconds(DelayBetweenElements);
 
-		finishedSuccessState.SetActive(true);
+		if (heartsLeft > 0)
+        {
+			finishedSuccessState.SetActive(true);
+			nextButton.SetActive(true);
+        }
+        else
+        {
+			finishedFailState.SetActive(true);
+			nextButton.SetActive(false);
+        }
 
 		yield return null;
 	}

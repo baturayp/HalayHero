@@ -28,7 +28,7 @@ public class ParticleSystemManager : MonoBehaviour
 		{
 			particleSet[track].perfect.Play();
 			perfectionEffect.Play();
-			heartScoreEffect.Play();
+			//heartScoreEffect.Play();
 		}
 		if (rank == Conductor.Rank.GOOD)
 		{

@@ -1505,7 +1505,6 @@ MonoBehaviour:
   vcCam1: {fileID: 2042127376}
   cineCam: {fileID: 2042127377}
   scoreBoard: {fileID: 1914915632}
-  chronoMeter: {fileID: 1914915631}
   trackSpawnPosX:
   - -7
   - 5
@@ -21867,6 +21866,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194225}
+    - target: {fileID: 763348147430866702, guid: e12e70d4a29d6594092965241800a512,
+        type: 3}
+      propertyPath: FinishPimp
+      value: 
+      objectReference: {fileID: 2139406433}
     - target: {fileID: 763348147430866705, guid: e12e70d4a29d6594092965241800a512,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21979,12 +21983,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12e70d4a29d6594092965241800a512, type: 3}
---- !u!1 &1914915631 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2780172337632527644, guid: e12e70d4a29d6594092965241800a512,
-    type: 3}
-  m_PrefabInstance: {fileID: 1914915630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1914915632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7486977591612649081, guid: e12e70d4a29d6594092965241800a512,
@@ -23905,6 +23903,12 @@ PrefabInstance:
 --- !u!1 &2139406432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 965257777929643534, guid: 6367c1266799fa64f8bf6c181dad256f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2139406431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2139406433 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 965257778277136066, guid: 6367c1266799fa64f8bf6c181dad256f,
     type: 3}
   m_PrefabInstance: {fileID: 2139406431}
   m_PrefabAsset: {fileID: 0}

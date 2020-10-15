@@ -245,6 +245,9 @@ public class Conductor : MonoBehaviour
 		PlayerInputControl.InputtedEvent += PlayerInputted;
 		PlayerInputControl.KeyupEvent += KeyUpped;
 
+		//listen playing ui for lost state
+		PlayingUIController.LostEvent += SongCompleted;
+
 		songLength = songInfo.song.length;
 
 		//initialize arrays
@@ -445,9 +448,14 @@ public class Conductor : MonoBehaviour
 		//check to see if the song reaches its end
 		if (songposition > songLength || Input.GetKeyDown("space"))
 		{
-			songStarted = false;
-			SongCompletedEvent?.Invoke();
+			SongCompleted();
 		}
+	}
+
+	void SongCompleted()
+    {
+		songStarted = false;
+		SongCompletedEvent?.Invoke();
 	}
 
 	IEnumerator CountDown()
@@ -467,7 +475,8 @@ public class Conductor : MonoBehaviour
 	void OnDestroy()
 	{
 		PlayerInputControl.InputtedEvent -= PlayerInputted;
-		PlayerInputControl.KeyupEvent -= KeyUpped;
+		PlayerInputControl.KeyupEvent -= KeyUpped; 
+		PlayingUIController.LostEvent -= SongCompleted;
 	}
 
 	void SetGameObjects(bool state)
