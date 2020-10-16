@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
@@ -26,7 +28,35 @@ public class LogicScript : MonoBehaviour
 	// song selector controls
 	public SongCollection[] songCollections;
 
-	void Update()
+	public Button[] BalkanFrameButtons;
+	public Button[] DugunFrameButtons;
+	public Button[] HalayFrameButtons;
+
+    private void Start()
+    {
+		//get progress
+		int balkanProgress = PlayerPrefs.GetInt("0", 1);
+		int dugunProgress = PlayerPrefs.GetInt("1", 1);
+		int halayProgress = PlayerPrefs.GetInt("2", 1);
+
+		//activate balkan buttons
+		for (int i = 0; i < balkanProgress; i++)
+        {
+			BalkanFrameButtons[i].interactable = true;
+        }
+		//activate dugun buttons
+		for (int i = 0; i < dugunProgress; i++)
+		{
+			DugunFrameButtons[i].interactable = true;
+		}
+		//activate halay buttons
+		for (int i = 0; i < halayProgress; i++)
+		{
+			HalayFrameButtons[i].interactable = true;
+		}
+	}
+
+    void Update()
 	{
 		if (!SongPickingControl.settingsIsActive && !SongPickingControl.songBoardIsActive)
 		{
@@ -112,27 +142,28 @@ public class LogicScript : MonoBehaviour
 		yield return new WaitForSeconds(0.6f);
 		if (scene == 0)
 		{
-			SceneManager.LoadSceneAsync("Gameplay");
+			SceneManager.LoadSceneAsync("Street");
 		}
 		if (scene == 1)
 		{
-			SceneManager.LoadSceneAsync("Forest");
+			SceneManager.LoadSceneAsync("Gameplay");
 		}
 		if (scene == 2)
 		{
-			SceneManager.LoadSceneAsync("Street");
+			SceneManager.LoadSceneAsync("Forest");
 		}
 	}
 
-	public void SelectSong(int selected)
+	public void SelectSong(int songnumber)
 	{
-		currSong = songCollections[selected].songSets[0].song;
+		currSong = songCollections[activeFocus].songSets[songnumber].song;
 		SongInfoMessenger.Instance.currentSong = currSong;
-		SongInfoMessenger.Instance.currentCollection = songCollections[selected];
-		SongInfoMessenger.Instance.currSongNumber = 0;
+		SongInfoMessenger.Instance.currentCollection = songCollections[activeFocus];
+		SongInfoMessenger.Instance.currSongNumber = songnumber;
+		SongInfoMessenger.Instance.currCollNumber = activeFocus;
 		CloseSongBoardEvent?.Invoke();
 		foreach (GameObject camera in focusVirtCam) { camera.SetActive(false); }
-		focusVirtCam[selected].SetActive(true);
-		StartCoroutine(WaitBeforeLoad(selected));
+		focusVirtCam[activeFocus].SetActive(true);
+		StartCoroutine(WaitBeforeLoad(activeFocus));
 	}
 }

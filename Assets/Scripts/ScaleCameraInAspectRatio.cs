@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Camera))]
 public class ScaleCameraInAspectRatio : MonoBehaviour

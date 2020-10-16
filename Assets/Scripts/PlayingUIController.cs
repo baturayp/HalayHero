@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -153,22 +154,22 @@ public class PlayingUIController : MonoBehaviour
 			}
 		}
 
-		//dancer combo placemarks
-		//if(currCombo == 10)
-		//{
-		//	TriggerAnim(1);
-		//}
-		//if(currCombo == 15)
-		//{
-		//	TriggerAnim(2);
-		//}
-		//if(currCombo == 25)
-		//{
-		//	TriggerAnim(3);
-		//}
+        //dancer combo placemarks
+        if (currPerfection == 20)
+        {
+            TriggerAnim(1);
+        }
+        if (currPerfection == 40)
+        {
+            TriggerAnim(2);
+        }
+        if (currPerfection == 60)
+        {
+            TriggerAnim(3);
+        }
 
-		//enable warning sign on low rank
-		if (currHeartCount == 3 && heartsLeft == 1)
+        //enable warning sign on low rank
+        if (currHeartCount == 3 && heartsLeft == 1)
 		{
 			warningIcon.SetActive(true);
 		}
@@ -311,6 +312,22 @@ public class PlayingUIController : MonoBehaviour
 		mainCamera.SetActive(false);
 		pauseButton.SetActive(false);
 		score.SetActive(false);
+
+		//save progress
+		if (heartsLeft > 0)
+        {
+			int currSongNumber = SongInfoMessenger.Instance.currSongNumber;
+			int currCollNumber = SongInfoMessenger.Instance.currCollNumber;
+			string stringCollNumber = currCollNumber.ToString();
+			SongCollection collection = SongInfoMessenger.Instance.currentCollection;
+			int collLength = collection.songSets.Length;
+			int currProgress = PlayerPrefs.GetInt(stringCollNumber, 1);
+			if (currProgress - 1 == currSongNumber && collLength != currProgress)
+			{
+				PlayerPrefs.SetInt(stringCollNumber, currProgress + 1);
+			}
+			PlayerPrefs.Save();
+		}
 
 		//pimp animation
 		if (heartsLeft == 3) FinishPimp.Play("Good");

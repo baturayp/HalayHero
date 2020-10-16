@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using System;
 
 //selected song info passed along scenes
@@ -10,6 +12,7 @@ public class SongInfoMessenger : MonoBehaviour
     [NonSerialized] public SongInfo currentSong;
     [NonSerialized] public SongCollection currentCollection;
     [NonSerialized] public int currSongNumber;
+    [NonSerialized] public int currCollNumber;
 
     void Start()
     {

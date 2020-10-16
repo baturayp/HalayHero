@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using Cinemachine;
 
 public class Conductor : MonoBehaviour
@@ -445,10 +445,18 @@ public class Conductor : MonoBehaviour
 		float endTime = SongInfoMessenger.Instance.currentSong.endTime;
 
 		//check to see if the song reaches its end
-		if (songposition > songLength || songposition > endTime || Input.GetKeyDown("space"))
+		if (songposition > songLength || songposition > endTime)
 		{
 			SongCompleted();
 		}
+
+		//press spacebar to end a song when inside unity editor
+#if UNITY_EDITOR
+		if (Input.GetKeyDown("space"))
+		{
+			SongCompleted();
+		}
+#endif
 	}
 
 	void SongCompleted()
