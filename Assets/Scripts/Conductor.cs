@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using Cinemachine;
-using System.Runtime.InteropServices;
-using System;
 
 public class Conductor : MonoBehaviour
 {
@@ -333,7 +330,7 @@ public class Conductor : MonoBehaviour
 		songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * AudioSource.pitch - (songInfo.songOffset);
 
 		//remaining time
-		remainingTime = songLength - songposition;
+		remainingTime = SongInfoMessenger.Instance.currentSong.endTime - songposition;
 
 		//check if need to instantiate new nodes
 		float beatToShow = songposition + (BeatsShownOnScreen / tempo);
@@ -445,8 +442,10 @@ public class Conductor : MonoBehaviour
 			}
 		}
 
+		float endTime = SongInfoMessenger.Instance.currentSong.endTime;
+
 		//check to see if the song reaches its end
-		if (songposition > songLength || Input.GetKeyDown("space"))
+		if (songposition > songLength || songposition > endTime || Input.GetKeyDown("space"))
 		{
 			SongCompleted();
 		}

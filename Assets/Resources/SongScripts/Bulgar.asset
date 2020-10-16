@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
-  m_Name: Delilo
+  m_Name: Bulgar
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: 096e6ae3cc3750440be77d8e470946d1, type: 3}
   json: {fileID: 4900000, guid: 519084ecb914fc7438c960664c4ad799, type: 3}
-  songTitle: DamatDavulsuz
+  songTitle: Bulgar Payduska
   songOffset: 0
   bpm: 120
-  tempo: 1
+  tempo: 2
   dynamicTempo: []
   tracks:
   - notes:
@@ -368,3 +368,4 @@ MonoBehaviour:
       duration: 0
       track: 2
   beatsShownOnScreen: 4
+  endTime: 147

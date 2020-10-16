@@ -31,6 +31,9 @@ public class SongInfo : ScriptableObject
 	public float beatsShownOnScreen = 4f;
 	private int totalHits;
 
+	[Header("When to finish scene shows up, in seconds")]
+	public float endTime;
+
 	//get the total hits of the song
 	public int TotalHitCounts()
 	{

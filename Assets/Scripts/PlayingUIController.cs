@@ -1,10 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Cinemachine;
-using UnityEngine.Accessibility;
 using System;
 
 public class PlayingUIController : MonoBehaviour
@@ -86,7 +83,7 @@ public class PlayingUIController : MonoBehaviour
 	{
 		//in-game chronometer logic
 		float remainingTime = Conductor.remainingTime;
-		float songLength = SongInfoMessenger.Instance.currentSong.song.length;
+		float songLength = SongInfoMessenger.Instance.currentSong.endTime;
 		TimeSpan remTime = TimeSpan.FromSeconds(remainingTime);
 		float correctedSecAngle = -45 - ((60 - remTime.Seconds) * 6);
 		float correctedMinAngle = 1 / (songLength / Conductor.songposition);

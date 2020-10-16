@@ -5372,6 +5372,8 @@ MonoBehaviour:
   - {fileID: 1073683463}
   songCollections:
   - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
+  - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
+  - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
 --- !u!4 &1238817579
 Transform:
   m_ObjectHideFlags: 0
