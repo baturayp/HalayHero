@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116ed8d58fd7f0f42ae306b11aefc26f, type: 3}
+  m_Name: Dugun Collection
+  m_EditorClassIdentifier: 
+  songSets:
+  - song: {fileID: 11400000, guid: 6e6d19366243e544eb2ea9eb99f4582a, type: 2}
+  - song: {fileID: 11400000, guid: 4bc3da0da40d1e84893a671a3a8726c7, type: 2}
+  - song: {fileID: 11400000, guid: bfa74936e4730204b8516cd16f3d1c5e, type: 2}
+  - song: {fileID: 11400000, guid: 7080f4588ca1a534b93ffbfaa4840162, type: 2}
+  - song: {fileID: 11400000, guid: 99f852a1a95c31f4784aedc61eaf1bdb, type: 2}

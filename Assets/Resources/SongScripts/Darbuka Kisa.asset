@@ -1,0 +1,815 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
+  m_Name: Darbuka Kisa
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: dc829cc431bc68e49812eb11fcce6a98, type: 3}
+  json: {fileID: 4900000, guid: 02e46466c40d4ae4fbea6875001de2b1, type: 3}
+  songTitle: Darbuka Kisa
+  songOffset: 0
+  bpm: 73
+  tempo: 2
+  dynamicTempo: []
+  tracks:
+  - notes:
+    - dueTo: 6.9863014
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 8.424658
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 10.2739725
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 11.917809
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 14.383562
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 16.027397
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 17.260275
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 18.49315
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 20.136986
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 21.369864
+      manyTimes: 2
+      duration: 0
+      track: 0
+    - dueTo: 22.19178
+      manyTimes: 2
+      duration: 0
+      track: 0
+    - dueTo: 23.424658
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 24.863014
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 25.890411
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 26.917809
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 28.150684
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 29.178082
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 29.794521
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 30.821918
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 31.849316
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 33.08219
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 34.10959
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 34.72603
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 36.36986
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 37.39726
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 38.424656
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 39.657536
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 40.684933
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 42.328766
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 43.972603
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 46.643837
+      manyTimes: 3
+      duration: 0
+      track: 0
+    - dueTo: 47.876713
+      manyTimes: 2
+      duration: 0
+      track: 0
+    - dueTo: 48.90411
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 51.36986
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 52.80822
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 54.246574
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 56.09589
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 57.945206
+      manyTimes: 2
+      duration: 0
+      track: 0
+    - dueTo: 58.767124
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 60.410957
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 62.46575
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 64.520546
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 65.753426
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 67.39726
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 69.0411
+      manyTimes: 2
+      duration: 0
+      track: 0
+    - dueTo: 70.89041
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 71.91781
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 75.20548
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 75.821915
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 76.84931
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 78.49315
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 79.520546
+      manyTimes: 0
+      duration: 0
+      track: 0
+    - dueTo: 81.369865
+      manyTimes: 0
+      duration: 0
+      track: 0
+  - notes:
+    - dueTo: 3.2876713
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 4.109589
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 4.9315066
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 5.7534246
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 6.5753427
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 7.39726
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 8.219178
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 9.041096
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 9.863013
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 11.09589
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 12.328767
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 13.150685
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 13.972603
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 15.20548
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 16.849316
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 18.082191
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 19.31507
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 20.547945
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 21.369864
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 23.013699
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 23.835617
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 24.657534
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 25.479452
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 26.30137
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 27.123287
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 27.945206
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 28.767124
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 30.205479
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 31.232876
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 32.054794
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 32.876713
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 33.69863
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 35.136986
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 36.164383
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 36.9863
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 37.80822
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 38.63014
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 39.452053
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 40.27397
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 41.50685
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 42.739727
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 43.561646
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 44.38356
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 45.20548
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 46.027397
+      manyTimes: 2
+      duration: 0
+      track: 1
+    - dueTo: 48.28767
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 49.315067
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 50.958904
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 51.780823
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 52.60274
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 53.835617
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 55.068493
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 55.89041
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 56.71233
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 57.53425
+      manyTimes: 2
+      duration: 0
+      track: 1
+    - dueTo: 58.356163
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 59.17808
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 60
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 60.82192
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 61.643837
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 63.28767
+      manyTimes: 2
+      duration: 0
+      track: 1
+    - dueTo: 64.10959
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 65.34247
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 66.16438
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 66.9863
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 68.21918
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 69.45206
+      manyTimes: 2
+      duration: 0
+      track: 1
+    - dueTo: 70.27397
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 72.328766
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 73.15069
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 74.79452
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 76.0274
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 77.26028
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 79.72603
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 80.54794
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 81.78082
+      manyTimes: 0
+      duration: 0
+      track: 1
+    - dueTo: 83.0137
+      manyTimes: 0
+      duration: 0
+      track: 1
+  - notes:
+    - dueTo: 6.780822
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 7.808219
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 8.630137
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 9.452055
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 10.684932
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 11.506849
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 12.739726
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 13.561644
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 14.79452
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 15.616438
+      manyTimes: 2
+      duration: 0
+      track: 2
+    - dueTo: 16.438356
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 17.671232
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 18.90411
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 19.726027
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 20.958904
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 21.780823
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 22.60274
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 24.246574
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 25.273973
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 26.50685
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 27.534246
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 28.561644
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 29.58904
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 30.41096
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 31.438356
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 32.46575
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 33.49315
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 34.52055
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 35.753426
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 36.780823
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 38.0137
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 39.041096
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 40.068493
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 41.09589
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 41.91781
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 43.150684
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 44.79452
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 45.61644
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 46.438354
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 47.671234
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 48.49315
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 50.136986
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 51.164383
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 52.19178
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 53.424656
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 54.452053
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 55.47945
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 57.123287
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 58.561646
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 60.20548
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 62.054794
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 62.876713
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 63.69863
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 64.9315
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 66.57534
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 67.80822
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 69.863014
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 70.68493
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 71.50685
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 72.53425
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 73.9726
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 75.61644
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 76.438354
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 78.08219
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 78.904106
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 80.136986
+      manyTimes: 0
+      duration: 0
+      track: 2
+    - dueTo: 82.19178
+      manyTimes: 0
+      duration: 0
+      track: 2
+  beatsShownOnScreen: 4
+  endTime: 84

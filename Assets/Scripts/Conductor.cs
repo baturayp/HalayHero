@@ -269,6 +269,10 @@ public class Conductor : MonoBehaviour
 
 		//initialize audioSource
 		AudioSource.clip = songInfo.song;
+
+		//load Audio data
+		AudioSource.clip.LoadAudioData();
+
 		AudioSource.volume = PlayerPrefs.GetFloat("Volume", 1f);
 
 		//start countdown
@@ -474,6 +478,10 @@ public class Conductor : MonoBehaviour
 			countDownText.GetComponent<TMPro.TextMeshProUGUI>().text = i.ToString();
 			yield return new WaitForSeconds(1f);
 		}
+
+		//wait until audio data loaded
+		yield return new WaitUntil(() => AudioSource.clip.loadState == AudioDataLoadState.Loaded);
+
 		countDownCanvas.SetActive(false);
 
 		StartSong();
@@ -484,6 +492,7 @@ public class Conductor : MonoBehaviour
 		PlayerInputControl.InputtedEvent -= PlayerInputted;
 		PlayerInputControl.KeyupEvent -= KeyUpped; 
 		PlayingUIController.LostEvent -= SongCompleted;
+		AudioSource.clip.UnloadAudioData();
 	}
 
 	void SetGameObjects(bool state)

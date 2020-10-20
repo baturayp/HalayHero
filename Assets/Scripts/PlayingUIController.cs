@@ -52,6 +52,10 @@ public class PlayingUIController : MonoBehaviour
 	public delegate void LostAction();
 	public static event LostAction LostEvent;
 
+	//show ads event
+	public delegate void ShowAdsAction();
+	public static event ShowAdsAction ShowAdsEvent;
+
 	//finish scene
 	public GameObject finishedScene;
 	public Animator FinishPimp;
@@ -78,6 +82,7 @@ public class PlayingUIController : MonoBehaviour
 		//register to events
 		Conductor.BeatOnHitEvent += BeatOnHit;
 		Conductor.SongCompletedEvent += SongCompleted;
+		IntersititialAd.AdsShownEvent += GotoNextScene;
 	}
 
 	private void Update()
@@ -98,6 +103,7 @@ public class PlayingUIController : MonoBehaviour
 		//unregister from events
 		Conductor.BeatOnHitEvent -= BeatOnHit;
 		Conductor.SongCompletedEvent -= SongCompleted;
+		IntersititialAd.AdsShownEvent -= GotoNextScene;
 	}
 
 	//called by event
@@ -121,10 +127,10 @@ public class PlayingUIController : MonoBehaviour
 		}
 		else if (rank == Conductor.Rank.BAD)
 		{
-			if (currHeartCount > 0)
-            {
-				currHeartCount--;
-            }
+			//if (currHeartCount > 0)
+   //         {
+			//	currHeartCount--;
+   //         }
 		}
 		else if (rank == Conductor.Rank.MISS)
 		{
@@ -155,15 +161,15 @@ public class PlayingUIController : MonoBehaviour
 		}
 
         //dancer combo placemarks
-        if (currPerfection == 20)
+        if (currPerfection == 20 || currPerfection == 50 || currPerfection == 80 || currPerfection == 110)
         {
             TriggerAnim(1);
         }
-        if (currPerfection == 40)
+        if (currPerfection == 30 || currPerfection == 60 || currPerfection == 90 || currPerfection == 120)
         {
             TriggerAnim(2);
         }
-        if (currPerfection == 60)
+        if (currPerfection == 40 || currPerfection == 70 || currPerfection == 100 || currPerfection == 130)
         {
             TriggerAnim(3);
         }
@@ -254,15 +260,20 @@ public class PlayingUIController : MonoBehaviour
 			int curr = currSongNumber + 1;
 			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
 			SongInfoMessenger.Instance.currSongNumber = curr;
-			SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+			ShowAdsEvent?.Invoke();
 		}
 		else 
 		{
 			int curr = 0;
 			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
 			SongInfoMessenger.Instance.currSongNumber = curr;
-			SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+			ShowAdsEvent?.Invoke();
 		}
+	}
+
+	public void GotoNextScene()
+    {
+		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	IEnumerator ScreenFadeIn(bool finish, bool returnMain)

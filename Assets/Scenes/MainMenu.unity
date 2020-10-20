@@ -790,7 +790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "MAST\u0130KA\n"
+  m_text: "MAST\u0130KA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -2982,6 +2982,49 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 32178869}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &550027732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550027734}
+  - component: {fileID: 550027733}
+  m_Layer: 0
+  m_Name: GoogleAdsInit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &550027733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550027732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4060c354df04ec447851be2fe23e502d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &550027734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550027732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 562.1105, y: 315.64825, z: 21.492577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572096970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d16fb392ab33a5843a72ed5491254418,
@@ -3630,7 +3673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TEKE ZORTLATMASI
+  m_text: KONYALIM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -4147,7 +4190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: -7}
   m_SizeDelta: {x: -200, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &881890915
@@ -5958,7 +6001,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "KOZANDA\u011EI M\u0130SKET"
+  m_text: TEKE ZORTLATMASI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -6236,8 +6279,8 @@ MonoBehaviour:
   - {fileID: 1073683463}
   songCollections:
   - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
-  - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
-  - {fileID: 11400000, guid: 7e38d938688b9924891085241e7ba4b3, type: 2}
+  - {fileID: 11400000, guid: 2700424a7b735df4e89bb1c30fcdcbba, type: 2}
+  - {fileID: 11400000, guid: 6edb4396f284f0443b0993fd51a7e045, type: 2}
   BalkanFrameButtons:
   - {fileID: 102277950}
   - {fileID: 171411401}
@@ -6327,7 +6370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KONYALIM
+  m_text: "KOZANDA\u011EI M\u0130SKET"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -6863,7 +6906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xC7\u0130FTETELL\u0130"
+  m_text: "F\u0130DAYDA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -8781,7 +8824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DARBUKA SOLOSU
+  m_text: "\xC7\u0130FTETELL\u0130"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,
@@ -9182,7 +9225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "F\u0130DAYDA"
+  m_text: DARBUKA SOLOSU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d16cc7964295924a8bf314daec92721, type: 2}
   m_sharedMaterial: {fileID: 1564731371172235093, guid: 1d16cc7964295924a8bf314daec92721,

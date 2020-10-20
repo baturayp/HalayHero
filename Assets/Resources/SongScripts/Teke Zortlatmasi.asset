@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
+  m_Name: Teke Zortlatmasi
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: 6bb027f5c8ac4ad41b94518c9efccac9, type: 3}
+  json: {fileID: 4900000, guid: eb17af6ca5a89e244a1d165b90a46beb, type: 3}
+  songTitle: Teke Zortlatmasi
+  songOffset: 0
+  bpm: 0
+  tempo: 2
+  dynamicTempo: []
+  tracks:
+  - notes: []
+  - notes: []
+  - notes: []
+  beatsShownOnScreen: 4
+  endTime: 121
