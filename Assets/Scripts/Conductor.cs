@@ -422,8 +422,9 @@ public class Conductor : MonoBehaviour
 				//keep long note at the position til duration ends
 				if (songposition > currNode.beat + currNode.duration)
                 {
+                    if (currNode.pressed) BeatOnHitEvent?.Invoke(i, Rank.BAD);
+					if (!currNode.pressed) BeatOnHitEvent?.Invoke(i, Rank.MISS);
 					currNode.restartedLong = true;
-					BeatOnHitEvent?.Invoke(i, Rank.MISS);
 					KeyUpBeatEvent?.Invoke(i);
 					currNode.DeactivationRedirector(Color.red);
 					queueForTracks[i].Dequeue();

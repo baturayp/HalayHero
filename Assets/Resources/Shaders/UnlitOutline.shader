@@ -26,14 +26,12 @@ uniform float4 _OutlineColor;
 v2f vert(appdata v) {
  // just make a copy of incoming vertex data but scaled according to normal direction
  v2f o;
- o.pos = UnityObjectToClipPos(v.vertex);
+     o.pos = v.vertex;
+     o.pos.xyz += v.normal.xyz *_Outline*0.01;
+     o.pos = UnityObjectToClipPos(o.pos);
  
- float3 norm   = mul ((float3x3)UNITY_MATRIX_IT_MV, v.normal);
- float2 offset = TransformViewToProjection(norm.xy);
- 
- o.pos.xy += offset * o.pos.z * _Outline;
- o.color = _OutlineColor;
- return o;
+     o.color = _OutlineColor;
+     return o;
 }
 ENDCG
  
