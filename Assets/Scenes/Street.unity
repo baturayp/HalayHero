@@ -1512,7 +1512,7 @@ MonoBehaviour:
   startLineY: 8
   finishLineY: -3.5
   removeLineY: -6
-  badOffsetY: 1
+  badOffsetY: 1.5
   goodOffsetY: 0.4
   perfectOffsetY: 0.25
   trackColors:

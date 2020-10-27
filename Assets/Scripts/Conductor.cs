@@ -432,7 +432,7 @@ public class Conductor : MonoBehaviour
 			}
 
 			//single note
-			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - goodOffsetY)
+			else if (currNode.times == 0 && currNode.duration == 0 && currNode.transform.position.y <= finishLineY - badOffsetY)
 			{
 				//have previous note stuck on the finish line
 				if (previousMusicNodes[i] != null)

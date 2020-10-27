@@ -117,6 +117,11 @@ public class PlayingUIController : MonoBehaviour
 			
 			//gaining heart points makes game too easy, disable it for now
 			//if (currHeartCount < 5) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+
+			if (SongInfoMessenger.Instance.currSongNumber < 3)
+            {
+				if (currHeartCount < 5) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+			}
 			
 			//update perfection
 			currPerfection += 2;
