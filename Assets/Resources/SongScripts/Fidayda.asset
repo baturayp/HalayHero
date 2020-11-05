@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
   m_Name: Fidayda
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: f7249b470c8445540aacaa54c1cdcc21, type: 3}
+  song: {fileID: 8300000, guid: bfbc84ca0e271c52ea3af329c0bf7d12, type: 3}
   json: {fileID: 4900000, guid: 000e37ae64db2c7448f5bff4c9b2056a, type: 3}
   songTitle: Fidayda
   songOffset: 0

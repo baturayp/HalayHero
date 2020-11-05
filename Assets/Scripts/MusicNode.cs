@@ -53,7 +53,7 @@ public class MusicNode : MonoBehaviour
 		//set times
 		if (times > 0)
 		{
-			timesText.text = times.ToString();
+			timesText.text = "x" + times.ToString();
 			timesTextBackground.SetActive(true);
 			longLineRenderer.enabled = false;
 		}
@@ -153,7 +153,7 @@ public class MusicNode : MonoBehaviour
 			return true;
 		}
 
-		timesText.text = times.ToString();
+		timesText.text = "x" + times.ToString();
 
 		return false;
 	}

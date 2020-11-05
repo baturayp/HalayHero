@@ -54,6 +54,15 @@ public class LogicScript : MonoBehaviour
 		{
 			HalayFrameButtons[i].interactable = true;
 		}
+
+		//focus to and open songboard (if returning from gameplay)
+		if (SingletonScript.instance.collNumber == 1) FocusTo(1);
+		if (SingletonScript.instance.collNumber == 2) FocusTo(2);
+
+		if (SingletonScript.instance.openFrame && SingletonScript.instance.collNumber < 3)
+		{
+			frames[SingletonScript.instance.collNumber].SetActive(true);
+		}
 	}
 
     void Update()

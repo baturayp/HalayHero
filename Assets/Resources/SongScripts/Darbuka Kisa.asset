@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
   m_Name: Darbuka Kisa
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: dc829cc431bc68e49812eb11fcce6a98, type: 3}
+  song: {fileID: 8300000, guid: 4d0663c03ddc0c356b270a27c7a429cc, type: 3}
   json: {fileID: 4900000, guid: 02e46466c40d4ae4fbea6875001de2b1, type: 3}
   songTitle: Darbuka Kisa
   songOffset: 0

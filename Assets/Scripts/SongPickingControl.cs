@@ -98,6 +98,8 @@ public class SongPickingControl : MonoBehaviour
 	{
 		LogicScript.OpenSongBoardEvent += FlipToSongFromFirst;
 		LogicScript.CloseSongBoardEvent += FlipToFirstFromSong;
+
+		if (SingletonScript.instance.openFrame && SingletonScript.instance.collNumber < 3) FlipToSongFromFirst();
 	}
 
     void OnDestroy()

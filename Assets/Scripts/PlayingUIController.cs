@@ -52,6 +52,8 @@ public class PlayingUIController : MonoBehaviour
 	public delegate void LostAction();
 	public static event LostAction LostEvent;
 
+	private bool collFinished = false;
+
 	//show ads event
 	public delegate void ShowAdsAction();
 	public static event ShowAdsAction ShowAdsEvent;
@@ -76,6 +78,10 @@ public class PlayingUIController : MonoBehaviour
 
 	void Start()
 	{
+		//reset showNext switch and inform singleton
+		SingletonScript.instance.openFrame = true;
+		SingletonScript.instance.collNumber = SongInfoMessenger.Instance.currCollNumber;
+
 		//get the length of all notes from messenger
 		fullNoteCounts = SongInfoMessenger.Instance.currentSong.TotalHitCounts();
 
@@ -118,9 +124,22 @@ public class PlayingUIController : MonoBehaviour
 			//gaining heart points makes game too easy, disable it for now
 			//if (currHeartCount < 5) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
 
-			if (SongInfoMessenger.Instance.currSongNumber < 3)
+			//make game incrementally harder
+			if (SongInfoMessenger.Instance.currSongNumber == 0)
             {
 				if (currHeartCount < 5) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+			}
+			if (SongInfoMessenger.Instance.currSongNumber == 1)
+            {
+				if (currHeartCount < 4) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+			}
+			if (SongInfoMessenger.Instance.currSongNumber == 2)
+            {
+				if (currHeartCount < 3) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
+			}
+			if (SongInfoMessenger.Instance.currSongNumber == 3)
+            {
+				if (currHeartCount < 2) { currHeartCount++; heartScoreAnim.SetTrigger("scoreup"); }
 			}
 			
 			//update perfection
@@ -260,25 +279,28 @@ public class PlayingUIController : MonoBehaviour
 		int currSongNumber = SongInfoMessenger.Instance.currSongNumber;
 		SongCollection collection = SongInfoMessenger.Instance.currentCollection;
 		int collLength = collection.songSets.Length;
+		int currCollNumber = SongInfoMessenger.Instance.currCollNumber;
 		if (currSongNumber < collLength - 1)
 		{
 			int curr = currSongNumber + 1;
 			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
 			SongInfoMessenger.Instance.currSongNumber = curr;
 			ShowAdsEvent?.Invoke();
+			//GotoNextScene();
 		}
 		else 
 		{
-			int curr = 0;
-			SongInfoMessenger.Instance.currentSong = collection.songSets[curr].song;
-			SongInfoMessenger.Instance.currSongNumber = curr;
+			collFinished = true;
+			SingletonScript.instance.collNumber = currCollNumber + 1;
 			ShowAdsEvent?.Invoke();
+			//GotoNextScene();
 		}
 	}
 
 	public void GotoNextScene()
     {
-		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+		if(!collFinished) SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+		else SceneManager.LoadSceneAsync("MainMenu");
 	}
 
 	IEnumerator ScreenFadeIn(bool finish, bool returnMain)

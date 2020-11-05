@@ -16,7 +16,6 @@ public class PlayerInputControl : MonoBehaviour
     //in unity editor & standalone, input by keyboard
 #if UNITY_EDITOR || UNITY_STANDALONE
     private KeyCode[] keybindings;
-    private KeyCode pauseKey;
 #endif
     //cache the number of tracks
     private int trackLength;
@@ -26,11 +25,10 @@ public class PlayerInputControl : MonoBehaviour
         trackLength = tappingSpheres.Length;
         //just for debugging
 #if UNITY_EDITOR || UNITY_STANDALONE
-        keybindings = new KeyCode[4];
-        keybindings[0] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track1);
-        keybindings[1] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track2);
-        keybindings[2] = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Track3);
-        pauseKey = KeyboardInputManager.instance.GetKeyCode(KeyboardInputManager.KeyBindings.Pause);
+        keybindings = new KeyCode[3];
+        keybindings[0] = (KeyCode)System.Enum.Parse(typeof(KeyCode), "A");;
+        keybindings[1] = (KeyCode)System.Enum.Parse(typeof(KeyCode), "S");;
+        keybindings[2] = (KeyCode)System.Enum.Parse(typeof(KeyCode), "D");;
 #endif
     }
 
@@ -49,10 +47,6 @@ public class PlayerInputControl : MonoBehaviour
             {
                 Keyup(i);
             }
-        }
-        if (Input.GetKeyDown(pauseKey))
-        {
-            FindObjectOfType<PlayingUIController>().PauseButtonOnClick();
         }
 #endif
 

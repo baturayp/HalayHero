@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f0a29fce67de4bac09a1f9d726538, type: 3}
   m_Name: Dugun Halayi
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: ede0b9ea79cb69346a885f7059309803, type: 3}
+  song: {fileID: 8300000, guid: b76b3a79e3c51e38aaccc21d431b2d62, type: 3}
   json: {fileID: 4900000, guid: a1a96cd9efe852144bd7c49175f9abf5, type: 3}
   songTitle: Dugun Halayi
   songOffset: 0
